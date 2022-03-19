@@ -169,7 +169,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         footer: {
             createYear: 2022, // 博客创建年份
             copyrightInfo:
-                'Xiaohei | <a href="https://github.com/SWJTUHub/SWJTU-Wiki/blob/master/LICENSE" target="_blank">MIT License</a>', // 博客版权信息，支持a标签或换行标签</br>
+                'swjtuhub | <a href="https://github.com/swjtuhub/swjtu-wiki/blob/master/LICENSE" target="_blank">MIT License</a>', // 博客版权信息，支持a标签或换行标签</br>
         },
 
         // 自定义hmtl(广告)模块

@@ -10,7 +10,6 @@ import htmlModules from './config/htmlModules' // 自定义插入的html块
 
 export default defineConfig4CustomTheme<VdoingThemeConfig>({
     theme: 'vdoing', // 使用npm包主题
-    // theme: resolve(__dirname, '../../vdoing'), // 使用本地主题
 
     locales: {
         '/': {
@@ -26,66 +25,37 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         // 导航配置
         nav: [
             { text: '首页', link: '/' },
-            // {
-            //     text: '页面',
-            //     link: '/ui/',
-            //     items: [
-            //         { text: 'HTML', link: '/pages/8309a5b876fc95e3/' },
-            //         { text: 'CSS', link: '/pages/0a83b083bdf257cb/' },
-            //     ],
-            // },
-            // {
-            //     text: '技术',
-            //     link: '/technology/',
-            //     items: [
-            //         { text: '技术文档', link: '/pages/9a7ee40fc232253e/' },
-            //         { text: 'GitHub技巧', link: '/pages/4c778760be26d8b3/' },
-            //         { text: 'Nodejs', link: '/pages/117708e0af7f0bd9/' },
-            //         { text: '博客搭建', link: '/pages/41f87d890d0a02af/' },
-            //     ],
-            // },
             {
-                text: 'VIS',
-                link: '/vis/', //目录页链接，此处link是vdoing主题新增的配置项，有二级导航时，可以点击一级导航跳到目录页
+                text: '学习',
+                link: '/study/', //目录页链接，有二级导航时，可以点击一级导航跳到目录页
                 items: [
-                    // 说明：以下所有link的值只是在相应md文件头部定义的永久链接（不是什么特殊编码）。另外，注意结尾是有斜杠的
+                    // 说明：以下所有link的值是在相应md文件头部定义的永久链接，注意结尾有斜杠
                     {
-                        text: '视觉识别系统',
-                        items: [
-                            { text: 'A.基础系统', link: '/pages/vis_a/' },
-                            { text: 'B.办公用品系统', link: '/pages/vis_b/' },
-                            { text: 'C.事务用品系统', link: '/pages/vis_c/' },
-                            { text: 'D.公文系统', link: '/pages/vis_d/' },
-                            { text: 'E.会务系统', link: '/pages/vis_e/' },
-                            { text: 'F.公关用品系统', link: '/pages/vis_f/' },
-                            { text: 'G.车辆系统', link: '/pages/vis_g/' },
-                            { text: 'H.导示系统', link: '/pages/vis_h/' },
-                        ],
+                        text: '学习资料',
+                        link: 'http://swjtuhub.cn/',
                     },
                 ],
             },
-            { text: '学习资料', link: 'http://swjtuhub.cn/' },
-            // {
-            //     text: '更多',
-            //     link: '/more/',
-            //     items: [
-            //         { text: '学习', link: '/pages/f2a556/' },
-            //         { text: '面试', link: '/pages/aea6571b7a8bae86/' },
-            //         { text: '心情杂货', link: '/pages/2d615df9a36a98ed/' },
-            //         { text: '实用技巧', link: '/pages/baaa02/' },
-            //         { text: '友情链接', link: '/friends/' },
-            //     ],
-            // },
+            {
+                text: '黄页',
+                link: '/yellowpage/',
+            },
+            {
+                text: '生活',
+                link: '/life/',
+            },
+            {
+                text: '周边',
+                link: '/nearby/',
+            },
             { text: '关于', link: '/about/' },
-            // {
-            //     text: '收藏',
-            //     link: '/pages/beb6c0bd8a66cea6/',
-            //     items: [
-            //       { text: '网站', link: '/pages/beb6c0bd8a66cea6/' },
-            //       { text: '资源', link: '/pages/eee83a9211a70f9d/' },
-            //       { text: 'Vue资源', link: '/pages/12df8ace52d493f6/' },
-            //     ],
-            // },
+            {
+                text: '更多',
+                link: '/more/',
+                items: [
+                    { text: '友情链接', link: '/friends/' },
+                ],
+            },
             {
                 text: '索引',
                 link: '/archives/',
@@ -96,16 +66,17 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 ],
             },
         ],
+
         sidebarDepth: 2, // 侧边栏显示深度，默认1，最大2（显示到h3标题）
         logo: '/img/logo.png', // 导航栏logo
-        repo: 'SWJTUHub/SWJTU-Wiki', // 导航栏右侧生成Github链接
-        searchMaxSuggestions: 10, // 搜索结果显示最大数
+        repo: 'swjtuhub/swjtu-wiki', // 导航栏右侧生成Github链接
+        searchMaxSuggestions: 5, // 搜索结果显示最大数
         lastUpdated: '上次更新', // 开启更新时间，并配置前缀文字   string | boolean (取值为git提交时间)
         docsDir: 'docs', // 编辑的文件夹
         editLinks: true, // 启用编辑
         editLinkText: '编辑',
 
-        //*** 以下是Vdoing主题相关配置，文档：https://doc.xugaoyi.com/pages/a20ce8/ ***//
+        //*** Vdoing主题相关配置 ***//
 
         // category: false, // 是否打开分类功能，默认true
         // tag: false, // 是否打开标签功能，默认true
@@ -144,8 +115,8 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
 
         // 博主信息 (显示在首页侧边栏)
         blogger: {
-            avatar: 'https://avatars.githubusercontent.com/u/44370805?v=4',
-            name: 'Xiaohei',
+            avatar: 'https://s2.loli.net/2022/03/20/RSFO3MThHXdxqs4.png',
+            name: 'SWJTUHub',
         },
 
         // 社交图标 (显示于博主信息栏和页脚栏。内置图标：https://doc.xugaoyi.com/pages/a20ce8/#social)
@@ -160,7 +131,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 {
                     iconClass: 'icon-github',
                     title: 'GitHub',
-                    link: 'https://github.com/SWJTUHub/SWJTU-Wiki',
+                    link: 'https://github.com/swjtuhub',
                 },
             ],
         },

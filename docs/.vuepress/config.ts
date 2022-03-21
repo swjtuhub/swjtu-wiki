@@ -29,10 +29,19 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 text: '学习',
                 link: '/study/', //目录页链接，有二级导航时，可以点击一级导航跳到目录页
                 items: [
-                    // 说明：以下所有link的值是在相应md文件头部定义的永久链接，注意结尾有斜杠
+                    // 说明：以下所有link的值是外部链接或md文件头部定义的永久链接，注意结尾有斜杠
                     {
                         text: '学习资料',
                         link: 'http://swjtuhub.cn/',
+                    },
+                    {
+                        text: '推免',
+                        items: [
+                            {
+                                text: '推免统计数据',
+                                link: '/free_analysis/',
+                            }
+                        ]
                     },
                 ],
             },

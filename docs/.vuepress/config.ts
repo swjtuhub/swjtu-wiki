@@ -260,13 +260,13 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 options: {
                     clientID: 'd20b0f2a66c2e3e8af9b',
                     clientSecret: 'a91a14d01c59c3644e7e8020a98d7ee75da3a07e',
-                    repo: 'SWJTU-Wiki', // GitHub 仓库
-                    owner: 'SWJTUHub', // GitHub仓库所有者
-                    admin: ['SWJTUHub'], // 对仓库有写权限的人
+                    repo: 'gitalk-comment', // GitHub 仓库
+                    owner: 'swjtuhub', // GitHub仓库所有者
+                    admin: ['swjtuhub'], // 对仓库有写权限的人
                     // distractionFreeMode: true,
                     pagerDirection: 'last', // 'first'正序 | 'last'倒序
                     id: '<%- (frontmatter.permalink || frontmatter.to.path).slice(-16) %>', //  页面的唯一标识,长度不能超过50
-                    title: '「评论」<%- frontmatter.title %>', // GitHub issue 的标题
+                    title: '「评论」<%- frontmatter.title %> ', // GitHub issue 的标题
                     labels: ['Gitalk', 'Comment'], // GitHub issue 的标签
                     body:
                         '页面：<%- window.location.origin + (frontmatter.to.path || window.location.pathname) %>', // GitHub issue 的内容

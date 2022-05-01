@@ -265,7 +265,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                     admin: ['swjtuhub'], // 对仓库有写权限的人
                     // distractionFreeMode: true,
                     pagerDirection: 'last', // 'first'正序 | 'last'倒序
-                    id: '<%- (frontmatter.permalink || frontmatter.to.path).slice(-16) %>', //  页面的唯一标识,长度不能超过50
+                    id: '<%- (frontmatter.permalink || frontmatter.to.path).slice(-24) %>', //  页面的唯一标识,长度不能超过50
                     title: '「评论」<%- frontmatter.title %> ', // GitHub issue 的标题
                     labels: ['Gitalk', 'Comment'], // GitHub issue 的标签
                     body:

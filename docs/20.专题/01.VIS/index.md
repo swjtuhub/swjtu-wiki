@@ -2,7 +2,7 @@
 pageComponent: 
   name: Catalogue
   data: 
-    key: 20.VIS
+    key: 20.专题/01.VIS
     imgUrl: /img/swjtu.png
     description: 西南交通大学视觉形象识别系统
 title: VIS

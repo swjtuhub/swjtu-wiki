@@ -9,17 +9,17 @@ bannerBg: none # auto => 网格纹背景(有bodyBgImg时无背景)，默认 | no
 
 features: # 可选
   - title: 推免专题
-    details: 西南交通大学推荐免试研究生专题
+    details: 推荐免试研究生专题
     link: /free/
     imgUrl: /img/free.png
   - title: 转专业专题
-    details: 西南交通大学本科生转专业专题
+    details: 本科生转专业专题
     link: /change/
     imgUrl: /img/change.png
-  - title: VIS
-    details: 西南交通大学视觉形象识别系统
-    link: /vis/
-    imgUrl: /img/vis.png
+  - title: 新生专题
+    details: 2022年新生入学指南
+    link: /freshman/
+    imgUrl: /img/freshman.png
 
 # 文章列表显示方式: detailed 默认，显示详细版文章列表（包括作者、分类、标签、摘要、分页等）| simple => 显示简约版文章列表（仅标题和日期）| none 不显示文章列表
 postList: none

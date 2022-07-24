@@ -36,12 +36,11 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                     },
                     {
                         text: '推免',
-                        items: [
-                            {
-                                text: '推免统计数据',
-                                link: '/free_analysis/',
-                            }
-                        ]
+                        link: '/free/',
+                    },
+                    {
+                        text: '转专业',
+                        link: '/change/',
                     },
                 ],
             },
@@ -57,7 +56,10 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 text: '周边',
                 link: '/nearby/',
             },
-            { text: '关于', link: '/about/' },
+            {
+                text: '关于',
+                link: '/about/'
+            },
             {
                 text: '更多',
                 items: [

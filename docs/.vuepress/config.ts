@@ -42,6 +42,10 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                         text: '转专业',
                         link: '/change/',
                     },
+                    {
+                        text: '评价信息',
+                        link: '/evaluate/',
+                    },
                 ],
             },
             {

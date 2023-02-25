@@ -61,12 +61,9 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 link: '/nearby/',
             },
             {
-                text: '关于',
-                link: '/about/'
-            },
-            {
                 text: '更多',
                 items: [
+                    { text: '关于', link: '/about/' },
                     { text: '友情链接', link: '/friends/' },
                 ],
             },

@@ -137,7 +137,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 {
                     iconClass: 'icon-youjian',
                     title: '发邮件',
-                    link: 'mailto:mobyw66@gmail.com',
+                    link: 'mailto:swjtu-study@foxmail.com',
                 },
                 {
                     iconClass: 'icon-github',

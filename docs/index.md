@@ -17,7 +17,7 @@ features: # 可选
     link: /change/
     imgUrl: /img/change.png
   - title: 新生专题
-    details: 2022年新生入学指南
+    details: 2023年新生入学指南
     link: /freshman/
     imgUrl: /img/freshman.png
 
@@ -48,7 +48,7 @@ SWJTU-Wiki 整合了在西南交通大学学习与生活之中的常用的信息
 
 2. 邮件提交: 发送邮件到 swjtu-study@foxmail.com 。
 
-3. 代理提交: 添加 SWJTU-Wiki QQ群: [631209350](https://jq.qq.com/?_wv=1027&k=Yc7T7Q8B)，提交 Word 或 Markdown 文件给群主整理上传。
+3. 代理提交: 添加 SWJTU-Wiki QQ 群: [631209350](https://jq.qq.com/?_wv=1027&k=Yc7T7Q8B)，提交 Word 或 Markdown 文件给群主整理上传。
 
 本站文档正在编写中，如果您有兴趣一起编写文档，也可通过上述方式贡献。
 

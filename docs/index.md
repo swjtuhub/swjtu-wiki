@@ -17,7 +17,7 @@ features: # 可选
     link: /change/
     imgUrl: /img/change.png
   - title: 新生专题
-    details: 2023年新生入学指南
+    details: 2024年新生入学指南
     link: /freshman/
     imgUrl: /img/freshman.png
 

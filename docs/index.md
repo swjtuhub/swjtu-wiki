@@ -46,13 +46,13 @@ SWJTU-Wiki 整合了在西南交通大学学习与生活之中的常用的信息
 
 1. Pull request: Fork 后，进行修改并发起 Merge 请求。
 
-2. 邮件提交: 发送邮件到 swjtu-study@foxmail.com 。
+2. 邮件提交: 发送邮件到 [swjtuhub@foxmail.com](mailto:swjtuhub@foxmail.com)。
 
-3. 代理提交: 添加 SWJTU-Wiki QQ 群: [631209350](https://jq.qq.com/?_wv=1027&k=Yc7T7Q8B)，提交 Word 或 Markdown 文件给群主整理上传。
+3. 代提交: 添加 SWJTU-Wiki QQ 群: [631209350](https://jq.qq.com/?_wv=1027&k=Yc7T7Q8B)，提交 Word 或 Markdown 文件给群主整理上传。
 
 本站文档正在编写中，如果您有兴趣一起编写文档，也可通过上述方式贡献。
 
 ## :email: 联系
 
-- **Email**: <a href="mailto:mobyw66@gmail.com">mobyw66@gmail.com</a>
+- **Email**: <a href="mailto:swjtuhub@foxmail.com">swjtuhub@foxmail.com</a>
 - **GitHub**: <https://github.com/swjtuhub>

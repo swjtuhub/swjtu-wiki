@@ -1,18 +1,37 @@
 name: Build and Deploy
 on: [push]
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  # fetch all commits to get last updated time or other git log info
+                  fetch-depth: 0
 
-      - name: vuepress-deploy
-        uses: jenkey2011/vuepress-deploy@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TARGET_REPO: swjtuhub/swjtu-wiki
-          TARGET_BRANCH: gh_pages
-          BUILD_SCRIPT: yarn && yarn build
-          BUILD_DIR: docs/.vuepress/dist
-          CNAME: https://wiki.swjtu.top
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  # choose node.js version to use
+                  node-version: 22
+                  # cache deps for pnpm
+                  cache: yarn
+
+            - name: Install deps
+              run: pnpm install --frozen-lockfile
+
+            # run build script
+            - name: Build VuePress site
+              run: pnpm build
+
+            - name: Deploy to GitHub Pages
+              uses: crazy-max/ghaction-github-pages@v4
+              with:
+                  target_branch: gh_pages
+                  build_dir: docs/.vuepress/dist
+                  fqdn: wiki.swjtu.top
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

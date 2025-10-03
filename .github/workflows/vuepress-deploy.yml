@@ -11,6 +11,8 @@ jobs:
 
             - name: Setup pnpm
               uses: pnpm/action-setup@v4
+              with:
+                  version: 10
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -18,7 +20,7 @@ jobs:
                   # choose node.js version to use
                   node-version: 22
                   # cache deps for pnpm
-                  cache: yarn
+                  cache: pnpm
 
             - name: Install deps
               run: pnpm install --frozen-lockfile

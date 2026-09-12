@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+export interface NavItem { label: string; href: string; icon: string; }
+export interface Props { items: NavItem[]; currentPath?: string; label?: string; }
+const { items, currentPath = Astro.url.pathname, label = 'Section navigation' } = Astro.props;
+const path = currentPath.split(/[?#]/)[0];
+const matches = (href: string) => {
+  const target = href.split(/[?#]/)[0];
+  return target.startsWith('/') && (path === target || path.startsWith(target.endsWith('/') ? target : `${target}/`));
+};
+const currentHref = items.filter(({ href }) => matches(href)).sort((a, b) => b.href.length - a.href.length)[0]?.href;
+const isCurrent = (href: string) => href === currentHref;
+---
+
+<aside class="md-navigation-rail fixed bottom-0 left-0 top-18 z-30 hidden w-22 border-r border-outline-variant bg-surface-container-low lg:block">
+  <nav class="md-navigation-rail__items flex h-full flex-col items-center gap-2 py-5" aria-label={label}>
+    {items.map((item) => (
+      <a href={item.href} class="group flex w-full flex-col items-center gap-1.5 py-2 no-underline" aria-current={isCurrent(item.href) ? 'page' : undefined}>
+        <span class:list={['md-state-layer grid h-8 w-14 place-items-center rounded-full transition-[width,background-color] duration-300 group-hover:w-16', isCurrent(item.href) ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant']}>
+          <Icon name={item.icon} filled={isCurrent(item.href)} size={22} />
+        </span>
+        <span class:list={['md-label-medium', isCurrent(item.href) ? 'text-on-surface' : 'text-on-surface-variant']}>{item.label}</span>
+      </a>
+    ))}
+  </nav>
+</aside>

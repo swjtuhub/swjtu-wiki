@@ -13,9 +13,6 @@ _✨ Wiki for SWJTU. ✨_
   <a href="https://raw.githubusercontent.com/swjtuhub/swjtu-wiki/master/LICENSE">
     <img src="https://img.shields.io/github/license/swjtuhub/swjtu-wiki" alt="license">
   </a>
-  <a href="https://github.com/swjtuhub/swjtu-wiki/actions/workflows/vuepress-deploy.yml">
-    <img src="https://github.com/swjtuhub/swjtu-wiki/actions/workflows/vuepress-deploy.yml/badge.svg?branch=master&event=push" alt="site"/>
-  </a>
   <a href="https://github.com/swjtuhub/swjtu-wiki">
     <img src="https://img.shields.io/github/repo-size/swjtuhub/swjtu-wiki" alt="site"/>
   </a>
@@ -52,17 +49,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### 如何贡献
 
-1. 如果比较熟悉 GitHub 操作，可直接对本工程进行 Pull request: 
+1. 如果比较熟悉 GitHub 操作，可直接对本工程进行 Pull request:
     1. Fork 本项目；
     2. 参考贡献指南进行修改；
-    3. 向 `master` 分支发起 Merge 请求。
+    3. 向 `develop` 分支发起 Merge 请求。
 
-2. 若不熟悉 GitHub 操作，可按以下方式贡献: 
+2. 若不熟悉 GitHub 操作，可按以下方式贡献:
     1. 添加 SWJTU-Wiki QQ群: [631209350](https://jq.qq.com/?_wv=1027&k=Yc7T7Q8B)；
     2. 提交规范编写的 Word/Markdown 等文件以及贡献者信息给管理员；
     3. 由管理员整理上传。
 
-3. 也可以通过邮箱贡献，具体操作如下: 
+3. 也可以通过邮箱贡献，具体操作如下:
     1. 将文件以及贡献者信息通过发送邮件到 swjtu-study@foxmail.com ；
     2. 由管理员整理上传。
 

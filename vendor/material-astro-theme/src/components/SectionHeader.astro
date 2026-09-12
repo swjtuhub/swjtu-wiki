@@ -1,0 +1,13 @@
+---
+export interface Props { eyebrow?: string; title: string; description?: string; actionHref?: string; actionLabel?: string; }
+const { eyebrow, title, description, actionHref, actionLabel } = Astro.props;
+---
+
+<div class="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+  <div class="max-w-3xl">
+    {eyebrow && <p class="md-label-large mb-3 text-primary">{eyebrow}</p>}
+    <h2 class="md-headline-large m-0 text-balance">{title}</h2>
+    {description && <p class="md-body-large mt-4 max-w-2xl text-on-surface-variant">{description}</p>}
+  </div>
+  {actionHref && actionLabel && <a href={actionHref} class="md-label-large rounded-full px-1 py-2 text-primary underline decoration-2 underline-offset-4">{actionLabel}</a>}
+</div>

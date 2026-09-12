@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7faf8">
+  <meta name="color-scheme" content="light dark">
+  <title>西南交通大学导师评价</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --surface: #f7faf8;
+      --surface-container: #ebefed;
+      --surface-container-high: #e2e8e5;
+      --on-surface: #171d1b;
+      --on-surface-variant: #3f4946;
+      --primary: #006a60;
+      --on-primary: #fff;
+      --primary-container: #74f8e5;
+      --on-primary-container: #00201c;
+      --outline: #6f7976;
+      --outline-variant: #bec9c5;
+      --error-container: #ffdad6;
+      --on-error-container: #410002;
+      --shadow: 0 1px 2px rgb(0 0 0 / .18), 0 1px 3px 1px rgb(0 0 0 / .1);
+      font-family: "Google Sans", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --surface: #0f1513;
+      --surface-container: #1b211f;
+      --surface-container-high: #252b29;
+      --on-surface: #dfe4e1;
+      --on-surface-variant: #bec9c5;
+      --primary: #54dbc9;
+      --on-primary: #003730;
+      --primary-container: #005048;
+      --on-primary-container: #74f8e5;
+      --outline: #89938f;
+      --outline-variant: #3f4946;
+      --error-container: #8c1d18;
+      --on-error-container: #ffdad6;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --surface: #0f1513;
+        --surface-container: #1b211f;
+        --surface-container-high: #252b29;
+        --on-surface: #dfe4e1;
+        --on-surface-variant: #bec9c5;
+        --primary: #54dbc9;
+        --on-primary: #003730;
+        --primary-container: #005048;
+        --on-primary-container: #74f8e5;
+        --outline: #89938f;
+        --outline-variant: #3f4946;
+        --error-container: #8c1d18;
+        --on-error-container: #ffdad6;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--surface); color: var(--on-surface); }
+    body { min-width: 0; margin: 0; background: var(--surface); }
+    button, select { font: inherit; }
+
+    .app {
+      width: min(100% - 2rem, 72rem);
+      margin-inline: auto;
+      padding: clamp(1.25rem, 4vw, 3rem) 0 4rem;
+    }
+
+    .intro { max-width: 46rem; }
+    .eyebrow { margin: 0 0 .5rem; color: var(--primary); font-size: .82rem; font-weight: 500; letter-spacing: .04em; }
+    h1 { margin: 0; font-size: clamp(1.75rem, 5vw, 2.75rem); font-weight: 400; line-height: 1.2; letter-spacing: -.015em; }
+    .intro > p:last-child { margin: .75rem 0 0; color: var(--on-surface-variant); font-size: 1rem; line-height: 1.7; }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+      align-items: end;
+      gap: .75rem;
+      margin-top: 1.5rem;
+      border-radius: 1.5rem;
+      background: var(--surface-container);
+      padding: 1rem;
+    }
+
+    .field { display: grid; min-width: 0; gap: .4rem; }
+    .field label { padding-inline: .25rem; color: var(--on-surface-variant); font-size: .78rem; font-weight: 500; }
+    select {
+      width: 100%;
+      min-height: 3.5rem;
+      border: 1px solid var(--outline);
+      border-radius: .9rem .9rem .35rem .35rem;
+      outline: 0;
+      background: var(--surface);
+      padding: 0 2.5rem 0 .9rem;
+      color: var(--on-surface);
+    }
+    select:focus-visible { border: 2px solid var(--primary); padding-inline-start: calc(.9rem - 1px); }
+    button {
+      min-height: 3.5rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--primary);
+      padding: .75rem 1.25rem;
+      color: var(--on-primary);
+      cursor: pointer;
+      font-size: .875rem;
+      font-weight: 500;
+    }
+    button:hover { box-shadow: var(--shadow); filter: brightness(1.04); }
+    button:focus-visible { outline: 3px solid color-mix(in srgb, var(--primary) 30%, transparent); outline-offset: 2px; }
+
+    .status { min-height: 1.5rem; margin: 1.5rem .25rem .75rem; color: var(--on-surface-variant); font-size: .875rem; }
+    .results { display: grid; gap: .75rem; }
+    .review {
+      overflow-wrap: anywhere;
+      border: 1px solid var(--outline-variant);
+      border-radius: 1.35rem;
+      background: var(--surface);
+      padding: 1rem 1.1rem;
+    }
+    .review__header { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: .75rem; }
+    .review h2 { margin: 0; font-size: 1.05rem; font-weight: 500; line-height: 1.45; }
+    .review__meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+    .score { border-radius: 999px; background: var(--primary-container); padding: .3rem .65rem; color: var(--on-primary-container); font-size: .78rem; font-weight: 500; }
+    time { color: var(--on-surface-variant); font-size: .75rem; }
+    .review__text { margin: .85rem 0 0; color: var(--on-surface-variant); font-size: .94rem; line-height: 1.75; }
+    .empty { border-radius: 1.35rem; background: var(--surface-container); padding: 1.5rem; color: var(--on-surface-variant); text-align: center; }
+    .error { border-radius: 1.35rem; background: var(--error-container); padding: 1rem; color: var(--on-error-container); }
+
+    @media (max-width: 42rem) {
+      .filters { grid-template-columns: minmax(0, 1fr); }
+      button { width: 100%; }
+    }
+
+    @media (max-width: 22rem) {
+      .app { width: min(100% - 1rem, 72rem); }
+      .filters { padding: .75rem; }
+      .review { padding: .9rem; }
+    }
+
+    @media (orientation: landscape) and (max-height: 31rem) {
+      .app { padding-top: 1rem; }
+      .intro > p:last-child { margin-top: .35rem; }
+      .filters { margin-top: .85rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="intro">
+      <p class="eyebrow">导师评价</p>
+      <h1>查询导师评价</h1>
+      <p>选择院系和导师，查看已有评价。</p>
+    </header>
+
+    <form class="filters" id="filters">
+      <div class="field">
+        <label for="department">院系</label>
+        <select id="department" name="department" aria-describedby="status"></select>
+      </div>
+      <div class="field">
+        <label for="supervisor">导师</label>
+        <select id="supervisor" name="supervisor" aria-describedby="status"></select>
+      </div>
+      <button type="submit">查看评价</button>
+    </form>
+
+    <p class="status" id="status" role="status" aria-live="polite">正在载入评价…</p>
+    <section class="results" id="results" aria-label="评价结果"></section>
+    <noscript><p class="error">需要启用 JavaScript 才能查询导师评价。</p></noscript>
+  </main>
+
+  <script src="/js/comments.js"></script>
+  <script>
+    (function () {
+      var records = Array.isArray(window.data) ? window.data : [];
+      var form = document.getElementById('filters');
+      var department = document.getElementById('department');
+      var supervisor = document.getElementById('supervisor');
+      var status = document.getElementById('status');
+      var results = document.getElementById('results');
+
+      function unique(values) {
+        return Array.from(new Set(values)).sort(function (a, b) { return a.localeCompare(b, 'zh-CN'); });
+      }
+
+      function setOptions(select, values) {
+        select.replaceChildren();
+        values.forEach(function (value) {
+          var option = document.createElement('option');
+          option.value = value;
+          option.textContent = value;
+          select.appendChild(option);
+        });
+      }
+
+      function appendDescription(container, value) {
+        String(value || '').split('<br>').forEach(function (part, index) {
+          if (index) container.appendChild(document.createElement('br'));
+          container.appendChild(document.createTextNode(part.replace(/\r/g, '')));
+        });
+      }
+
+      function refreshSupervisors() {
+        var names = unique(records.filter(function (item) {
+          return item.department === department.value;
+        }).map(function (item) { return item.supervisor; }));
+        setOptions(supervisor, names);
+        supervisor.disabled = names.length === 0;
+      }
+
+      function render() {
+        var matches = records.filter(function (item) {
+          return item.department === department.value && item.supervisor === supervisor.value;
+        });
+        results.replaceChildren();
+        status.textContent = supervisor.value
+          ? supervisor.value + '：共 ' + matches.length + ' 条评价'
+          : '当前院系暂无导师评价';
+
+        if (!matches.length) {
+          var empty = document.createElement('p');
+          empty.className = 'empty';
+          empty.textContent = '暂无可显示的评价。';
+          results.appendChild(empty);
+          return;
+        }
+
+        matches.forEach(function (item) {
+          var article = document.createElement('article');
+          article.className = 'review';
+          var header = document.createElement('div');
+          header.className = 'review__header';
+          var heading = document.createElement('h2');
+          heading.textContent = item.supervisor;
+          var meta = document.createElement('div');
+          meta.className = 'review__meta';
+          var score = document.createElement('span');
+          score.className = 'score';
+          score.textContent = '评分 ' + item.rate + ' / 5';
+          meta.appendChild(score);
+          if (item.date) {
+            var date = document.createElement('time');
+            date.dateTime = item.date;
+            date.textContent = item.date;
+            meta.appendChild(date);
+          }
+          var body = document.createElement('p');
+          body.className = 'review__text';
+          appendDescription(body, item.description);
+          header.append(heading, meta);
+          article.append(header, body);
+          results.appendChild(article);
+        });
+      }
+
+      if (!records.length) {
+        status.className = 'error';
+        status.textContent = '评价数据载入失败，请稍后重试。';
+        form.hidden = true;
+        return;
+      }
+
+      setOptions(department, unique(records.map(function (item) { return item.department; })));
+      refreshSupervisors();
+      render();
+      department.addEventListener('change', function () { refreshSupervisors(); render(); });
+      supervisor.addEventListener('change', render);
+      form.addEventListener('submit', function (event) { event.preventDefault(); render(); });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+---
+import Icon from '@m3-astro/theme/components/Icon';
+import type { WikiNavigationItem } from '../config';
+
+interface DocLink {
+  title: string;
+  href: string;
+  section: string;
+  order: number;
+}
+
+export interface Props {
+  items: WikiNavigationItem[];
+  docs: DocLink[];
+  currentPath: string;
+  homeHref: string;
+  homeLabel: string;
+  browseSectionLabel: string;
+  navigationLabel: string;
+}
+
+const { items, docs, currentPath, homeHref, homeLabel, browseSectionLabel, navigationLabel } = Astro.props;
+const normalize = (value: string) => value.replace(/\/+$/, '') || '/';
+const selected = (href: string) => normalize(currentPath) === normalize(href);
+const hasSelected = (item: WikiNavigationItem) => {
+  if (item.href && selected(item.href)) return true;
+  if (item.children?.some(hasSelected)) return true;
+  return item.id ? docs.some((doc) => doc.section === item.id && selected(doc.href)) : false;
+};
+---
+
+<nav class="wiki-navigation" aria-label={navigationLabel}>
+  <a href={homeHref} class:list={['wiki-nav-link md-state-layer', selected(homeHref) && 'is-active']} aria-current={selected(homeHref) ? 'page' : undefined}>
+    <Icon name="home" size={21} filled={selected(homeHref)} />
+    <span>{homeLabel}</span>
+  </a>
+
+  <div class="wiki-nav-sections">
+    {items.map((item) => {
+      const sectionDocs = item.id
+        ? docs.filter((doc) => doc.section === item.id).sort((a, b) => a.order - b.order || a.title.localeCompare(b.title))
+        : [];
+      const children = item.children ?? [];
+      const expandable = children.length > 0 || sectionDocs.length > 0;
+      const active = hasSelected(item);
+
+      if (!expandable) {
+        return item.href && (
+          <a
+            href={item.href}
+            class:list={['wiki-nav-link md-state-layer', selected(item.href) && 'is-active']}
+            aria-current={selected(item.href) ? 'page' : undefined}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noreferrer noopener' : undefined}
+          >
+            <Icon name={item.icon} size={21} filled={selected(item.href)} />
+            <span>{item.label}</span>
+            {item.badge && <small>{item.badge}</small>}
+            {item.external && <Icon name="open_in_new" size={16} />}
+          </a>
+        );
+      }
+
+      return (
+        <details class="wiki-nav-group" open={active || !item.collapsed}>
+          <summary class:list={['md-state-layer', active && 'has-active-page']}>
+            <Icon name={item.icon} size={21} filled={active} />
+            <span>{item.label}</span>
+            <small>{sectionDocs.length || item.badge}</small>
+            <Icon name="expand_more" size={18} class="wiki-nav-chevron" />
+          </summary>
+          <div class="wiki-nav-children">
+            {item.href && (
+              <a href={item.href} class:list={['wiki-nav-child md-state-layer', selected(item.href) && 'is-active']} aria-current={selected(item.href) ? 'page' : undefined}>
+                <span>{browseSectionLabel}</span>
+              </a>
+            )}
+            {children.map((child) => child.href && (
+              <a
+                href={child.href}
+                class:list={['wiki-nav-child md-state-layer', selected(child.href) && 'is-active']}
+                aria-current={selected(child.href) ? 'page' : undefined}
+                target={child.external ? '_blank' : undefined}
+                rel={child.external ? 'noreferrer noopener' : undefined}
+              >
+                <span>{child.label}</span>
+                {child.external && <Icon name="open_in_new" size={15} />}
+              </a>
+            ))}
+            {sectionDocs.map((doc) => (
+              <a href={doc.href} class:list={['wiki-nav-child md-state-layer', selected(doc.href) && 'is-active']} aria-current={selected(doc.href) ? 'page' : undefined}>
+                <span>{doc.title}</span>
+              </a>
+            ))}
+          </div>
+        </details>
+      );
+    })}
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+---
+export interface Props {
+  href?: string;
+  variant?: 'filled' | 'elevated' | 'outlined';
+  class?: string;
+  interactive?: boolean;
+}
+const { href, variant = 'filled', class: className = '', interactive = Boolean(href) } = Astro.props;
+const variants = {
+  filled: 'bg-surface-container-high',
+  elevated: 'bg-surface-container-low shadow-1',
+  outlined: 'border border-outline-variant bg-surface',
+};
+const classes = ['block rounded-xl text-on-surface no-underline', variants[variant], interactive && 'transition-[transform,box-shadow,border-radius] duration-300 ease-[cubic-bezier(.2,0,0,1.2)] hover:-translate-y-1 hover:rounded-lg hover:shadow-2 active:translate-y-0', className];
+---
+
+{href ? <a href={href} class:list={classes}><slot /></a> : <article class:list={classes}><slot /></article>}

@@ -1,0 +1,29 @@
+---
+import Icon from '@m3-astro/theme/components/Icon';
+
+export interface Props {
+  title: string;
+  description: string;
+  href: string;
+  icon?: string;
+  tags?: string[];
+  meta?: string;
+}
+
+const { title, description, href, icon = 'article', tags = [], meta } = Astro.props;
+---
+
+<a href={href} class="wiki-doc-card md-state-layer">
+  <span class="wiki-doc-card__icon"><Icon name={icon} size={24} /></span>
+  <span class="wiki-doc-card__body">
+    <strong class="md-title-medium">{title}</strong>
+    <span class="md-body-medium">{description}</span>
+    {(meta || tags.length > 0) && (
+      <span class="wiki-doc-card__meta md-label-medium">
+        {meta && <span>{meta}</span>}
+        {tags.slice(0, 2).map((tag) => <span class="wiki-mini-chip">{tag}</span>)}
+      </span>
+    )}
+  </span>
+  <Icon name="arrow_forward" size={20} class="wiki-doc-card__arrow" />
+</a>

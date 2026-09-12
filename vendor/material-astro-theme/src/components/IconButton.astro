@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+export interface Props {
+  icon: string;
+  label: string;
+  href?: string;
+  filled?: boolean;
+  selected?: boolean;
+  class?: string;
+  dataThemeToggle?: boolean;
+  dataLightLabel?: string;
+  dataDarkLabel?: string;
+}
+const {
+  icon,
+  label,
+  href,
+  filled = false,
+  selected = false,
+  class: className = '',
+  dataThemeToggle = false,
+  dataLightLabel,
+  dataDarkLabel,
+} = Astro.props;
+const classes = ['md-state-layer grid size-12 place-items-center rounded-full transition-transform active:scale-90', selected ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant', className];
+---
+
+{href ? (
+  <a href={href} aria-label={label} aria-current={selected ? 'page' : undefined} class:list={classes}>
+    <Icon name={icon} filled={filled || selected} />
+  </a>
+) : (
+  <button
+    type="button"
+    aria-label={label}
+    aria-pressed={selected || undefined}
+    class:list={classes}
+    data-theme-toggle={dataThemeToggle ? '' : undefined}
+    data-light-label={dataLightLabel}
+    data-dark-label={dataDarkLabel}
+  >
+    <Icon name={icon} filled={filled || selected} />
+  </button>
+)}

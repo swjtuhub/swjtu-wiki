@@ -1,0 +1,31 @@
+---
+export interface Props {
+  columns: string[];
+  rows: Array<Array<string | number>>;
+  caption: string;
+  rowHeaders?: boolean;
+  class?: string;
+}
+
+const { columns, rows, caption, rowHeaders = true, class: className = '' } = Astro.props;
+const tableMinWidth = `${Math.max(17, columns.length * 8.5)}rem`;
+---
+
+<div class:list={['md-table-scroll', className]} role="region" aria-label={caption} tabindex="0">
+  <table class="md-data-table" style={`--md-table-min-width: ${tableMinWidth}`}>
+    <caption>{caption}</caption>
+    <thead>
+      <tr>{columns.map((column) => <th scope="col">{column}</th>)}</tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          {row.map((cell, index) => index === 0 && rowHeaders
+            ? <th scope="row">{cell}</th>
+            : <td>{cell}</td>
+          )}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

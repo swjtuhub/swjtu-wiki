@@ -1,0 +1,23 @@
+---
+import DemoLayout from '../../../demo/DemoLayout.astro';
+import ArticleHeader from '../../../components/ArticleHeader.astro';
+import ContentCard from '../../../components/ContentCard.astro';
+import DataTable from '../../../components/DataTable.astro';
+
+const columns = ['Pattern', 'Best for', 'Density', 'Primary role'];
+const rows = [
+  ['Article', 'Sequential reading', 'Comfortable', 'Body large'],
+  ['Gallery', 'Visual comparison', 'Variable', 'Image + caption'],
+  ['Data table', 'Exact lookup', 'Compact', 'Body medium'],
+  ['Content card', 'Discovery and routing', 'Comfortable', 'Title large'],
+  ['Tabs', 'Peer content views', 'Compact', 'Label large'],
+];
+---
+
+<DemoLayout title="Tables and cards demo — M3 Journal" description="Responsive tables and expressive content cards for structured editorial information.">
+  <div class="md-content-grid md-page-body">
+    <ArticleHeader eyebrow="Structured content demo" title="Dense information can still breathe." description="Tables preserve exact comparison; cards support discovery. Both use semantic roles, deliberate spacing, and containment instead of decorative noise." author="Systems desk" date="July 9, 2026" readTime="Reference" />
+    <DataTable {columns} {rows} caption="Editorial pattern comparison" />
+    <section class="mt-20"><h2 class="md-headline-large">Related content cards</h2><p class="md-body-large mt-4 max-w-2xl text-on-surface-variant">Horizontal and vertical cards use the same content hierarchy while adapting to available space.</p><div class="mt-8 grid gap-5"><ContentCard href="/demos/interactive/" eyebrow="Interaction" title="Tabs that behave like tabs" description="Keyboard movement, visible selection, associated panels, and no mystery navigation." meta="Open interaction demo" orientation="horizontal" image="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85" imageAlt="Warm contemporary workspace" /><div class="grid gap-5 md:grid-cols-2"><ContentCard href="/demos/photos/" eyebrow="Photography" title="Build a gallery rhythm" description="Use mixed spans and consistent captions to create pace." meta="View gallery" /><ContentCard href="https://m3.material.io/" eyebrow="External reference" title="Official Material 3 guidance" description="Continue with the source design guidance and component specifications." meta="Open Material 3" external /></div></div></section>
+  </div>
+</DemoLayout>

@@ -1,0 +1,47 @@
+---
+import '../styles/theme.css';
+import LocaleRedirect from '@m3-astro/theme/components/LocaleRedirect';
+import { enabled, getWikiConfig, wikiLabels } from '../lib/wiki';
+
+const config = await getWikiConfig();
+const locales = enabled(config.locales);
+const defaultRoute = locales.find(({ code }) => code === config.defaultLocale) ?? locales[0];
+const routes = { [defaultRoute.code]: defaultRoute.href };
+const labels = wikiLabels(config, config.defaultLocale);
+---
+
+<!doctype html>
+<html lang={config.defaultLocale} data-palette={config.appearance.palette} data-shape={config.appearance.shape} data-density={config.appearance.density}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="description" content={config.description} />
+    <title>{config.name} — {labels.language}</title>
+  </head>
+  <body>
+    <LocaleRedirect {routes} defaultLocale={config.defaultLocale} />
+    <main class="wiki-locale-landing">
+      <section>
+        <span class="wiki-brand__mark"><span class="material-symbols-rounded" aria-hidden="true">school</span></span>
+        <p class="wiki-eyebrow">{config.name}</p>
+        <h1 class="md-headline-large">{labels.languagePrompt}</h1>
+        <p class="md-body-large">{labels.languageDescription}</p>
+        <nav aria-label={labels.language}>
+          {locales.map((locale) => <a href={locale.href} lang={locale.code} hreflang={locale.code} class="wiki-tonal-button md-state-layer">{locale.label}</a>)}
+        </nav>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  .wiki-locale-landing { display: grid; min-height: 100svh; place-items: center; padding: 1rem; }
+  section { width: min(100%, 36rem); border-radius: var(--md-sys-shape-corner-extra-large); background: var(--md-sys-color-surface-container); padding: clamp(1.5rem, 6vw, 3rem); }
+  h1, p { margin: 0; }
+  .wiki-eyebrow { margin-top: 1.25rem; }
+  .md-body-large { margin-top: .75rem; color: var(--md-sys-color-on-surface-variant); }
+  nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-top: 1.5rem; }
+  .wiki-tonal-button { justify-content: center; }
+  @media (max-width: 28rem) { nav { grid-template-columns: 1fr; } }
+</style>

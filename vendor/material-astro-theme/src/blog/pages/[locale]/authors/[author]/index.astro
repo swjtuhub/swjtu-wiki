@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '@m3-astro/theme/layouts/BlogLayout';
+import StoryCard from '@m3-astro/theme/components/StoryCard';
+import { enabledItems, getSiteConfig } from '@m3-astro/theme/blog/config';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+
+export async function getStaticPaths() {
+  const config = await getSiteConfig();
+  return enabledItems(config.locales).map(({ code }) => ({
+    params: { locale: code, author: config.authorSlug },
+    props: { locale: code },
+  }));
+}
+
+const { locale } = Astro.props;
+const config = await getSiteConfig();
+const localeConfig = config.locales.find(({ code }) => code === locale);
+if (!localeConfig) throw new Error(`Missing locale configuration for ${locale}`);
+const labels = { ...config.labels, ...localeConfig.labels };
+const stories = (await getCollection('stories'))
+  .filter((story) => (config.blog.showDrafts || !story.data.draft) && story.data.locale === locale && (story.data.author ?? config.author) === config.author)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BlogLayout title={`${labels.authorTitle} — ${config.name}`} description={labels.authorDescription} lang={locale}>
+  <header class="md-content-grid md-page-header grid items-center gap-8 md:grid-cols-[10rem_minmax(0,1fr)]">
+    <div class="story-art grid aspect-square place-items-center rounded-full shadow-2" data-accent="violet" aria-hidden="true">
+      <Icon name="edit_note" size={62} filled />
+    </div>
+    <div>
+      <Chip selected><Icon name="group" size={18} />{config.name}</Chip>
+      <h1 class="md-display-medium mt-6 max-w-5xl text-balance">{labels.authorTitle}</h1>
+      <p class="md-body-large mt-5 max-w-2xl text-on-surface-variant">{labels.authorDescription}</p>
+    </div>
+  </header>
+
+  <section class="bg-surface-container-low md-section">
+    <div class="md-content-grid">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="md-label-large text-primary">{stories.length} {labels.storiesShown}</p>
+          <h2 class="md-headline-large mt-2">{labels.postsLabel}</h2>
+        </div>
+        <a href={`/${locale}/archive/`} class="md-state-layer md-label-large inline-flex min-h-11 items-center gap-2 rounded-full px-4 no-underline">
+          {labels.archiveTitle}<Icon name="arrow_forward" size={19} />
+        </a>
+      </div>
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        {stories.map((story) => <StoryCard id={story.id} href={`/${locale}/stories/${story.id}/`} {...story.data} actionLabel={labels.readStory} />)}
+      </div>
+    </div>
+  </section>
+</BlogLayout>

@@ -1,0 +1,52 @@
+---
+import WikiDocCard from '../../../components/WikiDocCard.astro';
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import { isWikiSection } from '../../../lib/navigation.js';
+import { docHref, enabled, getWikiConfig, localeConfig, publishedDocs, sectionHref, sectionItem, wikiLabels, wikiNavigation } from '../../../lib/wiki';
+
+export async function getStaticPaths() {
+  const config = await getWikiConfig();
+  const docs = await publishedDocs(config);
+  const paths = new Map<string, { locale: string; section: string }>();
+  for (const locale of enabled(config.locales)) {
+    for (const doc of docs.filter((entry) => entry.data.locale === locale.code)) {
+      paths.set(`${locale.code}:${doc.data.section}`, { locale: locale.code, section: doc.data.section });
+    }
+    for (const item of wikiNavigation(config, locale.code)) {
+      if (isWikiSection(item)) paths.set(`${locale.code}:${item.id}`, { locale: locale.code, section: item.id });
+    }
+  }
+  return [...paths.values()].map((params) => ({ params }));
+}
+
+const { locale, section } = Astro.params;
+if (!locale || !section) throw new Error('Missing section parameters.');
+const config = await getWikiConfig();
+const local = localeConfig(config, locale);
+if (!local) return Astro.redirect('/404/');
+const labels = wikiLabels(config, locale);
+const navigation = wikiNavigation(config, locale);
+const item = sectionItem(navigation, section);
+const docs = (await publishedDocs(config)).filter((doc) => doc.data.locale === locale && doc.data.section === section).sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
+const title = item?.label ?? section;
+const description = item?.description || `${docs.length} ${labels.pageCount}`;
+const localePaths = Object.fromEntries(enabled(config.locales).map((target) => [target.code, sectionHref(target.code, section)]));
+---
+
+<WikiLayout title={`${title} — ${config.name}`} {description} {locale} {localePaths}>
+  <header class="wiki-page-header">
+    <p class="wiki-eyebrow">{labels.browseSection}</p>
+    <h1 class="wiki-page-title">{title}</h1>
+    <p class="wiki-page-description">{description}</p>
+    <div class="wiki-doc-meta md-label-large"><span>{docs.length} {labels.pageCount}</span></div>
+  </header>
+  <section class="wiki-article">
+    {docs.length > 0 ? (
+      <div class="wiki-doc-grid">
+        {docs.map((doc) => <WikiDocCard title={doc.data.title} description={doc.data.description} href={docHref(doc)} icon={doc.data.icon ?? item?.icon} tags={doc.data.tags} />)}
+      </div>
+    ) : (
+      <div class="wiki-search-empty"><h2>{labels.searchEmptyTitle}</h2><p>{labels.searchEmptyDescription}</p></div>
+    )}
+  </section>
+</WikiLayout>

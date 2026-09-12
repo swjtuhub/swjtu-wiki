@@ -1,0 +1,25 @@
+---
+import AdaptiveLayout from '../layouts/AdaptiveLayout.astro';
+import { DEFAULT_LOCALE_ROUTES } from '../i18n/index';
+
+export interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const locales = [
+  { code: 'en', label: 'English', href: DEFAULT_LOCALE_ROUTES.en },
+];
+const navItems = [
+  { label: 'Journal', href: DEFAULT_LOCALE_ROUTES.en, icon: 'home' },
+  { label: 'Demos', href: '/demos/', icon: 'view_cozy' },
+  { label: 'Text', href: '/demos/text/', icon: 'article' },
+  { label: 'Interact', href: '/demos/interactive/', icon: 'tab' },
+];
+const topLinks = [
+  { label: 'Photography', href: '/demos/photos/' },
+  { label: 'Data', href: '/demos/data/' },
+  { label: 'Components', href: '/demos/' },
+];
+---
+
+<AdaptiveLayout {title} {description} brand="M3 Journal" homeHref={DEFAULT_LOCALE_ROUTES.en} {navItems} {topLinks} {locales} currentLocale="en">
+  <slot />
+</AdaptiveLayout>

@@ -1,0 +1,39 @@
+---
+import DemoLayout from '../../../demo/DemoLayout.astro';
+import ArticleHeader from '../../../components/ArticleHeader.astro';
+import ExternalLink from '../../../components/ExternalLink.astro';
+import Figure from '../../../components/Figure.astro';
+import Chip from '../../../components/Chip.astro';
+import Icon from '../../../components/Icon.astro';
+---
+
+<DemoLayout title="Text and links demo — M3 Journal" description="A long-form editorial typography and external-link demonstration for the M3 Astro theme.">
+  <article class="md-content-grid md-page-body">
+    <ArticleHeader eyebrow="Long-form demo" title="The soft geometry of everyday attention" description="A complete article surface for headlines, paragraphs, figures, quotations, lists, notes, code, and references." author="Mina Park" date="July 12, 2026" readTime="8 min read" />
+    <Figure src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=88" alt="A quiet landscape in warm, diffused light" caption="A calm visual pause before the article begins." credit="Photo on Unsplash" creditHref="https://unsplash.com/" eager />
+    <div class="mt-12 grid gap-10 lg:grid-cols-[minmax(0,48rem)_16rem]">
+      <div class="md-prose">
+        <p class="md-prose-lead">Attention rarely moves in a straight line. It gathers around contrast, rests in open space, and returns to forms that feel familiar without becoming invisible.</p>
+        <h2>Hierarchy is a promise</h2>
+        <p>A headline promises that what follows belongs together. A caption promises context without interrupting the image. A link promises a destination. Editorial design works when these promises remain easy to recognize across every page.</p>
+        <p>Material 3 provides useful roles for that work. The expressive layer adds stronger changes in size, shape, and containment, but the underlying contract stays practical: important things should be easy to find, related things should feel related, and actions should reveal themselves before they are needed.</p>
+        <blockquote><p>Expression earns its place when it helps a reader understand where to look, what belongs together, and what can happen next.</p></blockquote>
+        <h2>Let each script keep its rhythm</h2>
+        <p>English can tolerate tight display spacing and dramatic width changes. Japanese and Chinese need different line-height, glyph spacing, and fallback decisions. A multilingual system should share hierarchy—not force every writing system into identical texture.</p>
+        <h3>A practical reading checklist</h3>
+        <ul>
+          <li>Keep body lines near a comfortable reading measure.</li>
+          <li>Use real heading order instead of styling paragraphs to look important.</li>
+          <li>Pair every image with useful alternative text or mark it decorative.</li>
+          <li>Make links identifiable without depending on color alone.</li>
+        </ul>
+        <p>The public font stack follows Material Web’s use of <strong>Google Sans</strong> for display and reading, with <strong>Google Sans Mono</strong> for code, then falls back to Roboto and locale-specific Noto Sans families. See the <ExternalLink href="https://m3.material.io/styles/typography/overview" label="opens Material typography guidance in a new tab">Material typography guidance</ExternalLink> for the role model.</p>
+        <h2>Small technical details still matter</h2>
+        <p>Inline names such as <code>--md-sys-color-primary</code> should remain legible without becoming louder than the sentence. Focus indicators, selected states, and external-link icons are part of the reading experience too.</p>
+      </div>
+      <aside aria-label="Article details">
+        <div class="sticky top-28 rounded-xl bg-surface-container-low p-6"><Chip selected><Icon name="bookmark" size={18} />Field note</Chip><p class="md-body-medium mt-5 text-on-surface-variant">This page demonstrates the theme’s global <code>md-prose</code> styles, ArticleHeader, Figure, and ExternalLink components.</p></div>
+      </aside>
+    </div>
+  </article>
+</DemoLayout>

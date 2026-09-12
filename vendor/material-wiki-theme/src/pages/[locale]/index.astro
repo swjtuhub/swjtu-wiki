@@ -1,0 +1,91 @@
+---
+import { getCollection, render } from 'astro:content';
+import Icon from '@m3-astro/theme/components/Icon';
+import WikiDocCard from '../../components/WikiDocCard.astro';
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { isWikiSection } from '../../lib/navigation.js';
+import { docHref, enabled, formatUpdated, getWikiConfig, localeConfig, publishedDocs, sectionHref, wikiHome, wikiLabels, wikiNavigation } from '../../lib/wiki';
+
+export async function getStaticPaths() {
+  const config = await getWikiConfig();
+  return enabled(config.locales).map((locale) => ({ params: { locale: locale.code } }));
+}
+
+const { locale } = Astro.params;
+if (!locale) throw new Error('Missing locale.');
+const config = await getWikiConfig();
+const local = localeConfig(config, locale);
+if (!local) return Astro.redirect('/404/');
+const labels = wikiLabels(config, locale);
+const home = wikiHome(config, locale);
+const navigation = wikiNavigation(config, locale);
+const pages = await getCollection('wikiPages');
+const page = pages.find((entry) => entry.data.kind === 'home' && entry.data.locale === locale);
+const rendered = page?.body?.trim() ? await render(page) : undefined;
+const docs = (await publishedDocs(config)).filter((doc) => doc.data.locale === locale);
+const featured = docs.filter((doc) => doc.data.featured).sort((a, b) => a.data.order - b.data.order).slice(0, 6);
+const recent = [...docs].filter((doc) => doc.data.updatedDate).sort((a, b) => (b.data.updatedDate?.getTime() ?? 0) - (a.data.updatedDate?.getTime() ?? 0)).slice(0, 6);
+const sections = navigation.filter(isWikiSection);
+const localePaths = Object.fromEntries(enabled(config.locales).map((item) => [item.code, item.href]));
+---
+
+<WikiLayout title={`${config.name} — ${home.headline}`} description={page?.data.description ?? config.description} {locale} {localePaths}>
+  <section class="wiki-home-hero">
+    <p class="wiki-eyebrow">{home.eyebrow}</p>
+    <h1>{home.headline}</h1>
+    {home.intro && <p>{home.intro}</p>}
+    {config.features.search && (
+      <form action={`/${locale}/search/`} method="get" class="wiki-home-search" role="search">
+        <Icon name="search" size={23} />
+        <input type="search" name="q" aria-label={labels.searchLabel} placeholder={labels.searchPlaceholder} autocomplete="off" />
+        <button type="submit" aria-label={labels.search}><Icon name="arrow_forward" size={23} /></button>
+      </form>
+    )}
+  </section>
+
+  {sections.length > 0 && (<section class="wiki-home-section">
+    <div class="wiki-section-heading"><div><h2>{labels.allPages}</h2></div></div>
+    <div class="wiki-category-grid">
+      {sections.map((section) => {
+        const count = docs.filter((doc) => doc.data.section === section.id).length;
+        return (
+          <a href={section.href || sectionHref(locale, section.id!)} class="wiki-category-card md-state-layer">
+            <span class="wiki-category-card__top">
+              <span class="wiki-category-card__icon"><Icon name={section.icon} size={28} /></span>
+              <span class="md-label-medium">{count} {labels.pageCount}</span>
+            </span>
+            <span><h3>{section.label}</h3><p>{section.description}</p></span>
+          </a>
+        );
+      })}
+    </div>
+  </section>)}
+
+  {featured.length > 0 && (
+    <section class="wiki-home-section">
+      <div class="wiki-section-heading"><div><h2>{labels.featured}</h2></div></div>
+      <div class="wiki-doc-grid">
+        {featured.map((doc) => <WikiDocCard title={doc.data.title} description={doc.data.description} href={docHref(doc)} icon={doc.data.icon} tags={doc.data.tags} />)}
+      </div>
+    </section>
+  )}
+
+  {recent.length > 0 && (
+    <section class="wiki-home-section">
+      <div class="wiki-section-heading"><div><h2>{labels.recentlyUpdated}</h2></div></div>
+      <div class="wiki-doc-grid">
+        {recent.map((doc) => <WikiDocCard title={doc.data.title} description={doc.data.description} href={docHref(doc)} icon={doc.data.icon} meta={doc.data.updatedDate ? formatUpdated(doc.data.updatedDate, locale) : undefined} />)}
+      </div>
+    </section>
+  )}
+
+  {rendered && <section class="wiki-home-section wiki-article md-prose"><rendered.Content /></section>}
+
+  {home.contributeHref && (
+    <section class="wiki-contribute">
+      <span class="wiki-contribute__icon"><Icon name="volunteer_activism" size={28} filled /></span>
+      <div><h2>{home.contributeTitle}</h2><p>{home.contributeDescription}</p></div>
+      <a href={home.contributeHref} class="wiki-filled-button md-state-layer"><Icon name="edit" size={19} />{home.contributeLabel}</a>
+    </section>
+  )}
+</WikiLayout>

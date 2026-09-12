@@ -1,0 +1,78 @@
+---
+import Icon from '@m3-astro/theme/components/Icon';
+import WikiDocCard from '../../../components/WikiDocCard.astro';
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import { docHref, enabled, getWikiConfig, localeConfig, publishedDocs, stripMarkdown, wikiLabels } from '../../../lib/wiki';
+
+export async function getStaticPaths() {
+  const config = await getWikiConfig();
+  return enabled(config.locales).map((locale) => ({ params: { locale: locale.code } }));
+}
+
+const { locale } = Astro.params;
+if (!locale) throw new Error('Missing locale.');
+const config = await getWikiConfig();
+const local = localeConfig(config, locale);
+if (!local) return Astro.redirect('/404/');
+const labels = wikiLabels(config, locale);
+const docs = (await publishedDocs(config)).filter((doc) => doc.data.locale === locale);
+const localePaths = Object.fromEntries(enabled(config.locales).map((item) => [item.code, `/${item.code}/search/`]));
+---
+
+<WikiLayout title={`${labels.search} — ${config.name}`} description={labels.searchLabel} {locale} {localePaths}>
+  <header class="wiki-page-header">
+    <p class="wiki-eyebrow">{config.name}</p>
+    <h1 class="wiki-page-title">{labels.search}</h1>
+    <p class="wiki-page-description">{labels.searchLabel}</p>
+    <div class="wiki-search-box">
+      <Icon name="search" size={23} />
+      <input type="search" aria-label={labels.searchLabel} placeholder={labels.searchPlaceholder} autocomplete="off" data-wiki-search-input />
+    </div>
+  </header>
+  <section class="wiki-article" data-wiki-search data-results-label={labels.searchResults}>
+    <p class="wiki-search-summary md-body-medium" aria-live="polite" data-wiki-search-summary></p>
+    <div class="wiki-search-results">
+      {docs.map((doc) => (
+        <div data-wiki-search-item data-search-text={[doc.data.title, doc.data.description, doc.data.section, ...doc.data.tags, stripMarkdown(doc.body ?? '').slice(0, 2400)].join(' ').toLocaleLowerCase(locale)}>
+          <WikiDocCard title={doc.data.title} description={doc.data.description} href={docHref(doc)} icon={doc.data.icon} tags={doc.data.tags} />
+        </div>
+      ))}
+    </div>
+    <div class="wiki-search-empty" hidden data-wiki-search-empty>
+      <h2>{labels.searchEmptyTitle}</h2>
+      <p>{labels.searchEmptyDescription}</p>
+    </div>
+  </section>
+</WikiLayout>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('[data-wiki-search-input]');
+  const root = document.querySelector<HTMLElement>('[data-wiki-search]');
+  const items = [...document.querySelectorAll<HTMLElement>('[data-wiki-search-item]')];
+  const summary = document.querySelector<HTMLElement>('[data-wiki-search-summary]');
+  const empty = document.querySelector<HTMLElement>('[data-wiki-search-empty]');
+  const params = new URLSearchParams(location.search);
+
+  const update = () => {
+    const query = (input?.value ?? '').trim().toLocaleLowerCase();
+    let count = 0;
+    items.forEach((item) => {
+      const words = query.split(/\s+/).filter(Boolean);
+      const match = words.every((word) => (item.dataset.searchText ?? '').includes(word));
+      item.hidden = !match;
+      if (match) count += 1;
+    });
+    if (summary) summary.textContent = `${count} ${root?.dataset.resultsLabel ?? 'results'}`;
+    if (empty) empty.hidden = count > 0;
+    const next = new URL(location.href);
+    query ? next.searchParams.set('q', input?.value.trim() ?? '') : next.searchParams.delete('q');
+    history.replaceState({}, '', next);
+  };
+
+  if (input) {
+    input.value = params.get('q') ?? '';
+    input.addEventListener('input', update);
+    update();
+    if (input.value) input.focus();
+  }
+</script>

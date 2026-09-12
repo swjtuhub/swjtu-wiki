@@ -1,0 +1,318 @@
+{
+  "totalSources": 44,
+  "generated": [
+    {
+      "source": "01.学习/01.推免/01.全校推免统计数据.md",
+      "output": "src/content/docs/zh-CN/migrated/recommendation__free-analysis.md",
+      "slug": "recommendation/free-analysis",
+      "legacyPaths": [
+        "/free_analysis/"
+      ]
+    },
+    {
+      "source": "01.学习/01.推免/02.专业推免详细数据.md",
+      "output": "src/content/docs/zh-CN/migrated/recommendation__free-major.md",
+      "slug": "recommendation/free-major",
+      "legacyPaths": [
+        "/free_major/"
+      ]
+    },
+    {
+      "source": "01.学习/01.推免/03.推免A类学科竞赛目录.md",
+      "output": "src/content/docs/zh-CN/migrated/recommendation__free-contest.md",
+      "slug": "recommendation/free-contest",
+      "legacyPaths": [
+        "/free_contest/"
+      ]
+    },
+    {
+      "source": "01.学习/02.转专业/11.转专业经验-01-计算机.md",
+      "output": "src/content/docs/zh-CN/migrated/major-transfer__exchange-major-exp-01.md",
+      "slug": "major-transfer/exchange-major-exp-01",
+      "legacyPaths": [
+        "/pages/exchange_major_exp_01/"
+      ]
+    },
+    {
+      "source": "01.学习/02.转专业/12.转专业经验-02-软件工程.md",
+      "output": "src/content/docs/zh-CN/migrated/major-transfer__exchange-major-exp-02.md",
+      "slug": "major-transfer/exchange-major-exp-02",
+      "legacyPaths": [
+        "/pages/exchange_major_exp_02/"
+      ]
+    },
+    {
+      "source": "01.学习/02.转专业/13.转专业经验-03-软件工程.md",
+      "output": "src/content/docs/zh-CN/migrated/major-transfer__exchange-major-exp-03.md",
+      "slug": "major-transfer/exchange-major-exp-03",
+      "legacyPaths": [
+        "/pages/exchange_major_exp_03/"
+      ]
+    },
+    {
+      "source": "01.学习/10.评价信息/01.导师评价信息.md",
+      "output": "src/content/docs/zh-CN/migrated/evaluation__supervisor.md",
+      "slug": "evaluation/supervisor",
+      "legacyPaths": [
+        "/pages/supervisor/"
+      ]
+    },
+    {
+      "source": "01.学习/10.评价信息/02.课程成绩统计信息.md",
+      "output": "src/content/docs/zh-CN/migrated/evaluation__course-grade.md",
+      "slug": "evaluation/course-grade",
+      "legacyPaths": [
+        "/pages/course_grade/"
+      ]
+    },
+    {
+      "source": "02.黄页/01.后勤服务.md",
+      "output": "src/content/docs/zh-CN/migrated/campus-services__service.md",
+      "slug": "campus-services/service",
+      "legacyPaths": [
+        "/pages/service/"
+      ]
+    },
+    {
+      "source": "02.黄页/02.邮政与快递服务.md",
+      "output": "src/content/docs/zh-CN/migrated/campus-services__post.md",
+      "slug": "campus-services/post",
+      "legacyPaths": [
+        "/pages/post/"
+      ]
+    },
+    {
+      "source": "02.黄页/03.财务报销信息.md",
+      "output": "src/content/docs/zh-CN/migrated/campus-services__finance.md",
+      "slug": "campus-services/finance",
+      "legacyPaths": [
+        "/pages/finance/"
+      ]
+    },
+    {
+      "source": "02.黄页/10.群聊导航.md",
+      "output": "src/content/docs/zh-CN/migrated/campus-services__groups.md",
+      "slug": "campus-services/groups",
+      "legacyPaths": [
+        "/pages/groups/"
+      ]
+    },
+    {
+      "source": "03.生活/10.校车时刻表.md",
+      "output": "src/content/docs/zh-CN/migrated/campus-life__schoolbus.md",
+      "slug": "campus-life/schoolbus",
+      "legacyPaths": [
+        "/pages/schoolbus/"
+      ]
+    },
+    {
+      "source": "11.更多/01.关于.md",
+      "output": "src/content/docs/zh-CN/migrated/community__about.md",
+      "slug": "community/about",
+      "legacyPaths": [
+        "/about/"
+      ]
+    },
+    {
+      "source": "11.更多/10.活动.md",
+      "output": "src/content/docs/zh-CN/migrated/community__activity.md",
+      "slug": "community/activity",
+      "legacyPaths": [
+        "/pages/activity/"
+      ]
+    },
+    {
+      "source": "11.更多/99.友情链接.md",
+      "output": "src/content/docs/zh-CN/migrated/community__friends.md",
+      "slug": "community/friends",
+      "legacyPaths": [
+        "/friends/"
+      ]
+    },
+    {
+      "source": "20.专题/01.VIS/01.基础系统.md",
+      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-a.md",
+      "slug": "visual-identity/vis-a",
+      "legacyPaths": [
+        "/pages/vis_a/"
+      ]
+    },
+    {
+      "source": "20.专题/01.VIS/02.办公用品系统.md",
+      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-b.md",
+      "slug": "visual-identity/vis-b",
+      "legacyPaths": [
+        "/pages/vis_b/"
+      ]
+    },
+    {
+      "source": "20.专题/01.VIS/03.事务用品系统.md",
+      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-c.md",
+      "slug": "visual-identity/vis-c",
+      "legacyPaths": [
+        "/pages/vis_c/"
+      ]
+    },
+    {
+      "source": "20.专题/01.VIS/04.公文系统.md",
+      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-d.md",
+      "slug": "visual-identity/vis-d",
+      "legacyPaths": [
+        "/pages/vis_d/"
+      ]
+    },
+    {
+      "source": "20.专题/01.VIS/05.会务系统.md",
+      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-e.md",
+      "slug": "visual-identity/vis-e",
+      "legacyPaths": [
+        "/pages/vis_e/"
+      ]
+    },
+    {
+      "source": "20.专题/01.VIS/06.公关用品系统.md",
+      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-f.md",
+      "slug": "visual-identity/vis-f",
+      "legacyPaths": [
+        "/pages/vis_f/"
+      ]
+    },
+    {
+      "source": "20.专题/01.VIS/07.车辆系统.md",
+      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-g.md",
+      "slug": "visual-identity/vis-g",
+      "legacyPaths": [
+        "/pages/vis_g/"
+      ]
+    },
+    {
+      "source": "20.专题/01.VIS/08.导示系统.md",
+      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-h.md",
+      "slug": "visual-identity/vis-h",
+      "legacyPaths": [
+        "/pages/vis_h/"
+      ]
+    },
+    {
+      "source": "20.专题/02.新生入学指南/01.入学指南前言.md",
+      "output": "src/content/docs/zh-CN/migrated/freshman__d2d231.md",
+      "slug": "freshman/d2d231",
+      "legacyPaths": [
+        "/pages/d2d231/"
+      ]
+    },
+    {
+      "source": "20.专题/02.新生入学指南/06.组织关系转接.md",
+      "output": "src/content/docs/zh-CN/migrated/freshman__1bcdf2.md",
+      "slug": "freshman/1bcdf2",
+      "legacyPaths": [
+        "/pages/1bcdf2/"
+      ]
+    },
+    {
+      "source": "20.专题/02.新生入学指南/10.交通路线.md",
+      "output": "src/content/docs/zh-CN/migrated/freshman__ce3461.md",
+      "slug": "freshman/ce3461",
+      "legacyPaths": [
+        "/pages/ce3461/"
+      ]
+    },
+    {
+      "source": "20.专题/02.新生入学指南/11.学校地图.md",
+      "output": "src/content/docs/zh-CN/migrated/freshman__6ef921.md",
+      "slug": "freshman/6ef921",
+      "legacyPaths": [
+        "/pages/6ef921/"
+      ]
+    },
+    {
+      "source": "20.专题/02.新生入学指南/12.宿舍相关介绍.md",
+      "output": "src/content/docs/zh-CN/migrated/freshman__11231a.md",
+      "slug": "freshman/11231a",
+      "legacyPaths": [
+        "/pages/11231a/"
+      ]
+    },
+    {
+      "source": "20.专题/02.新生入学指南/40.西南交通大学校歌.md",
+      "output": "src/content/docs/zh-CN/migrated/freshman__2de403.md",
+      "slug": "freshman/2de403",
+      "legacyPaths": [
+        "/pages/2de403/"
+      ]
+    }
+  ],
+  "managed": [
+    {
+      "source": "20.专题/02.新生入学指南/20.社团组织介绍.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/freshman/"
+    },
+    {
+      "source": "01.学习/01.推免/index.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/recommendation/"
+    },
+    {
+      "source": "01.学习/02.转专业/index.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/major-transfer/"
+    },
+    {
+      "source": "01.学习/10.评价信息/index.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/evaluation/"
+    },
+    {
+      "source": "20.专题/01.VIS/index.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/visual-identity/"
+    },
+    {
+      "source": "20.专题/02.新生入学指南/index.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/freshman/"
+    },
+    {
+      "source": "@pages/archivesPage.md",
+      "kind": "archive",
+      "route": "/zh-CN/browse/archives/"
+    },
+    {
+      "source": "@pages/categoriesPage.md",
+      "kind": "categories",
+      "route": "/zh-CN/browse/categories/"
+    },
+    {
+      "source": "@pages/tagsPage.md",
+      "kind": "tags",
+      "route": "/zh-CN/browse/tags/"
+    },
+    {
+      "source": "_content/01.学习.md",
+      "kind": "catalog",
+      "route": "/zh-CN/"
+    },
+    {
+      "source": "_content/02.黄页.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/campus-services/"
+    },
+    {
+      "source": "_content/03.生活.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/campus-life/"
+    },
+    {
+      "source": "_content/04.周边.md",
+      "kind": "section",
+      "route": "/zh-CN/sections/campus-life/"
+    },
+    {
+      "source": "index.md",
+      "kind": "home",
+      "route": "/zh-CN/"
+    }
+  ],
+  "skipped": []
+}

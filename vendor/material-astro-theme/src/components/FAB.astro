@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+export interface Props {
+  icon: string;
+  label: string;
+  href?: string;
+  expanded?: boolean;
+  class?: string;
+}
+const { icon, label, href, expanded = true, class: className = '' } = Astro.props;
+const classes = ['md-state-layer md-label-large inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-primary-container px-4 text-on-primary-container shadow-2 no-underline transition-[transform,border-radius,box-shadow] duration-300 hover:-translate-y-1 hover:rounded-xl hover:shadow-3 active:translate-y-0', className];
+---
+
+{href ? (
+  <a href={href} class:list={classes} aria-label={expanded ? undefined : label}>
+    <Icon name={icon} filled />
+    {expanded && <span>{label}</span>}
+  </a>
+) : (
+  <button type="button" class:list={classes} aria-label={expanded ? undefined : label}>
+    <Icon name={icon} filled />
+    {expanded && <span>{label}</span>}
+  </button>
+)}

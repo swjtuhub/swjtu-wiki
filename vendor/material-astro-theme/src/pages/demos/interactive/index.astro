@@ -1,0 +1,27 @@
+---
+import DemoLayout from '../../../demo/DemoLayout.astro';
+import ArticleHeader from '../../../components/ArticleHeader.astro';
+import ExternalLink from '../../../components/ExternalLink.astro';
+import FoldedTabs from '../../../components/FoldedTabs.astro';
+import Tabs from '../../../components/Tabs.astro';
+
+const tabs = [
+  { id: 'story', label: 'Story' },
+  { id: 'spec', label: 'Specification' },
+  { id: 'notes', label: 'Editor notes' },
+];
+const folded = [
+  { id: 'purpose', title: 'Start from purpose', summary: 'Choose a pattern because of what the reader needs to do.' },
+  { id: 'access', title: 'Preserve access', summary: 'Semantics, keyboard behavior, focus, and reduced motion are part of the component.' },
+  { id: 'expression', title: 'Add expression with intent', summary: 'Use scale, shape, color, and containment to clarify hierarchy.' },
+];
+---
+
+<DemoLayout title="Tabs and folded tabs demo — M3 Journal" description="Accessible content tabs and folded disclosure patterns for the M3 Astro theme.">
+  <div class="md-content-grid md-page-body">
+    <ArticleHeader eyebrow="Interaction demo" title="Switch context without losing the thread." description="Content tabs compare peer views. Folded tabs reveal supporting detail gradually. Both remain grounded in familiar browser and accessibility patterns." author="Interaction desk" date="July 7, 2026" readTime="Pattern demo" />
+    <section class="rounded-xl bg-surface-container-low p-5 md:p-8"><Tabs {tabs} label="Article views"><div slot="panel-story" class="md-prose"><h2>A short story view</h2><p>The room became easier to understand when the controls stopped competing with the content. The selected tab used containment, not motion alone, to make the current view unmistakable.</p></div><div slot="panel-spec"><dl class="grid gap-4 sm:grid-cols-3"><div class="rounded-lg bg-surface p-5"><dt class="md-label-large text-primary">Target</dt><dd class="md-title-large mt-2">48 px</dd></div><div class="rounded-lg bg-surface p-5"><dt class="md-label-large text-primary">Keyboard</dt><dd class="md-title-large mt-2">Arrow keys</dd></div><div class="rounded-lg bg-surface p-5"><dt class="md-label-large text-primary">Roles</dt><dd class="md-title-large mt-2">tab / panel</dd></div></dl></div><div slot="panel-notes" class="md-prose"><p>Use tabs only when panels are peers. For a reading sequence, keep the content on one page. For optional supporting detail, use the folded pattern below.</p></div></Tabs></section>
+    <section class="mt-20"><h2 class="md-headline-large">Folded tabs</h2><p class="md-body-large mt-4 max-w-2xl text-on-surface-variant">These native disclosure sections use <code>details</code> and <code>summary</code>, so their basic behavior survives without JavaScript.</p><div class="mt-8"><FoldedTabs items={folded} name="editorial-principles"><div slot="panel-purpose" class="md-prose"><p>Ask whether the reader is comparing, scanning, reading in sequence, or looking for one exact value. The answer should determine the component.</p></div><div slot="panel-access" class="md-prose"><p>Visible focus and accurate state are not finishing work. Test the pattern with a keyboard and with reduced motion enabled.</p></div><div slot="panel-expression" class="md-prose"><p>A larger selected container or a more distinctive corner can improve recognition. The effect should reinforce the task, not distract from it.</p></div></FoldedTabs></div></section>
+    <section class="mt-20 rounded-xl bg-primary-container p-8 text-on-primary-container md:p-12"><h2 class="md-headline-medium">Continue with the source guidance</h2><p class="md-body-large mt-4 max-w-2xl opacity-80">The theme adapts Material principles for Astro; official guidance remains the reference for component behavior and accessibility.</p><p class="mt-6"><ExternalLink href="https://m3.material.io/components/tabs/overview" class="text-on-primary-container" label="opens official tabs guidance in a new tab">Material tabs guidance</ExternalLink></p></section>
+  </div>
+</DemoLayout>

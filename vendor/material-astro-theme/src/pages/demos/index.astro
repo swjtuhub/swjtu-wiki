@@ -1,0 +1,28 @@
+---
+import DemoLayout from '../../demo/DemoLayout.astro';
+import ArticleHeader from '../../components/ArticleHeader.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import Chip from '../../components/Chip.astro';
+import Icon from '../../components/Icon.astro';
+
+const demos = [
+  { href: '/demos/text/', eyebrow: 'Long-form', title: 'Text, figures, quotes, and links', description: 'An editorial article showing the complete type hierarchy, readable line lengths, lists, callouts, inline code, and external references.', meta: 'Open text demo', icon: 'article' },
+  { href: '/demos/photos/', eyebrow: 'Visual story', title: 'Photos and responsive galleries', description: 'Hero imagery, captions, credits, portrait crops, mixed gallery spans, and image-led content cards.', meta: 'Open photo demo', icon: 'photo_library' },
+  { href: '/demos/data/', eyebrow: 'Structured content', title: 'Tables and content cards', description: 'Responsive tabular information, row emphasis, metadata, horizontal cards, and scanning patterns for dense pages.', meta: 'Open data demo', icon: 'table_chart' },
+  { href: '/demos/interactive/', eyebrow: 'Progressive interaction', title: 'Content tabs and folded tabs', description: 'Keyboard-operable tab panels and native disclosure groups that remain understandable without elaborate client state.', meta: 'Open interaction demo', icon: 'tab' },
+];
+---
+
+<DemoLayout title="Editorial pattern demos — M3 Journal" description="Focused Material 3 Expressive demonstrations for text, photography, galleries, tables, cards, tabs, disclosures, and external links.">
+  <header class="md-content-grid py-12 md:py-20">
+    <Chip selected><Icon name="view_cozy" size={18} />Editorial pattern library</Chip>
+    <ArticleHeader title="Content patterns that belong to the same publication." description="Each page puts a different kind of editorial material under pressure while preserving the theme’s type, color, shape, motion, and navigation logic." />
+  </header>
+  <section class="md-content-grid md-page-body grid gap-6 md:grid-cols-2">
+    {demos.map((demo, index) => (
+      <ContentCard href={demo.href} eyebrow={demo.eyebrow} title={demo.title} description={demo.description} meta={demo.meta} class={index === 0 ? 'md:col-span-2 md:grid-cols-[.7fr_1.3fr]' : ''}>
+        <Icon name={demo.icon} />
+      </ContentCard>
+    ))}
+  </section>
+</DemoLayout>

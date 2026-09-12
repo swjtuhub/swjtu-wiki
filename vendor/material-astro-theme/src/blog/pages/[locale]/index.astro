@@ -1,0 +1,62 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BlogLayout from '@m3-astro/theme/layouts/BlogLayout';
+import StoryCard from '@m3-astro/theme/components/StoryCard';
+import { enabledItems, getSiteConfig } from '@m3-astro/theme/blog/config';
+import Button from '@m3-astro/theme/components/Button';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+import SectionHeader from '@m3-astro/theme/components/SectionHeader';
+
+export async function getStaticPaths() {
+  const config = await getSiteConfig();
+  return enabledItems(config.locales)
+    .map(({ code }) => ({ params: { locale: code }, props: { locale: code } }));
+}
+
+const { locale } = Astro.props;
+const config = await getSiteConfig();
+const localeConfig = config.locales.find(({ code }) => code === locale);
+if (!localeConfig) throw new Error(`Missing locale configuration for ${locale}`);
+const labels = { ...config.labels, ...localeConfig.labels };
+const pageId = locale === config.defaultLocale ? 'home' : `home-${locale.toLowerCase()}`;
+const page = await getEntry('pages', pageId);
+if (!page) throw new Error(`Missing localized home Markdown for ${locale}`);
+const { Content } = await render(page);
+const stories = (await getCollection('stories'))
+  .filter((story) => (config.blog.showDrafts || !story.data.draft) && story.data.locale === locale)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+const featured = stories.find((story) => story.data.featured) ?? stories[0];
+const latest = stories.filter((story) => story.id !== featured?.id).slice(0, config.blog.storiesPerPage);
+---
+
+<BlogLayout title={page.data.title} description={page.data.description} lang={locale}>
+  <section class="md-blog-hero md-content-grid grid items-center lg:grid-cols-[1.08fr_.92fr]">
+    <div>
+      {page.data.eyebrow && <Chip selected class="mb-6"><Icon name="local_florist" size={18} />{page.data.eyebrow}</Chip>}
+      <h1 class="md-display-large m-0 max-w-4xl text-balance">{page.data.headline ?? page.data.title}</h1>
+      {page.data.intro && <p class="md-body-large mt-6 max-w-xl text-on-surface-variant">{page.data.intro}</p>}
+      <div class="mt-7 flex flex-wrap gap-3">
+        {page.data.primaryAction && <Button href={page.data.primaryAction.href} size="lg"><Icon slot="icon" name="auto_stories" />{page.data.primaryAction.label}</Button>}
+        {page.data.secondaryAction && <Button href={page.data.secondaryAction.href} variant="tonal" size="lg">{page.data.secondaryAction.label}</Button>}
+      </div>
+    </div>
+    {featured && (
+      <a href={`/${locale}/stories/${featured.id}/`} aria-label={`${labels.readStory}: ${featured.data.title}`} class="group block overflow-hidden rounded-xl bg-primary-container text-on-primary-container no-underline shadow-2 transition-[border-radius,transform] duration-500 hover:-rotate-1 hover:rounded-lg">
+        <div class:list={['grid min-h-[22rem] content-between bg-cover bg-center p-7 md:p-9', !featured.data.cover && 'story-art']} data-accent={featured.data.accent} style={featured.data.cover ? `background-image: linear-gradient(0deg, rgb(0 0 0 / .72), rgb(0 0 0 / .08)), url('${featured.data.cover}')` : undefined}>
+          <div class="flex justify-between"><Chip selected>{labels.featured}</Chip><span class="md-label-medium">{featured.data.readTime}</span></div>
+          <div class:list={[featured.data.cover && 'text-white']}><p class="md-label-large mb-4">{featured.data.category}</p><h2 class="md-headline-large m-0 max-w-xl text-balance">{featured.data.title}</h2><p class="md-body-medium mt-4 max-w-md">{featured.data.description}</p></div>
+        </div>
+      </a>
+    )}
+  </section>
+
+  <section class="bg-surface-container-low md-section">
+    <div class="md-content-grid">
+      <SectionHeader eyebrow={labels.latest} title={labels.slowerFeed} description={labels.feedDescription} actionHref={`/${locale}/stories/`} actionLabel={labels.allStories} />
+      {latest.length > 0 && <div class="md-card-grid mt-10 lg:grid-cols-2">{latest.map((story) => <StoryCard id={story.id} href={`/${locale}/stories/${story.id}/`} {...story.data} actionLabel={labels.readStory} />)}</div>}
+    </div>
+  </section>
+
+  <section class="md-content-grid md-section"><div class="md-prose"><Content /></div></section>
+</BlogLayout>

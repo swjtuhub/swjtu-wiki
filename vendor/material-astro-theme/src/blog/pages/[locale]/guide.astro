@@ -1,0 +1,252 @@
+---
+import BlogLayout from '@m3-astro/theme/layouts/BlogLayout';
+import { enabledItems, getSiteConfig } from '@m3-astro/theme/blog/config';
+import CodeBlock from '@m3-astro/theme/components/CodeBlock';
+import Button from '@m3-astro/theme/components/Button';
+import Card from '@m3-astro/theme/components/Card';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+
+export async function getStaticPaths() {
+  const config = await getSiteConfig();
+  return enabledItems(config.locales)
+    .map(({ code }) => ({ params: { locale: code }, props: { locale: code } }));
+}
+const { locale } = Astro.props;
+const config = await getSiteConfig();
+
+const installCode = `npm install ../material-astro-theme
+npm install -D astro @astrojs/markdown-remark tailwindcss @tailwindcss/vite`;
+
+const configCode = `// astro.config.mjs
+import { readFileSync } from 'node:fs';
+import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
+import tailwindcss from '@tailwindcss/vite';
+import { parse } from 'yaml';
+import m3Blog from '@m3-astro/theme/blog';
+import { rehypeM3, remarkM3 } from '@m3-astro/theme/markdown';
+
+const siteConfig = parse(readFileSync(new URL('./src/config/site.yaml', import.meta.url), 'utf8')).site;
+
+export default defineConfig({
+  site: siteConfig.url,
+  markdown: {
+    processor: unified({
+      remarkPlugins: [remarkM3],
+      rehypePlugins: [rehypeM3],
+    }),
+  },
+  integrations: [m3Blog()],
+  vite: { plugins: [tailwindcss()] },
+});`;
+
+const contentConfigCode = `// src/content.config.ts
+import { createBlogCollections } from '@m3-astro/theme/blog/content';
+
+export const collections = createBlogCollections();`;
+
+const yamlAuthoringCode = `# src/config/site.yaml
+site:
+  name: My publication
+  url: https://example.com
+  appearance:
+    palette: ocean
+    shape: soft
+    density: comfortable
+  features:
+    readingProgress: true
+    share: true
+
+  labels:
+    shareAction: Share by email
+    newsletterAction: Subscribe to the newsletter`;
+
+const translationCode = `# src/config/site.yaml
+translation:
+  enabled: true
+  enabledEnv: M3_TRANSLATION_ENABLED
+  endpoint: https://api.openai.com/v1/chat/completions
+  endpointEnv: M3_TRANSLATION_ENDPOINT
+  apiKey: ""
+  apiKeyEnv: M3_TRANSLATION_API_KEY
+  model: gpt-4o-mini
+  modelEnv: M3_TRANSLATION_MODEL
+  targetLocales: [en, zh-CN, zh-TW, ja]
+  ignoredStories: []`;
+
+const translationEnvCode = `# .env — copy from .env.example
+M3_TRANSLATION_ENABLED=true
+M3_TRANSLATION_ENDPOINT=https://api.openai.com/v1/chat/completions
+M3_TRANSLATION_MODEL=gpt-4o-mini
+M3_TRANSLATION_API_KEY=replace-with-your-key`;
+
+const componentCode = `---
+import Button from '@m3-astro/theme/components/Button';
+import Card from '@m3-astro/theme/components/Card';
+import Icon from '@m3-astro/theme/components/Icon';
+---
+
+<Card variant="elevated" class="p-8">
+  <h2 class="md-headline-medium">A useful headline</h2>
+  <p class="md-body-large text-on-surface-variant">
+    Semantic tokens keep the surface readable in light and dark themes.
+  </p>
+  <Button href="/start">
+    <Icon slot="icon" name="arrow_forward" />
+    Continue
+  </Button>
+</Card>`;
+
+const tokensCode = `/* src/styles/brand.css */
+:root {
+  --md-ref-typeface-brand: "Fraunces", serif;
+  --md-sys-color-primary: #006b5f;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #74f8e4;
+  --md-sys-color-on-primary-container: #00201c;
+  --md-sys-shape-corner-extra-large: 2.5rem;
+}`;
+
+const staticI18nCode = `---
+import AdaptiveLayout from '@m3-astro/theme/layouts/AdaptiveLayout';
+import LocaleRedirect from '@m3-astro/theme/components/LocaleRedirect';
+import { DEFAULT_LOCALE_ROUTES } from '@m3-astro/theme/i18n';
+
+const locales = [
+  { code: 'en', label: 'English', href: DEFAULT_LOCALE_ROUTES.en },
+  { code: 'zh-CN', label: '简体中文', href: DEFAULT_LOCALE_ROUTES['zh-CN'] },
+  { code: 'zh-TW', label: '繁體中文', href: DEFAULT_LOCALE_ROUTES['zh-TW'] },
+  { code: 'ja', label: '日本語', href: DEFAULT_LOCALE_ROUTES.ja },
+];
+---
+
+<AdaptiveLayout
+  lang="en"
+  currentLocale="en"
+  {locales}
+  title="Home"
+  description="Localized home page"
+>
+  <LocaleRedirect />
+  <slot />
+</AdaptiveLayout>`;
+
+const serverI18nCode = `---
+import { resolveLocale } from '@m3-astro/theme/i18n';
+
+const locale = resolveLocale({
+  pathname: Astro.url.pathname,
+  acceptLanguage: Astro.request.headers.get('accept-language'),
+});
+---`;
+
+const messagesCode = `// en, zh-CN, zh-TW, and ja labels are built in.
+<AdaptiveLayout lang="ja" currentLocale="ja" ... />
+
+// Override only product-specific wording when needed.
+<AdaptiveLayout
+  lang="zh-TW"
+  messages={{ home: '回到 M3 Journal 首頁' }}
+  ...
+/>`;
+---
+
+<BlogLayout title={`Using M3 Astro — ${config.name}`} description="A practical guide to installing, customizing, and localizing the M3 Astro Expressive theme." lang={locale}>
+  <div lang={locale === 'en' ? undefined : 'en'}>
+  <header class="md-content-grid md-page-header">
+    <Chip selected><Icon name="menu_book" size={18} />Theme guide</Chip>
+    <h1 class="md-display-medium mt-6 max-w-5xl text-balance">Build your own expressive Astro site.</h1>
+    <p class="md-body-large mt-5 max-w-3xl text-on-surface-variant">Start with the adaptive shell, compose zero-runtime Astro components, customize semantic tokens, and add locale-aware routes without giving up static performance.</p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <Button href="#install" size="lg"><Icon slot="icon" name="rocket_launch" />Start the guide</Button>
+      <Button href={`/${locale}/`} variant="tonal" size="lg">View the example</Button>
+    </div>
+  </header>
+
+  <div class="md-content-grid md-page-body grid gap-10 lg:grid-cols-[15rem_minmax(0,1fr)]">
+    <aside class="hidden lg:block" aria-label="Guide contents">
+      <nav class="sticky top-28 rounded-xl bg-surface-container-low p-4">
+        <p class="md-label-large px-3 pb-3 text-on-surface-variant">On this page</p>
+        <a class="guide-toc" href="#install">1. Install</a>
+        <a class="guide-toc" href="#layout">2. Add the layout</a>
+        <a class="guide-toc" href="#components">3. Compose components</a>
+        <a class="guide-toc" href="#customize">4. Customize tokens</a>
+        <a class="guide-toc" href="#i18n">5. Add i18n</a>
+        <a class="guide-toc" href="#ship">6. Ship confidently</a>
+      </nav>
+    </aside>
+
+    <div class="min-w-0">
+      <section id="install" class="guide-section">
+        <div class="guide-number">01</div>
+        <h2 class="md-headline-large">Install and configure</h2>
+        <p class="md-body-large text-on-surface-variant">This example uses the neighboring theme folder as a local package. Replace the path with the published package name when you publish it.</p>
+        <CodeBlock code={installCode} label="Terminal" language="shell" />
+        <p class="md-body-large text-on-surface-variant">Tailwind CSS v4 runs through Vite. The theme stylesheet declares its own component sources, so imported theme components are included in the generated CSS.</p>
+        <CodeBlock code={configCode} label="astro.config.mjs" language="javascript" />
+        <CodeBlock code={contentConfigCode} label="src/content.config.ts" language="typescript" />
+        <p class="md-body-large text-on-surface-variant">The theme integration owns the page layouts, localized routes, RSS, sitemap, and robots endpoint. After this one-time setup, routine customization requires no Astro component code: edit YAML for site-wide behavior and Markdown for pages and stories.</p>
+        <p class="md-body-large text-on-surface-variant">The example derives its Stories, Archive, Topics, Search, and author pages from the same story frontmatter. Adding one Markdown file updates every index, RSS, the sitemap, related-story links, and the localized article route.</p>
+        <CodeBlock code={yamlAuthoringCode} label="src/config/site.yaml" language="yaml" />
+      </section>
+
+      <section id="layout" class="guide-section">
+        <div class="guide-number">02</div>
+        <h2 class="md-headline-large">Let the theme own the whole-page system</h2>
+        <p class="md-body-large text-on-surface-variant">Managed routes coordinate metadata, color mode, the app bar, desktop rail, mobile navigation, focus order, safe areas, article indexes, and language-preserving links. A blog project does not need local layout or page components unless it intentionally overrides a route.</p>
+        <CodeBlock code={contentConfigCode} label="The complete content entrypoint" language="typescript" />
+        <Card class="p-7" variant="filled"><div class="flex gap-4"><Icon name="devices" size={30} filled class="text-primary" /><div><h3 class="md-title-large">Adaptive by default</h3><p class="md-body-medium mt-2 text-on-surface-variant">The rail appears on expanded viewports; compact screens receive bottom navigation with the same destinations and current-page state.</p></div></div></Card>
+      </section>
+
+      <section id="components" class="guide-section">
+        <div class="guide-number">03</div>
+        <h2 class="md-headline-large">Author first; compose only when needed</h2>
+        <p class="md-body-large text-on-surface-variant">Normal blog work stays in Markdown. For an intentional custom route, import components individually; Astro renders them to semantic HTML, while small scripts are included only for controls that need behavior.</p>
+        <CodeBlock code={componentCode} label="src/pages/index.astro" language="astro" />
+        <div class="grid gap-4 sm:grid-cols-2">
+          <Card class="p-6"><Icon name="smart_button" filled class="text-primary" /><p class="md-title-medium mt-5">Actions</p><p class="md-body-medium mt-2 text-on-surface-variant">Button, IconButton, FAB</p></Card>
+          <Card class="p-6"><Icon name="article" filled class="text-primary" /><p class="md-title-medium mt-5">Editorial</p><p class="md-body-medium mt-2 text-on-surface-variant">ArticleHeader, Figure, Gallery, ContentCard, DataTable</p></Card>
+          <Card class="p-6"><Icon name="tab" filled class="text-primary" /><p class="md-title-medium mt-5">Interaction</p><p class="md-body-medium mt-2 text-on-surface-variant">Tabs, FoldedTabs, LanguageSwitcher</p></Card>
+          <Card class="p-6"><Icon name="web" filled class="text-primary" /><p class="md-title-medium mt-5">Structure</p><p class="md-body-medium mt-2 text-on-surface-variant">AdaptiveLayout, navigation, and locale helpers</p></Card>
+        </div>
+      </section>
+
+      <section id="customize" class="guide-section">
+        <div class="guide-number">04</div>
+        <h2 class="md-headline-large">Customize roles, not one-off colors</h2>
+        <p class="md-body-large text-on-surface-variant">Choose the tested palette, shape, and density presets in <code>site.yaml</code> for normal customization. Raw token overrides are an advanced escape hatch; when using them, update every surface together with its matching <code>on-*</code> role.</p>
+        <CodeBlock code={tokensCode} label="src/styles/brand.css" language="css" />
+        <Card class="border-l-8 border-l-tertiary p-7" variant="outlined"><h3 class="md-title-large">Keep the hierarchy coherent</h3><p class="md-body-medium mt-2 text-on-surface-variant">Use the shape scale, type roles, and container colors consistently. Expressive does not mean every element competes for attention.</p></Card>
+      </section>
+
+      <section id="i18n" class="guide-section">
+        <div class="guide-number">05</div>
+        <h2 class="md-headline-large">Add locale-aware routes</h2>
+        <p class="md-body-large text-on-surface-variant">English, Simplified Chinese, Traditional Chinese, and Japanese are built in. Managed routes create every enabled language and place the browser-aware selector at the unprefixed entry page automatically. It respects a saved selection first, then matches <code>navigator.languages</code>.</p>
+        <p class="md-body-large text-on-surface-variant">Prefix every published page, including English at <code>/en/</code>, and build language links from the current path. Give translated stories the same <code>translationKey</code>; when a translation is missing, link to that locale’s Stories archive instead of its homepage.</p>
+        <p class="md-body-large text-on-surface-variant">Optionally generate missing story locales before each build through an OpenAI-compatible endpoint. Authored Markdown takes precedence, generated files are source-hash cached, and <code>autoTranslate: false</code> or <code>ignoredStories</code> excludes sensitive content. Keep the API key in a protected environment variable when the repository is shared.</p>
+        <CodeBlock code={translationCode} label="Build-time translation" language="yaml" />
+        <CodeBlock code={translationEnvCode} label="Local provider environment" language="dotenv" />
+        <p class="md-body-large text-on-surface-variant">Environment values override YAML, so each deployment can select its endpoint and model without editing content or committing credentials. The environment-variable names themselves remain configurable in <code>site.yaml</code>.</p>
+        <p class="md-body-large text-on-surface-variant">The following component-level examples are needed only when disabling managed routes for a fully custom page implementation.</p>
+        <CodeBlock code={staticI18nCode} label="Advanced custom locale entry" language="astro" />
+        <p class="md-body-large text-on-surface-variant">For an on-demand Astro deployment, resolve the initial locale directly from the request’s <code>Accept-Language</code> header. Explicit locale prefixes still win.</p>
+        <CodeBlock code={serverI18nCode} label="Server-rendered locale detection" language="astro" />
+        <p class="md-body-large text-on-surface-variant">The layout automatically localizes its skip link, navigation landmarks, language control, and color-mode button. Pass a partial <code>messages</code> object only to customize product-specific wording.</p>
+        <CodeBlock code={messagesCode} label="Localized layout messages" language="astro" />
+      </section>
+
+      <section id="ship" class="guide-section">
+        <div class="guide-number">06</div>
+        <h2 class="md-headline-large">Ship with the fundamentals intact</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+          <Card class="p-7" variant="elevated"><Icon name="accessibility_new" size={32} filled class="text-primary" /><h3 class="md-title-large mt-6">Accessibility</h3><p class="md-body-medium mt-3 text-on-surface-variant">Keep headings ordered, provide useful labels, test keyboard navigation, and verify every custom color pair. Reduced motion is already honored globally.</p></Card>
+          <Card class="p-7" variant="elevated"><Icon name="speed" size={32} filled class="text-primary" /><h3 class="md-title-large mt-6">Performance</h3><p class="md-body-medium mt-3 text-on-surface-variant">Prefer Astro components and native controls. Add client-side code only where an interaction genuinely requires it.</p></Card>
+        </div>
+        <div class="rounded-xl bg-primary p-8 text-on-primary md:p-12"><p class="md-label-large opacity-80">NEXT STEP</p><h3 class="md-headline-medium mt-4 max-w-2xl">Copy this example, replace its content, then tune the configuration until the publication sounds like you.</h3><div class="mt-7"><Button href={`/${locale}/`} variant="tonal" size="lg"><Icon slot="icon" name="arrow_back" />Explore {config.shortName ?? config.name}</Button></div></div>
+      </section>
+    </div>
+  </div>
+  </div>
+</BlogLayout>

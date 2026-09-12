@@ -1,0 +1,97 @@
+---
+import { render } from 'astro:content';
+import Icon from '@m3-astro/theme/components/Icon';
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import { docHref, enabled, formatUpdated, getWikiConfig, localeConfig, localeDocPaths, publishedDocs, sectionHref, sectionItem, sortedDocs, wikiLabels, wikiNavigation } from '../../../lib/wiki';
+
+export async function getStaticPaths() {
+  const config = await getWikiConfig();
+  const locales = new Set(enabled(config.locales).map(({ code }) => code));
+  const docs = await publishedDocs(config);
+  return docs
+    .filter((doc) => locales.has(doc.data.locale))
+    .map((doc) => ({ params: { locale: doc.data.locale, slug: doc.data.slug }, props: { docId: doc.id } }));
+}
+
+const { docId } = Astro.props;
+const { locale } = Astro.params;
+if (!locale || !docId) throw new Error('Missing document parameters.');
+const config = await getWikiConfig();
+const local = localeConfig(config, locale);
+if (!local) return Astro.redirect('/404/');
+const docs = await publishedDocs(config);
+const doc = docs.find((entry) => entry.id === docId);
+if (!doc) return Astro.redirect('/404/');
+const { Content, headings } = await render(doc);
+const labels = wikiLabels(config, locale);
+const navigation = wikiNavigation(config, locale);
+const section = sectionItem(navigation, doc.data.section);
+const localePaths = localeDocPaths(doc, docs, enabled(config.locales));
+const ordered = sortedDocs(docs.filter((entry) => entry.data.locale === locale && entry.data.section === doc.data.section));
+const index = ordered.findIndex((entry) => entry.id === doc.id);
+const previous = index > 0 ? ordered[index - 1] : undefined;
+const next = index >= 0 && index < ordered.length - 1 ? ordered[index + 1] : undefined;
+const editHref = config.features.editLinks && config.repository?.editBaseUrl && doc.data.editPath
+  ? `${config.repository.editBaseUrl.replace(/\/$/, '')}/${doc.data.editPath.replace(/^\//, '')}`
+  : undefined;
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: doc.data.title,
+  description: doc.data.description,
+  inLanguage: locale,
+  dateModified: doc.data.updatedDate?.toISOString(),
+  mainEntityOfPage: new URL(docHref(doc), Astro.site ?? Astro.url.origin).href,
+  isPartOf: { '@type': 'WebSite', name: config.name, url: config.url },
+});
+const visibleHeadings = headings.filter(({ depth }) => depth === 2 || depth === 3);
+---
+
+<WikiLayout title={`${doc.data.title} — ${config.name}`} description={doc.data.description} {locale} currentPath={docHref(doc)} {localePaths} {headings} ogType="article">
+  {config.features.readingProgress && <div class="reading-progress" aria-hidden="true"></div>}
+  <script type="application/ld+json" set:html={jsonLd} />
+  {config.features.breadcrumbs && (
+    <nav class="wiki-breadcrumbs" aria-label={labels.breadcrumbs}>
+      <ol>
+        <li><a href={local.href}>{labels.home}</a><Icon name="chevron_right" size={16} /></li>
+        <li><a href={sectionHref(locale, doc.data.section)}>{section?.label ?? doc.data.section}</a><Icon name="chevron_right" size={16} /></li>
+        <li aria-current="page"><span>{doc.data.title}</span></li>
+      </ol>
+    </nav>
+  )}
+  <article>
+    <header class="wiki-page-header">
+      <p class="wiki-eyebrow">{section?.label ?? doc.data.section}</p>
+      <h1 class="wiki-page-title">{doc.data.title}</h1>
+      <p class="wiki-page-description">{doc.data.description}</p>
+      <div class="wiki-doc-meta md-label-large">
+        {config.features.lastUpdated && doc.data.updatedDate && <span><Icon name="update" size={18} />{labels.lastUpdated} {formatUpdated(doc.data.updatedDate, locale)}</span>}
+        {doc.data.tags.map((tag) => <a href={`/${locale}/search/?q=${encodeURIComponent(tag)}`}><Icon name="label" size={16} />{tag}</a>)}
+      </div>
+      {visibleHeadings.length > 0 && (
+        <details class="wiki-mobile-toc">
+          <summary>{labels.onThisPage}</summary>
+          <nav aria-label={labels.onThisPage}>
+            <ol>{visibleHeadings.map((heading) => <li data-depth={heading.depth}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
+          </nav>
+        </details>
+      )}
+    </header>
+    <div class="wiki-article md-prose"><Content /></div>
+    <div class="wiki-page-actions">
+      <span class="md-body-medium">
+        {doc.data.contributors.length > 0 && `${labels.contributedBy}: ${doc.data.contributors.join(', ')}`}
+      </span>
+      <span>
+        {doc.data.source && <a href={doc.data.source} target="_blank" rel="noreferrer noopener" class="md-state-layer"><Icon name="source" size={18} />Source</a>}
+        {editHref && <a href={editHref} target="_blank" rel="noreferrer noopener" class="md-state-layer"><Icon name="edit" size={18} />{labels.editPage}</a>}
+      </span>
+    </div>
+    {(previous || next) && (
+      <nav class="wiki-pagination" aria-label="Pagination">
+        {previous ? <a href={docHref(previous)} class="md-state-layer"><small>{labels.previousPage}</small><strong>{previous.data.title}</strong></a> : <span></span>}
+        {next && <a href={docHref(next)} class="md-state-layer"><small>{labels.nextPage}</small><strong>{next.data.title}</strong></a>}
+      </nav>
+    )}
+  </article>
+</WikiLayout>

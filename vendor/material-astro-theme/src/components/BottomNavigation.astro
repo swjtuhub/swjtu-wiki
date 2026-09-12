@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+export interface NavItem { label: string; href: string; icon: string; }
+export interface Props { items: NavItem[]; currentPath?: string; label?: string; }
+const { items, currentPath = Astro.url.pathname, label = 'Mobile navigation' } = Astro.props;
+const path = currentPath.split(/[?#]/)[0];
+const matches = (href: string) => {
+  const target = href.split(/[?#]/)[0];
+  return target.startsWith('/') && (path === target || path.startsWith(target.endsWith('/') ? target : `${target}/`));
+};
+const currentHref = items.filter(({ href }) => matches(href)).sort((a, b) => b.href.length - a.href.length)[0]?.href;
+const isCurrent = (href: string) => href === currentHref;
+---
+
+<nav class="md-bottom-navigation fixed inset-x-0 bottom-0 z-40 flex min-h-20 items-center justify-around border-t border-outline-variant bg-surface-container px-2 pb-[env(safe-area-inset-bottom)] lg:hidden" aria-label={label}>
+  {items.map((item) => (
+    <a href={item.href} class="md-bottom-navigation__item group flex min-w-16 flex-col items-center gap-1 py-2 no-underline" aria-current={isCurrent(item.href) ? 'page' : undefined}>
+      <span class:list={['md-state-layer grid h-8 w-16 place-items-center rounded-full transition-colors', isCurrent(item.href) ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant']}>
+        <Icon name={item.icon} filled={isCurrent(item.href)} size={22} />
+      </span>
+      <span class="md-label-medium">{item.label}</span>
+    </a>
+  ))}
+</nav>

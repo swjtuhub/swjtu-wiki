@@ -1,0 +1,620 @@
+site:
+  name: SWJTU Wiki
+  shortName: SWJTU Wiki
+  description: 西南交大校园信息。
+  url: https://swjtu-wiki-material.workspace-067036.chatgpt.site
+  socialImage: /og.png
+  defaultLocale: zh-CN
+  locales:
+    - code: zh-CN
+      label: 简体中文
+      href: /zh-CN/
+      enabled: true
+      navigation:
+        - id: study-resources
+          label: 学习资料
+          description: 课程与学习资源。
+          href: https://swjtuhub.cn/
+          icon: library_books
+          enabled: true
+          external: true
+        - id: recommendation
+          label: 推免
+          description: 推免政策、数据与竞赛。
+          href: /zh-CN/sections/recommendation/
+          icon: workspace_premium
+          enabled: true
+          collapsed: false
+        - id: major-transfer
+          label: 转专业
+          description: 流程与经验。
+          href: /zh-CN/sections/major-transfer/
+          icon: swap_horiz
+          enabled: true
+          collapsed: false
+        - id: evaluation
+          label: 教务与评价
+          description: 选课、成绩与导师评价。
+          href: /zh-CN/sections/evaluation/
+          icon: fact_check
+          enabled: true
+          collapsed: true
+        - id: campus-services
+          label: 校园黄页
+          description: 后勤、快递、财务与服务。
+          href: /zh-CN/sections/campus-services/
+          icon: contact_phone
+          enabled: true
+          collapsed: false
+        - id: campus-life
+          label: 校园生活
+          description: 校车与校园生活。
+          href: /zh-CN/sections/campus-life/
+          icon: directions_bus
+          enabled: true
+          collapsed: true
+        - id: freshman
+          label: 新生指南
+          description: 报到、交通、住宿与地图。
+          href: /zh-CN/sections/freshman/
+          icon: school
+          enabled: true
+          collapsed: false
+        - id: visual-identity
+          label: 视觉识别
+          description: 学校视觉识别系统。
+          href: /zh-CN/sections/visual-identity/
+          icon: palette
+          enabled: true
+          collapsed: true
+        - id: community
+          label: 关于与共建
+          description: 项目说明与参与方式。
+          href: /zh-CN/sections/community/
+          icon: diversity_3
+          enabled: true
+          collapsed: true
+        - id: indexes
+          label: 内容索引
+          description: 归档、分类与标签。
+          href: /zh-CN/browse/archives/
+          icon: topic
+          enabled: true
+          collapsed: true
+          children:
+            - label: 归档
+              href: /zh-CN/browse/archives/
+              icon: calendar_month
+              enabled: true
+            - label: 分类
+              href: /zh-CN/browse/categories/
+              icon: category
+              enabled: true
+            - label: 标签
+              href: /zh-CN/browse/tags/
+              icon: sell
+              enabled: true
+      labels:
+        home: 首页
+        menu: 浏览知识库
+        closeMenu: 关闭导航
+        navigation: 知识库导航
+        search: 搜索
+        searchLabel: 搜索 SWJTU Wiki
+        searchPlaceholder: 搜索
+        searchHint: 按 / 开始搜索
+        searchResults: 条结果
+        searchEmptyTitle: 没有找到匹配页面
+        searchEmptyDescription: 请缩短关键词，或从左侧栏目开始浏览。
+        onThisPage: 本页内容
+        breadcrumbs: 页面路径
+        lastUpdated: 最后更新
+        editPage: 编辑本页
+        previousPage: 上一页
+        nextPage: 下一页
+        browseSection: 浏览栏目
+        featured: 从这里开始
+        recentlyUpdated: 最近更新
+        allPages: 按主题浏览
+        pageCount: 个页面
+        contributedBy: 贡献者
+        language: 语言
+        languagePrompt: 选择语言
+        languageDescription: 网站默认打开简体中文。您可以随时通过页面右上角切换语言。
+        switchToLightTheme: 切换到浅色主题
+        switchToDarkTheme: 切换到深色主题
+        skipToContent: 跳到正文
+        unavailableTranslation: 本页暂时没有所选语言的版本。
+        archive: 归档
+        categories: 分类
+        tags: 标签
+        browseDescription: 按日期、分类或标签浏览全部页面。
+      home:
+        eyebrow: SWJTU Wiki
+        headline: 西南交大校园指南。
+        intro: ""
+        primaryActionLabel: 浏览知识库
+        primaryActionHref: /zh-CN/sections/freshman/
+        contributeTitle: 完善 Wiki
+        contributeDescription: 发现错误或缺失？欢迎提交修改。
+        contributeLabel: 参与编辑
+        contributeHref: https://github.com/swjtuhub/swjtu-wiki
+      footer:
+        text: 由西南交大社区共同维护，为每一位需要答案的人服务。
+        copyright: © 2022–2026 SWJTUHub · MIT License
+    - code: zh-TW
+      label: 繁體中文
+      href: /zh-TW/
+      enabled: true
+      navigation:
+        - id: study-resources
+          label: 學習資料
+          description: 課程與學習資源。
+          href: https://swjtuhub.cn/
+          icon: library_books
+          enabled: true
+          external: true
+        - id: recommendation
+          label: 推免
+          description: 推免政策、資料與競賽。
+          href: /zh-TW/sections/recommendation/
+          icon: workspace_premium
+          enabled: true
+          collapsed: false
+        - id: major-transfer
+          label: 轉專業
+          description: 流程與經驗。
+          href: /zh-TW/sections/major-transfer/
+          icon: swap_horiz
+          enabled: true
+          collapsed: false
+        - id: evaluation
+          label: 教務與評價
+          description: 選課、成績與導師評價。
+          href: /zh-TW/sections/evaluation/
+          icon: fact_check
+          enabled: true
+          collapsed: true
+        - id: campus-services
+          label: 校園黃頁
+          description: 後勤、快遞、財務與服務。
+          href: /zh-TW/sections/campus-services/
+          icon: contact_phone
+          enabled: true
+          collapsed: false
+        - id: campus-life
+          label: 校園生活
+          description: 校車與校園生活。
+          href: /zh-TW/sections/campus-life/
+          icon: directions_bus
+          enabled: true
+          collapsed: true
+        - id: freshman
+          label: 新生指南
+          description: 報到、交通、住宿與地圖。
+          href: /zh-TW/sections/freshman/
+          icon: school
+          enabled: true
+          collapsed: false
+        - id: visual-identity
+          label: 視覺識別
+          description: 學校視覺識別系統。
+          href: /zh-TW/sections/visual-identity/
+          icon: palette
+          enabled: true
+          collapsed: true
+        - id: community
+          label: 關於與共建
+          description: 專案說明與參與方式。
+          href: /zh-TW/sections/community/
+          icon: diversity_3
+          enabled: true
+          collapsed: true
+        - id: indexes
+          label: 內容索引
+          description: 封存、分類與標籤。
+          href: /zh-TW/browse/archives/
+          icon: topic
+          enabled: true
+          collapsed: true
+          children:
+            - label: 封存
+              href: /zh-TW/browse/archives/
+              icon: calendar_month
+              enabled: true
+            - label: 分類
+              href: /zh-TW/browse/categories/
+              icon: category
+              enabled: true
+            - label: 標籤
+              href: /zh-TW/browse/tags/
+              icon: sell
+              enabled: true
+      labels:
+        home: 首頁
+        menu: 瀏覽知識庫
+        closeMenu: 關閉導覽
+        navigation: 知識庫導覽
+        search: 搜尋
+        searchLabel: 搜尋 SWJTU Wiki
+        searchPlaceholder: 搜尋
+        searchResults: 筆結果
+        searchEmptyTitle: 找不到相符頁面
+        searchEmptyDescription: 請縮短關鍵字，或從導覽欄開始瀏覽。
+        onThisPage: 本頁內容
+        breadcrumbs: 頁面路徑
+        lastUpdated: 最後更新
+        editPage: 編輯本頁
+        previousPage: 上一頁
+        nextPage: 下一頁
+        browseSection: 瀏覽分類
+        featured: 從這裡開始
+        recentlyUpdated: 最近更新
+        allPages: 依主題瀏覽
+        pageCount: 個頁面
+        contributedBy: 貢獻者
+        language: 語言
+        languagePrompt: 選擇語言
+        languageDescription: 網站預設開啟簡體中文，您可以隨時從頁面右上角切換語言。
+        switchToLightTheme: 切換至淺色主題
+        switchToDarkTheme: 切換至深色主題
+        skipToContent: 跳至正文
+        archive: 封存
+        categories: 分類
+        tags: 標籤
+        browseDescription: 依日期、分類或標籤瀏覽全部頁面。
+      home:
+        eyebrow: SWJTU Wiki
+        headline: 西南交大校園指南。
+        intro: ""
+        contributeTitle: 完善 Wiki
+        contributeDescription: 發現錯誤或缺漏？歡迎提交修改。
+        contributeLabel: 參與編輯
+        contributeHref: https://github.com/swjtuhub/swjtu-wiki
+    - code: en
+      label: English
+      href: /en/
+      enabled: true
+      home:
+        eyebrow: SWJTU Wiki
+        headline: SWJTU campus guide.
+        intro: ""
+        primaryActionLabel: Browse the wiki
+        primaryActionHref: /en/sections/freshman/
+        contributeTitle: Improve the wiki
+        contributeDescription: Found an error or gap? Send a correction.
+        contributeLabel: Contribute
+        contributeHref: https://github.com/swjtuhub/swjtu-wiki
+      footer:
+        text: Built by the SWJTU community, for the SWJTU community.
+        copyright: © 2022–2026 SWJTUHub · MIT License
+      labels:
+        searchPlaceholder: Search
+        archive: Archive
+        categories: Categories
+        tags: Tags
+        browseDescription: Browse every page by date, category, or tag.
+    - code: ja
+      label: 日本語
+      href: /ja/
+      enabled: true
+      navigation:
+        - id: study-resources
+          label: 学習資料
+          description: 授業・学習リソース。
+          href: https://swjtuhub.cn/
+          icon: library_books
+          enabled: true
+          external: true
+        - id: recommendation
+          label: 大学院推薦
+          description: 推薦制度、データ、競技会。
+          href: /ja/sections/recommendation/
+          icon: workspace_premium
+          enabled: true
+          collapsed: false
+        - id: major-transfer
+          label: 専攻変更
+          description: 手続きと体験談。
+          href: /ja/sections/major-transfer/
+          icon: swap_horiz
+          enabled: true
+          collapsed: false
+        - id: evaluation
+          label: 履修・教員情報
+          description: 履修登録、成績、指導教員の評価。
+          href: /ja/sections/evaluation/
+          icon: fact_check
+          enabled: true
+          collapsed: true
+        - id: campus-services
+          label: キャンパスサービス
+          description: 施設、配送、会計、窓口。
+          href: /ja/sections/campus-services/
+          icon: contact_phone
+          enabled: true
+          collapsed: false
+        - id: campus-life
+          label: キャンパス生活
+          description: バスとキャンパス生活。
+          href: /ja/sections/campus-life/
+          icon: directions_bus
+          enabled: true
+          collapsed: true
+        - id: freshman
+          label: 新入生ガイド
+          description: 到着、交通、寮、地図。
+          href: /ja/sections/freshman/
+          icon: school
+          enabled: true
+          collapsed: false
+        - id: visual-identity
+          label: ビジュアル・アイデンティティ
+          description: 大学の視覚識別。
+          href: /ja/sections/visual-identity/
+          icon: palette
+          enabled: true
+          collapsed: true
+        - id: community
+          label: この Wiki について
+          description: プロジェクトと参加方法。
+          href: /ja/sections/community/
+          icon: diversity_3
+          enabled: true
+          collapsed: true
+        - id: indexes
+          label: コンテンツ索引
+          description: アーカイブ、カテゴリー、タグ。
+          href: /ja/browse/archives/
+          icon: topic
+          enabled: true
+          collapsed: true
+          children:
+            - label: アーカイブ
+              href: /ja/browse/archives/
+              icon: calendar_month
+              enabled: true
+            - label: カテゴリー
+              href: /ja/browse/categories/
+              icon: category
+              enabled: true
+            - label: タグ
+              href: /ja/browse/tags/
+              icon: sell
+              enabled: true
+      labels:
+        home: ホーム
+        menu: Wiki を見る
+        closeMenu: ナビゲーションを閉じる
+        navigation: Wiki ナビゲーション
+        search: 検索
+        searchLabel: SWJTU Wiki を検索
+        searchPlaceholder: 検索
+        searchResults: 件
+        searchEmptyTitle: 一致するページがありません
+        searchEmptyDescription: 短い語句で検索するか、カテゴリーから探してください。
+        onThisPage: このページの内容
+        breadcrumbs: パンくずリスト
+        lastUpdated: 最終更新
+        editPage: このページを編集
+        previousPage: 前へ
+        nextPage: 次へ
+        browseSection: カテゴリーを見る
+        featured: はじめに
+        recentlyUpdated: 最近の更新
+        allPages: テーマから探す
+        pageCount: ページ
+        contributedBy: 貢献者
+        language: 言語
+        languagePrompt: 言語を選択
+        languageDescription: 既定では簡体字中国語で開きます。言語はページ右上からいつでも変更できます。
+        switchToLightTheme: ライトテーマに切り替える
+        switchToDarkTheme: ダークテーマに切り替える
+        skipToContent: 本文へ移動
+        archive: アーカイブ
+        categories: カテゴリー
+        tags: タグ
+        browseDescription: 日付、カテゴリー、タグから全ページを閲覧できます。
+      home:
+        eyebrow: SWJTU Wiki
+        headline: 西南交通大学キャンパスガイド。
+        intro: ""
+        contributeTitle: Wiki を改善
+        contributeDescription: 誤りや不足を見つけたら、修正を送ってください。
+        contributeLabel: 編集する
+        contributeHref: https://github.com/swjtuhub/swjtu-wiki
+  appearance:
+    palette: ocean
+    shape: soft
+    density: comfortable
+    defaultColorMode: system
+    showColorModeToggle: true
+  features:
+    search: true
+    breadcrumbs: true
+    tableOfContents: true
+    editLinks: true
+    lastUpdated: true
+    readingProgress: true
+    showDrafts: false
+  repository:
+    label: GitHub
+    url: https://github.com/swjtuhub/swjtu-wiki
+    editBaseUrl: https://github.com/swjtuhub/swjtu-wiki/edit/master/docs
+  navigation:
+    - id: study-resources
+      label: Study resources
+      description: Course and study resources.
+      href: https://swjtuhub.cn/
+      icon: library_books
+      enabled: true
+      external: true
+    - id: recommendation
+      label: Recommendation
+      description: Policy, data, and competitions.
+      href: /en/sections/recommendation/
+      icon: workspace_premium
+      enabled: true
+      collapsed: false
+    - id: major-transfer
+      label: Major transfer
+      description: Process and student experience.
+      href: /en/sections/major-transfer/
+      icon: swap_horiz
+      enabled: true
+      collapsed: false
+    - id: evaluation
+      label: Courses and reviews
+      description: Course registration, grades and supervisor reviews.
+      href: /en/sections/evaluation/
+      icon: fact_check
+      enabled: true
+      collapsed: true
+    - id: campus-services
+      label: Campus services
+      description: Facilities, parcels, finance, and services.
+      href: /en/sections/campus-services/
+      icon: contact_phone
+      enabled: true
+      collapsed: false
+    - id: campus-life
+      label: Campus life
+      description: Buses and campus life.
+      href: /en/sections/campus-life/
+      icon: directions_bus
+      enabled: true
+      collapsed: true
+    - id: freshman
+      label: New student guide
+      description: Arrival, transport, housing, and maps.
+      href: /en/sections/freshman/
+      icon: school
+      enabled: true
+      collapsed: false
+    - id: visual-identity
+      label: Visual identity
+      description: University visual identity.
+      href: /en/sections/visual-identity/
+      icon: palette
+      enabled: true
+      collapsed: true
+    - id: community
+      label: About and contribute
+      description: Project information and contribution.
+      href: /en/sections/community/
+      icon: diversity_3
+      enabled: true
+      collapsed: true
+    - id: indexes
+      label: Browse index
+      description: Archive, categories, and tags.
+      href: /en/browse/archives/
+      icon: topic
+      enabled: true
+      collapsed: true
+      children:
+        - label: Archive
+          href: /en/browse/archives/
+          icon: calendar_month
+          enabled: true
+        - label: Categories
+          href: /en/browse/categories/
+          icon: category
+          enabled: true
+        - label: Tags
+          href: /en/browse/tags/
+          icon: sell
+          enabled: true
+  labels:
+    archive: Archive
+    categories: Categories
+    tags: Tags
+    browseDescription: Browse every page by date, category, or tag.
+  home: {}
+  footer:
+    text: Community knowledge, maintained with care.
+    copyright: © 2022–2026 SWJTUHub · MIT License
+  redirects:
+    - from: /study/
+      to: /zh-CN/
+    - from: /free/
+      to: /zh-CN/sections/recommendation/
+    - from: /change/
+      to: /zh-CN/sections/major-transfer/
+    - from: /evaluate/
+      to: /zh-CN/sections/evaluation/
+    - from: /yellowpage/
+      to: /zh-CN/sections/campus-services/
+    - from: /life/
+      to: /zh-CN/sections/campus-life/
+    - from: /nearby/
+      to: /zh-CN/sections/campus-life/
+    - from: /freshman/
+      to: /zh-CN/sections/freshman/
+    - from: /vis/
+      to: /zh-CN/sections/visual-identity/
+    - from: /archives/
+      to: /zh-CN/browse/archives/
+    - from: /categories/
+      to: /zh-CN/browse/categories/
+    - from: /tags/
+      to: /zh-CN/browse/tags/
+    - from: /en/docs/recommendation/overview/
+      to: /en/sections/recommendation/
+    - from: /zh-CN/docs/recommendation/overview/
+      to: /zh-CN/sections/recommendation/
+    - from: /zh-TW/docs/recommendation/overview/
+      to: /zh-TW/sections/recommendation/
+    - from: /ja/docs/recommendation/overview/
+      to: /ja/sections/recommendation/
+    - from: /en/docs/major-transfer/overview/
+      to: /en/sections/major-transfer/
+    - from: /zh-CN/docs/major-transfer/overview/
+      to: /zh-CN/sections/major-transfer/
+    - from: /zh-TW/docs/major-transfer/overview/
+      to: /zh-TW/sections/major-transfer/
+    - from: /ja/docs/major-transfer/overview/
+      to: /ja/sections/major-transfer/
+    - from: /en/docs/freshman/getting-started/
+      to: /en/sections/freshman/
+    - from: /zh-CN/docs/freshman/getting-started/
+      to: /zh-CN/sections/freshman/
+    - from: /zh-TW/docs/freshman/getting-started/
+      to: /zh-TW/sections/freshman/
+    - from: /ja/docs/freshman/getting-started/
+      to: /ja/sections/freshman/
+    - from: /en/docs/campus-services/daily-services/
+      to: /en/sections/campus-services/
+    - from: /zh-CN/docs/campus-services/daily-services/
+      to: /zh-CN/sections/campus-services/
+    - from: /zh-TW/docs/campus-services/daily-services/
+      to: /zh-TW/sections/campus-services/
+    - from: /ja/docs/campus-services/daily-services/
+      to: /ja/sections/campus-services/
+    - from: /zh-CN/docs/campus-services/housing-maintenance/
+      to: /zh-CN/docs/freshman/dormitories/
+    - from: /zh-TW/docs/campus-services/housing-maintenance/
+      to: /zh-TW/docs/freshman/dormitories/
+    - from: /en/docs/campus-services/housing-maintenance/
+      to: /en/docs/freshman/dormitories/
+    - from: /ja/docs/campus-services/housing-maintenance/
+      to: /ja/docs/freshman/dormitories/
+    - from: /zh-CN/docs/freshman/student-organizations/
+      to: /zh-CN/sections/freshman/
+    - from: /zh-TW/docs/freshman/student-organizations/
+      to: /zh-TW/sections/freshman/
+    - from: /en/docs/freshman/student-organizations/
+      to: /en/sections/freshman/
+    - from: /ja/docs/freshman/student-organizations/
+      to: /ja/sections/freshman/
+    - from: /zh-CN/docs/freshman/c198d6/
+      to: /zh-CN/sections/freshman/
+    - from: /zh-TW/docs/freshman/c198d6/
+      to: /zh-TW/sections/freshman/
+    - from: /en/docs/freshman/c198d6/
+      to: /en/sections/freshman/
+    - from: /ja/docs/freshman/c198d6/
+      to: /ja/sections/freshman/
+    - from: /pages/c198d6/
+      to: /zh-CN/sections/freshman/
+  favicon: /img/favicon.ico

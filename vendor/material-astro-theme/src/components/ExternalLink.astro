@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  href: string;
+  label?: string;
+  newTab?: boolean;
+  class?: string;
+}
+
+const { href, label, newTab = true, class: className = '' } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={['md-label-large inline-flex items-center gap-1.5 rounded-xs text-primary underline decoration-2 underline-offset-4', className]}
+  target={newTab ? '_blank' : undefined}
+  rel={newTab ? 'noreferrer noopener' : undefined}
+>
+  <slot />
+  <Icon name="open_in_new" size={18} />
+  {label && <span class="sr-only">{label}</span>}
+</a>

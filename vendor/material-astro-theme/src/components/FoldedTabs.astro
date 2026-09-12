@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+
+export interface FoldedItem { id: string; title: string; summary?: string; }
+export interface Props {
+  items: FoldedItem[];
+  name?: string;
+  class?: string;
+}
+
+const { items, name = 'folded-tabs', class: className = '' } = Astro.props;
+---
+
+<div class:list={['grid gap-3', className]}>
+  {items.map((item, index) => (
+    <details name={name} class="group overflow-hidden rounded-lg border border-outline-variant bg-surface" open={index === 0}>
+      <summary class="md-state-layer flex min-h-16 cursor-pointer list-none items-center gap-4 px-5 py-3">
+        <span class="grid size-9 shrink-0 place-items-center rounded-full bg-secondary-container text-on-secondary-container"><Icon name="add" size={20} class="transition-transform group-open:rotate-45" /></span>
+        <span><strong class="md-title-medium block">{item.title}</strong>{item.summary && <span class="md-body-medium mt-1 block text-on-surface-variant">{item.summary}</span>}</span>
+      </summary>
+      <div class="border-t border-outline-variant px-5 py-6"><slot name={`panel-${item.id}`} /></div>
+    </details>
+  ))}
+</div>

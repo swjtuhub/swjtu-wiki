@@ -1,0 +1,30 @@
+---
+import Chip from './Chip.astro';
+
+export interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  author?: string;
+  date?: string;
+  readTime?: string;
+  align?: 'left' | 'center';
+}
+
+const { eyebrow, title, description, author, date, readTime, align = 'left' } = Astro.props;
+---
+
+<header class:list={['py-10 md:py-16', align === 'center' && 'mx-auto max-w-5xl text-center']}>
+  {eyebrow && <Chip selected class="mb-6">{eyebrow}</Chip>}
+  <h1 class="md-display-medium m-0 text-balance">{title}</h1>
+  {description && <p class:list={['md-body-large mt-6 max-w-3xl text-on-surface-variant', align === 'center' && 'mx-auto']}>{description}</p>}
+  {(author || date || readTime) && (
+    <div class:list={['md-label-large mt-7 flex flex-wrap items-center gap-2 text-on-surface-variant', align === 'center' && 'justify-center']}>
+      {author && <span>{author}</span>}
+      {author && (date || readTime) && <span aria-hidden="true">·</span>}
+      {date && <time>{date}</time>}
+      {date && readTime && <span aria-hidden="true">·</span>}
+      {readTime && <span>{readTime}</span>}
+    </div>
+  )}
+</header>

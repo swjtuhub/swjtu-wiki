@@ -1,0 +1,173 @@
+import { z } from 'astro/zod';
+
+export const navigationItemSchema = z.object({
+  label: z.string(),
+  href: z.string(),
+  icon: z.string().default('arrow_forward'),
+  enabled: z.boolean().default(true),
+});
+
+export const localeSchema = z.object({
+  code: z.string(),
+  label: z.string(),
+  href: z.string(),
+  enabled: z.boolean().default(true),
+  navigation: z.object({
+    top: z.array(navigationItemSchema).default([]),
+    rail: z.array(navigationItemSchema).default([]),
+  }).optional(),
+  labels: z.record(z.string(), z.string()).optional(),
+  footer: z.object({
+    text: z.string(),
+    copyright: z.string().optional(),
+  }).optional(),
+});
+
+export const actionSchema = z.object({
+  label: z.string(),
+  href: z.string(),
+});
+
+export const siteConfigSchema = z.object({
+  name: z.string(),
+  shortName: z.string().optional(),
+  description: z.string(),
+  url: z.string().url(),
+  author: z.string(),
+  authorSlug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).default('editorial'),
+  timezone: z.string().default('UTC'),
+  defaultLocale: z.string().default('en'),
+  locales: z.array(localeSchema).min(1),
+  appearance: z.object({
+    palette: z.enum(['violet', 'ocean', 'forest', 'sunset']).default('violet'),
+    shape: z.enum(['compact', 'soft', 'expressive']).default('expressive'),
+    density: z.enum(['compact', 'comfortable', 'spacious']).default('comfortable'),
+    defaultColorMode: z.enum(['system', 'light', 'dark']).default('system'),
+    showColorModeToggle: z.boolean().default(true),
+  }).default({}),
+  navigation: z.object({
+    top: z.array(navigationItemSchema).default([]),
+    rail: z.array(navigationItemSchema).default([]),
+  }).default({}),
+  features: z.object({
+    readingProgress: z.boolean().default(true),
+    share: z.boolean().default(true),
+    relatedStories: z.boolean().default(true),
+    newsletter: z.boolean().default(true),
+    guide: z.boolean().default(true),
+  }).default({}),
+  blog: z.object({
+    storiesPerPage: z.number().int().min(1).max(24).default(6),
+    dateStyle: z.enum(['short', 'medium', 'long', 'full']).default('long'),
+    showDrafts: z.boolean().default(false),
+  }).default({}),
+  translation: z.object({
+    enabled: z.boolean().default(false),
+    enabledEnv: z.string().default('M3_TRANSLATION_ENABLED'),
+    endpoint: z.string().url().default('https://api.openai.com/v1/chat/completions'),
+    endpointEnv: z.string().default('M3_TRANSLATION_ENDPOINT'),
+    apiKey: z.string().default(''),
+    apiKeyEnv: z.string().default('M3_TRANSLATION_API_KEY'),
+    model: z.string().min(1).default('gpt-4o-mini'),
+    modelEnv: z.string().default('M3_TRANSLATION_MODEL'),
+    targetLocales: z.array(z.string()).default([]),
+    ignoredStories: z.array(z.string()).default([]),
+    failOnError: z.boolean().default(true),
+    temperature: z.number().min(0).max(2).default(0.2),
+    requestTimeoutMs: z.number().int().min(1000).max(300000).default(120000),
+    extraInstructions: z.string().default(''),
+  }).default({}),
+  labels: z.object({
+    featured: z.string().default('Featured story'),
+    latest: z.string().default('Latest stories'),
+    slowerFeed: z.string().default('A slower feed, worth your attention.'),
+    feedDescription: z.string().default('A small set of considered pieces with clear destinations and no infinite scroll.'),
+    filterAll: z.string().default('All stories'),
+    storiesShown: z.string().default('stories'),
+    allStories: z.string().default('Browse all stories'),
+    readStory: z.string().default('Read story'),
+    minutesRead: z.string().default('min read'),
+    shareTitle: z.string().default('Share this story'),
+    shareDescription: z.string().default('Send this story to someone who may find it useful.'),
+    shareAction: z.string().default('Share by email'),
+    tableOfContents: z.string().default('On this page'),
+    relatedStories: z.string().default('Continue reading'),
+    previousStory: z.string().default('Previous story'),
+    nextStory: z.string().default('Next story'),
+    newsletterEyebrow: z.string().default('Newsletter'),
+    newsletterTitle: z.string().default('One thoughtful note, every other Friday.'),
+    newsletterDescription: z.string().default('New essays and useful references, with no tracking or urgency.'),
+    emailLabel: z.string().default('Email address'),
+    emailPlaceholder: z.string().default('name@example.com'),
+    newsletterAction: z.string().default('Subscribe'),
+    newsletterNote: z.string().default('This demo form is not connected to a mailing service.'),
+    emptyTitle: z.string().default('No stories found'),
+    emptyDescription: z.string().default('Try another topic or return to all stories.'),
+    archiveTitle: z.string().default('Story archive'),
+    archiveDescription: z.string().default('Every published story, arranged from newest to oldest.'),
+    topicsTitle: z.string().default('Explore topics'),
+    topicsDescription: z.string().default('Follow a subject through the Fieldnote archive.'),
+    categoriesLabel: z.string().default('Categories'),
+    tagsLabel: z.string().default('Tags'),
+    searchTitle: z.string().default('Search Fieldnote'),
+    searchDescription: z.string().default('Find a story by title, topic, tag, or phrase.'),
+    searchLabel: z.string().default('Search stories'),
+    searchPlaceholder: z.string().default('Try “typography” or “quiet interface”'),
+    searchEmpty: z.string().default('No stories match that search. Try a broader phrase.'),
+    searchResults: z.string().default('matching stories'),
+    authorTitle: z.string().default('Fieldnote Editorial'),
+    authorDescription: z.string().default('A small editorial desk studying humane digital products and the craft behind them.'),
+    writtenBy: z.string().default('Written by'),
+    postsLabel: z.string().default('Published stories'),
+    aiTranslated: z.string().default('AI-translated draft'),
+    aiTranslationNotice: z.string().default('This translation was generated automatically and should receive editorial review.'),
+  }).default({}),
+  footer: z.object({
+    text: z.string().default('Made with care using M3 Astro.'),
+    copyright: z.string().optional(),
+  }).default({}),
+  socials: z.array(z.object({
+    label: z.string(),
+    href: z.string(),
+    icon: z.string().default('link'),
+  })).default([]),
+});
+
+export const storySchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  publishDate: z.coerce.date(),
+  updatedDate: z.coerce.date().optional(),
+  readTime: z.string(),
+  category: z.string(),
+  tags: z.array(z.string()).default([]),
+  locale: z.string().default('en'),
+  translationKey: z.string().optional(),
+  featured: z.boolean().default(false),
+  draft: z.boolean().default(false),
+  accent: z.enum(['violet', 'rose', 'amber', 'ocean', 'forest']).default('violet'),
+  cover: z.string().optional(),
+  coverAlt: z.string().default(''),
+  author: z.string().optional(),
+  autoTranslate: z.boolean().default(true),
+  aiGenerated: z.boolean().default(false),
+  translationSource: z.string().optional(),
+  translationHash: z.string().optional(),
+});
+
+export const pageSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  eyebrow: z.string().optional(),
+  headline: z.string().optional(),
+  intro: z.string().optional(),
+  primaryAction: actionSchema.optional(),
+  secondaryAction: actionSchema.optional(),
+  newsletterTitle: z.string().optional(),
+  newsletterDescription: z.string().optional(),
+  locale: z.string().default('en'),
+});
+
+export type SiteConfig = z.infer<typeof siteConfigSchema>;
+export type StoryData = z.infer<typeof storySchema>;
+export type PageData = z.infer<typeof pageSchema>;

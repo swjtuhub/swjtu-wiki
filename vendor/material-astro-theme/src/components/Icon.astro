@@ -1,0 +1,18 @@
+---
+export interface Props {
+  name: string;
+  label?: string;
+  filled?: boolean;
+  size?: number;
+  class?: string;
+}
+
+const { name, label, filled = false, size = 24, class: className = '' } = Astro.props;
+---
+
+<span
+  class:list={["material-symbols-rounded", className]}
+  style={`font-size:${size}px;font-variation-settings:'FILL' ${filled ? 1 : 0},'wght' 550,'GRAD' 0,'opsz' ${size}`}
+  aria-hidden={label ? undefined : "true"}
+  aria-label={label}
+>{name}</span>

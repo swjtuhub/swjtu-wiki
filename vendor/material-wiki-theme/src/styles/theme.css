@@ -1,0 +1,8 @@
+@import "@m3-astro/theme/styles.css";
+@source "../components";
+@source "../layouts";
+@source "../pages";
+@import "./wiki.css";
+@import "./browse.css";
+@import "./legacy-content.css";
+@import "./embedded-content.css";

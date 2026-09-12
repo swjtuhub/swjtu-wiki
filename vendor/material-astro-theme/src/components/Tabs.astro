@@ -1,0 +1,67 @@
+---
+export interface TabDefinition { id: string; label: string; }
+export interface Props {
+  tabs: TabDefinition[];
+  activeId?: string;
+  label?: string;
+  id?: string;
+  class?: string;
+}
+
+const { tabs, activeId = tabs[0]?.id, label = 'Content tabs', id = `tabs-${tabs.map(({ id }) => id).join('-')}`, class: className = '' } = Astro.props;
+---
+
+<div class:list={['md-tabs', className]} data-tabs>
+  <div class="flex gap-1 overflow-x-auto border-b border-outline-variant" role="tablist" aria-label={label}>
+    {tabs.map((tab) => (
+      <button
+        type="button"
+        id={`${id}-tab-${tab.id}`}
+        role="tab"
+        aria-selected={tab.id === activeId ? 'true' : 'false'}
+        aria-controls={`${id}-panel-${tab.id}`}
+        tabindex={tab.id === activeId ? 0 : -1}
+        data-tab-target={tab.id}
+        class:list={['md-state-layer md-label-large relative min-h-12 shrink-0 rounded-t-md px-5 text-on-surface-variant', tab.id === activeId && 'bg-secondary-container text-on-secondary-container']}
+      >{tab.label}</button>
+    ))}
+  </div>
+  {tabs.map((tab) => (
+    <section
+      id={`${id}-panel-${tab.id}`}
+      role="tabpanel"
+      aria-labelledby={`${id}-tab-${tab.id}`}
+      data-tab-panel={tab.id}
+      hidden={tab.id !== activeId}
+      class="py-6"
+    ><slot name={`panel-${tab.id}`} /></section>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((root) => {
+    if (root.dataset.ready === 'true') return;
+    root.dataset.ready = 'true';
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const activate = (tab: HTMLButtonElement) => {
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        item.classList.toggle('bg-secondary-container', selected);
+        item.classList.toggle('text-on-secondary-container', selected);
+        root.querySelector<HTMLElement>(`[data-tab-panel="${item.dataset.tabTarget}"]`)!.hidden = !selected;
+      });
+      tab.focus();
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        activate(tabs[next]);
+      });
+    });
+  });
+</script>

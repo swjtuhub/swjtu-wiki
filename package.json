@@ -1,27 +1,36 @@
 {
-  "name": "swjtu-wiki",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "editFm": "node utils/editFrontmatter.js",
-    "baiduPush": "node utils/baiduPush.js https://wiki.swjtu.top && bash baiduPush.sh"
+  "name": "swjtu-wiki-material",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
   },
-  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/audit-markdown.mjs && astro build && node scripts/audit-homepage.mjs --dist",
+    "audit:home": "node scripts/audit-homepage.mjs --dist",
+    "audit:markdown": "node scripts/audit-markdown.mjs",
+    "preview": "astro preview",
+    "audit:build": "node scripts/audit-build.mjs",
+    "audit:current": "node scripts/audit-current-content.mjs --dist",
+    "audit:services": "node scripts/audit-service-translations.mjs --dist",
+    "audit:routes": "node scripts/audit-legacy-routes.mjs",
+    "audit:source": "node scripts/audit-source-coverage.mjs",
+    "audit:content": "node scripts/audit-content-fidelity.mjs",
+    "content:migrate": "node scripts/migrate-vuepress.mjs",
+    "sync:themes": "node scripts/sync-sites-themes.mjs"
+  },
+  "dependencies": {
+    "@m3-astro/theme": "file:./vendor/material-astro-theme",
+    "@m3-astro/wiki-theme": "file:./vendor/material-wiki-theme",
+    "yaml": "2.9.0"
+  },
   "devDependencies": {
-    "dayjs": "^1.9.7",
-    "inquirer": "^12.9.6",
-    "json2yaml": "^1.1.0",
-    "vuepress": "1.9.5",
-    "vuepress-plugin-baidu-autopush": "^1.0.1",
-    "vuepress-plugin-baidu-tongji": "^1.0.1",
-    "vuepress-plugin-comment": "^0.7.3",
-    "vuepress-plugin-demo-block": "^0.7.2",
-    "vuepress-plugin-fulltext-search": "^2.2.1",
-    "vuepress-plugin-one-click-copy": "^1.0.2",
-    "vuepress-plugin-thirdparty-search": "^1.0.2",
-    "vuepress-plugin-zooming": "^1.1.7",
-    "vuepress-theme-vdoing": "^1.9.5",
-    "yamljs": "^0.3.0"
+    "@astrojs/markdown-remark": "7.2.1",
+    "@tailwindcss/vite": "4.3.2",
+    "astro": "7.0.7",
+    "tailwindcss": "4.3.2",
+    "typescript": "5.9.3"
   }
 }

@@ -1,0 +1,98 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '@m3-astro/theme/layouts/BlogLayout';
+import StoryCard from '@m3-astro/theme/components/StoryCard';
+import { enabledItems, formatStoryDate, getSiteConfig } from '@m3-astro/theme/blog/config';
+import Button from '@m3-astro/theme/components/Button';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+
+export async function getStaticPaths() {
+  const config = await getSiteConfig();
+  const supportedLocales = enabledItems(config.locales).map(({ code }) => code);
+  const stories = await getCollection('stories');
+  return stories
+    .filter((story) => (config.blog.showDrafts || !story.data.draft) && supportedLocales.includes(story.data.locale))
+    .map((story) => ({ params: { locale: story.data.locale, id: story.id }, props: { locale: story.data.locale, story } }));
+}
+
+const config = await getSiteConfig();
+const { locale, story } = Astro.props;
+const localeConfig = config.locales.find(({ code }) => code === locale);
+if (!localeConfig) throw new Error(`Missing locale configuration for ${locale}`);
+const labels = { ...config.labels, ...localeConfig.labels };
+const { Content, headings } = await render(story);
+const publishedStories = (await getCollection('stories'))
+  .filter((entry) => config.blog.showDrafts || !entry.data.draft);
+const allStories = publishedStories
+  .filter((entry) => entry.data.locale === locale)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+const currentIndex = allStories.findIndex((entry) => entry.id === story.id);
+const previous = allStories[currentIndex + 1];
+const next = allStories[currentIndex - 1];
+const relevance = (entry: typeof story) =>
+  (entry.data.category === story.data.category ? 4 : 0)
+  + entry.data.tags.filter((tag) => story.data.tags.includes(tag)).length;
+const related = allStories
+  .filter((entry) => entry.id !== story.id)
+  .sort((a, b) => relevance(b) - relevance(a))
+  .slice(0, 2);
+const date = formatStoryDate(story.data.publishDate, locale, config.blog.dateStyle, config.timezone);
+const author = story.data.author ?? config.author;
+const toc = headings.filter(({ depth }) => depth === 2 || depth === 3);
+const accentIcons = { violet: 'gesture', rose: 'spa', amber: 'lightbulb', ocean: 'water', forest: 'forest' };
+const localePaths = Object.fromEntries(enabledItems(config.locales).map(({ code }) => {
+  if (code === locale) return [code, `/${locale}/stories/${story.id}/`];
+  const translationKey = story.data.translationKey ?? story.id;
+  const translation = publishedStories.find((entry) =>
+    entry.data.locale === code && (entry.data.translationKey ?? entry.id) === translationKey);
+  return [
+    code,
+    translation ? `/${code}/stories/${translation.id}/` : `/${code}/stories/`,
+  ];
+}));
+const canonical = new URL(Astro.url.pathname, config.url).href;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: story.data.title,
+  description: story.data.description,
+  datePublished: story.data.publishDate.toISOString(),
+  dateModified: (story.data.updatedDate ?? story.data.publishDate).toISOString(),
+  inLanguage: locale,
+  mainEntityOfPage: canonical,
+  image: story.data.cover ? new URL(story.data.cover, config.url).href : undefined,
+  author: { '@type': 'Organization', name: author, ...(author === config.author ? { url: new URL(`/${locale}/authors/${config.authorSlug}/`, config.url).href } : {}) },
+  publisher: { '@type': 'Organization', name: config.name },
+};
+---
+
+<BlogLayout title={`${story.data.title} — ${config.name}`} description={story.data.description} ogImage={story.data.cover} ogType="article" lang={locale} {localePaths}>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  {config.features.readingProgress && <div class="reading-progress" aria-hidden="true"></div>}
+  <article>
+    <header class="md-article-header md-content-grid grid items-end lg:grid-cols-[1fr_.55fr]">
+      <div>
+        <Chip selected>{story.data.category}</Chip>
+        <h1 class="md-display-medium mt-6 max-w-5xl text-balance">{story.data.title}</h1>
+        <p class="md-body-large mt-5 max-w-2xl text-on-surface-variant">{story.data.description}</p>
+        <div class="md-label-large mt-6 flex flex-wrap items-center gap-3 text-on-surface-variant">{author === config.author ? <a href={`/${locale}/authors/${config.authorSlug}/`} class="text-primary no-underline hover:underline">{labels.writtenBy} {author}</a> : <span>{labels.writtenBy} {author}</span>}<span aria-hidden="true">·</span><time datetime={story.data.publishDate.toISOString()}>{date}</time><span aria-hidden="true">·</span><span>{story.data.readTime}</span></div>
+        {story.data.tags.length > 0 && <div class="mt-5 flex flex-wrap gap-2">{story.data.tags.map((tag) => <a href={`/${locale}/search/?q=${encodeURIComponent(tag)}`} class="md-state-layer md-label-medium rounded-full bg-surface-container-high px-3 py-2 no-underline">{tag}</a>)}</div>}
+        {story.data.aiGenerated && <aside class="mt-6 flex max-w-2xl gap-3 rounded-lg bg-tertiary-container p-4 text-on-tertiary-container" role="note"><Icon name="translate" size={24} filled /><div><p class="md-label-large">{labels.aiTranslated}</p><p class="md-body-medium mt-1">{labels.aiTranslationNotice}</p></div></aside>}
+      </div>
+      {story.data.cover ? <img src={story.data.cover} alt={story.data.coverAlt} class="aspect-[4/3] w-full rounded-xl object-cover shadow-2" /> : <div class="story-art grid min-h-72 place-items-center rounded-xl shadow-2" data-accent={story.data.accent} aria-hidden="true"><Icon name={accentIcons[story.data.accent]} size={86} filled /></div>}
+    </header>
+
+    <div class="md-article-body md-content-grid grid lg:grid-cols-[minmax(0,48rem)_18rem] lg:justify-between">
+      <div class="md-prose prose-m3"><Content /></div>
+      <aside class="order-first grid content-start gap-4 lg:order-last">
+        {toc.length > 0 && <nav class="rounded-xl bg-surface-container-low p-5" aria-label={labels.tableOfContents}><p class="md-label-large mb-3">{labels.tableOfContents}</p>{toc.map((heading) => <a href={`#${heading.slug}`} class:list={['md-body-medium block rounded-sm py-2 text-on-surface-variant no-underline hover:text-primary', heading.depth === 3 && 'pl-4']}>{heading.text}</a>)}</nav>}
+        {config.features.share && <div class="rounded-xl bg-surface-container p-5"><p class="md-title-medium">{labels.shareTitle}</p><p class="md-body-medium mt-2 text-on-surface-variant">{labels.shareDescription}</p><div class="mt-4"><Button variant="tonal" href={`mailto:?subject=${encodeURIComponent(story.data.title)}&body=${encodeURIComponent(Astro.url.href)}`} ariaLabel={`${labels.shareAction}: ${story.data.title}`}><Icon slot="icon" name="mail" />{labels.shareAction}</Button></div></div>}
+      </aside>
+    </div>
+
+    {(previous || next) && <nav class="md-content-grid grid gap-4 border-t border-outline-variant py-10 sm:grid-cols-2">{previous ? <a href={`/${locale}/stories/${previous.id}/`} class="group rounded-lg bg-surface-container-low p-5 no-underline"><span class="md-label-medium text-primary">{labels.previousStory}</span><span class="md-title-medium mt-2 block group-hover:underline">{previous.data.title}</span></a> : <span></span>}{next && <a href={`/${locale}/stories/${next.id}/`} class="group rounded-lg bg-surface-container-low p-5 text-right no-underline"><span class="md-label-medium text-primary">{labels.nextStory}</span><span class="md-title-medium mt-2 block group-hover:underline">{next.data.title}</span></a>}</nav>}
+
+    {config.features.relatedStories && related.length > 0 && <section class="bg-surface-container-low md-section"><div class="md-content-grid"><h2 class="md-headline-large">{labels.relatedStories}</h2><div class="mt-8 grid gap-5 md:grid-cols-2">{related.map((entry) => <StoryCard id={entry.id} href={`/${locale}/stories/${entry.id}/`} {...entry.data} actionLabel={labels.readStory} />)}</div></div></section>}
+  </article>
+</BlogLayout>

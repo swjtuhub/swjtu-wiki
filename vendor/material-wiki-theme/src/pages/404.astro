@@ -1,0 +1,17 @@
+---
+import WikiLayout from '../layouts/WikiLayout.astro';
+import { getWikiConfig, localeConfig, wikiLabels } from '../lib/wiki';
+const config = await getWikiConfig();
+const locale = config.defaultLocale;
+const local = localeConfig(config, locale)!;
+const labels = wikiLabels(config, locale);
+---
+
+<WikiLayout title={`404 — ${config.name}`} description="Page not found" {locale} noindex>
+  <section class="wiki-search-empty">
+    <p class="wiki-eyebrow">404</p>
+    <h1 class="wiki-page-title">{labels.searchEmptyTitle}</h1>
+    <p>{labels.searchEmptyDescription}</p>
+    <p><a href={local.href} class="wiki-tonal-button md-state-layer">{labels.home}</a></p>
+  </section>
+</WikiLayout>

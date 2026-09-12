@@ -1,0 +1,37 @@
+---
+import Card from '@m3-astro/theme/components/Card';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+
+export interface Props {
+  id: string;
+  href?: string;
+  title: string;
+  description: string;
+  category: string;
+  readTime: string;
+  accent: 'violet' | 'rose' | 'amber' | 'ocean' | 'forest';
+  actionLabel?: string;
+  size?: 'standard' | 'wide';
+  class?: string;
+  cover?: string;
+  coverAlt?: string;
+}
+const { id, href = `/stories/${id}/`, title, description, category, readTime, accent, actionLabel = 'Read story', size = 'standard', class: className = '', cover, coverAlt = '' } = Astro.props;
+const accentIcons = { violet: 'gesture', rose: 'spa', amber: 'lightbulb', ocean: 'water', forest: 'forest' };
+---
+
+<Card {href} variant="elevated" class:list={['group overflow-hidden', size === 'wide' && 'md:grid md:grid-cols-[.9fr_1.1fr]', className]}>
+  {cover ? <img src={cover} alt={coverAlt} loading="lazy" class:list={['min-h-52 h-full w-full object-cover', size === 'wide' && 'md:min-h-72']} /> : <div class:list={['story-art grid min-h-52 place-items-center p-7', size === 'wide' && 'md:min-h-72']} data-accent={accent}>
+    <Icon name={accentIcons[accent]} size={size === 'wide' ? 78 : 60} filled />
+  </div>}
+  <div class="flex flex-col p-6 md:p-7">
+    <div class="flex items-center justify-between gap-3">
+      <Chip>{category}</Chip>
+      <span class="md-label-medium text-on-surface-variant">{readTime}</span>
+    </div>
+    <h2 class:list={[size === 'wide' ? 'md-headline-medium' : 'md-title-large', 'mt-5 text-balance']}>{title}</h2>
+    <p class="md-body-medium mt-3 text-on-surface-variant">{description}</p>
+    <span class="md-label-large mt-6 inline-flex items-center gap-2 text-primary">{actionLabel} <Icon name="arrow_forward" size={19} /></span>
+  </div>
+</Card>

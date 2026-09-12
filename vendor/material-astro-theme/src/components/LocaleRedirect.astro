@@ -1,0 +1,34 @@
+---
+import { DEFAULT_LOCALE, DEFAULT_LOCALE_ROUTES } from '../i18n/index';
+
+export interface Props {
+  routes?: Record<string, string>;
+  defaultLocale?: string;
+  storageKey?: string;
+}
+
+const { routes = DEFAULT_LOCALE_ROUTES, defaultLocale = DEFAULT_LOCALE, storageKey = 'm3-locale' } = Astro.props;
+---
+
+<script is:inline define:vars={{ routes, defaultLocale, storageKey }}>
+  (() => {
+    const normalize = (value) => String(value || '').toLowerCase().replace('_', '-');
+    const routeEntries = Object.entries(routes);
+    const match = (requested) => {
+      for (const value of requested) {
+        const locale = normalize(value);
+        const exact = routeEntries.find(([code]) => normalize(code) === locale);
+        if (exact) return exact;
+        const language = locale.split('-')[0];
+        const base = routeEntries.find(([code]) => normalize(code).split('-')[0] === language);
+        if (base) return base;
+      }
+      return routeEntries.find(([code]) => normalize(code) === normalize(defaultLocale)) || routeEntries[0];
+    };
+
+    const stored = localStorage.getItem(storageKey);
+    const selected = match(stored ? [stored] : (navigator.languages || [navigator.language]));
+    const current = `${location.pathname}${location.search}${location.hash}`;
+    if (selected && selected[1] !== current) location.replace(selected[1]);
+  })();
+</script>

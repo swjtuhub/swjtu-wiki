@@ -1,0 +1,63 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  code: string;
+  label?: string;
+  language?: string;
+  copyLabel?: string;
+  copiedLabel?: string;
+  copyFailedLabel?: string;
+}
+
+const {
+  code,
+  label = 'Code',
+  language = 'text',
+  copyLabel = 'Copy code',
+  copiedLabel = 'Copied',
+  copyFailedLabel = 'Copy failed. Select the code manually.',
+} = Astro.props;
+---
+
+<div class="md-code-block" data-code-block>
+  <div class="md-code-block__bar">
+    <span class="md-label-medium">{label}</span>
+    <button type="button" class="md-state-layer md-code-block__copy" data-copy-code aria-label={`${copyLabel}: ${label}`}>
+      <Icon name="content_copy" size={18} />
+      <span data-copy-label>{copyLabel}</span>
+    </button>
+  </div>
+  <pre tabindex="0" aria-label={`${label}, ${language}`}><code>{code}</code></pre>
+</div>
+
+<script define:vars={{ copyLabel, copiedLabel, copyFailedLabel }}>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-code]').forEach((button) => {
+    if (button.dataset.ready === 'true') return;
+    button.dataset.ready = 'true';
+    button.addEventListener('click', async () => {
+      const code = button.closest('[data-code-block]')?.querySelector('code')?.textContent ?? '';
+      const label = button.querySelector<HTMLElement>('[data-copy-label]');
+      try {
+        await navigator.clipboard.writeText(code);
+        if (label) label.textContent = copiedLabel;
+        button.setAttribute('aria-label', copiedLabel);
+      } catch {
+        if (label) label.textContent = copyFailedLabel;
+        button.setAttribute('aria-label', copyFailedLabel);
+      }
+      window.setTimeout(() => {
+        if (label) label.textContent = copyLabel;
+        button.setAttribute('aria-label', copyLabel);
+      }, 1800);
+    });
+  });
+</script>
+
+<style>
+  .md-code-block { overflow: hidden; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-large); background: var(--md-sys-color-inverse-surface); color: var(--md-sys-color-inverse-on-surface); box-shadow: var(--md-sys-elevation-level1); }
+  .md-code-block__bar { display: flex; min-height: 3rem; align-items: center; justify-content: space-between; padding: .25rem .5rem .25rem 1.25rem; border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent); }
+  .md-code-block__copy { display: inline-flex; min-height: 2.5rem; align-items: center; gap: .45rem; border: 0; border-radius: 999px; background: transparent; color: inherit; padding: 0 .8rem; cursor: pointer; }
+  pre { margin: 0; overflow-x: auto; padding: 1.4rem; font: 500 .875rem/1.72 var(--md-ref-typeface-mono); font-variant-ligatures: none; letter-spacing: 0; tab-size: 2; }
+  pre:focus-visible { outline-offset: -4px; }
+</style>

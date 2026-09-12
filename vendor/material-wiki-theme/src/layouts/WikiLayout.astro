@@ -1,0 +1,220 @@
+---
+import '../styles/theme.css';
+import { getCollection } from 'astro:content';
+import Icon from '@m3-astro/theme/components/Icon';
+import LanguageSwitcher from '@m3-astro/theme/components/LanguageSwitcher';
+import WikiNavigation from '../components/WikiNavigation.astro';
+import WikiTableOfContents from '../components/WikiTableOfContents.astro';
+import { docHref, enabled, getWikiConfig, localeConfig, publishedDocs, wikiLabels, wikiNavigation } from '../lib/wiki';
+
+export interface Heading { depth: number; slug: string; text: string; }
+export interface Props {
+  title: string;
+  description: string;
+  locale: string;
+  currentPath?: string;
+  localePaths?: Partial<Record<string, string>>;
+  headings?: Heading[];
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  locale,
+  currentPath = Astro.url.pathname,
+  localePaths = {},
+  headings = [],
+  ogType = 'website',
+  noindex = false,
+} = Astro.props;
+const config = await getWikiConfig();
+const local = localeConfig(config, locale);
+const labels = wikiLabels(config, locale);
+const navigation = wikiNavigation(config, locale);
+const allDocs = await publishedDocs(config);
+const docs = allDocs
+  .filter((doc) => doc.data.locale === locale)
+  .map((doc) => ({ title: doc.data.title, href: docHref(doc), section: doc.data.section, order: doc.data.order }));
+const availableLocales = enabled(config.locales).map((item) => ({
+  ...item,
+  href: localePaths[item.code] ?? item.href,
+}));
+const footer = local?.footer ?? config.footer;
+const canonical = new URL(currentPath, Astro.site ?? Astro.url.origin);
+const socialImage = ogType === 'website' && config.socialImage ? new URL(config.socialImage, Astro.site ?? Astro.url.origin) : undefined;
+const searchHref = `/${locale}/search/`;
+const homeHref = local?.href ?? `/${locale}/`;
+const hasToc = config.features.tableOfContents && headings.some(({ depth }) => depth === 2 || depth === 3);
+---
+
+<!doctype html>
+<html lang={locale} data-palette={config.appearance.palette} data-shape={config.appearance.shape} data-density={config.appearance.density}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    <meta name="theme-color" content="#006a6a" />
+    <link rel="canonical" href={canonical} />
+    {config.favicon && <link rel="icon" href={config.favicon} />}
+    {availableLocales.map((item) => <link rel="alternate" hreflang={item.code} href={new URL(item.href, Astro.site ?? Astro.url.origin)} />)}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Mono:wght@400;500;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    <meta name="twitter:card" content={socialImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {socialImage && <meta name="twitter:image" content={socialImage} />}
+    <title>{title}</title>
+    <script is:inline define:vars={{ defaultColorMode: config.appearance.defaultColorMode }}>
+      (() => {
+        const saved = localStorage.getItem('m3-theme');
+        const preferred = saved || defaultColorMode;
+        if (preferred === 'light' || preferred === 'dark') document.documentElement.dataset.theme = preferred;
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="wiki-skip-link">{labels.skipToContent}</a>
+    <header class="wiki-topbar">
+      <div class="wiki-topbar__inner">
+        <button type="button" class="wiki-icon-button md-state-layer wiki-menu-button" aria-label={labels.menu} aria-controls="wiki-mobile-navigation" data-wiki-menu-open>
+          <Icon name="menu" size={24} />
+        </button>
+        <a href={homeHref} class="wiki-brand" aria-label={labels.home}>
+          <span class="wiki-brand__mark"><Icon name="school" size={25} filled /></span>
+          <span class="wiki-brand__name">{config.shortName ?? config.name}</span>
+        </a>
+        {config.features.search && (
+          <form action={searchHref} method="get" class="wiki-quick-search" role="search">
+            <Icon name="search" size={21} />
+            <input type="search" name="q" aria-label={labels.searchLabel} placeholder={labels.searchPlaceholder} autocomplete="off" data-wiki-quick-search />
+            <kbd>/</kbd>
+          </form>
+        )}
+        <div class="wiki-topbar__actions">
+          {config.features.search && (
+            <a href={searchHref} class="wiki-icon-button md-state-layer wiki-mobile-search" aria-label={labels.search}>
+              <Icon name="search" size={23} />
+            </a>
+          )}
+          {availableLocales.length > 1 && <LanguageSwitcher locales={availableLocales} currentLocale={locale} label={labels.language} compact />}
+          {config.appearance.showColorModeToggle && (
+            <button
+              type="button"
+              class="wiki-icon-button md-state-layer"
+              aria-label={labels.switchToDarkTheme}
+              data-theme-toggle
+              data-light-label={labels.switchToLightTheme}
+              data-dark-label={labels.switchToDarkTheme}
+            ><Icon name="dark_mode" size={23} /></button>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <dialog id="wiki-mobile-navigation" class="wiki-drawer" data-wiki-drawer>
+      <div class="wiki-drawer__header">
+        <strong class="md-title-large">{labels.menu}</strong>
+        <button type="button" class="wiki-icon-button md-state-layer" aria-label={labels.closeMenu} data-wiki-menu-close><Icon name="close" size={24} /></button>
+      </div>
+      <div class="wiki-drawer__scroll">
+        <WikiNavigation navigationLabel={labels.navigation} items={navigation} {docs} {currentPath} {homeHref} homeLabel={labels.home} browseSectionLabel={labels.browseSection} />
+      </div>
+    </dialog>
+
+    <div class="wiki-shell">
+      <aside class="wiki-sidebar">
+        <WikiNavigation navigationLabel={labels.navigation} items={navigation} {docs} {currentPath} {homeHref} homeLabel={labels.home} browseSectionLabel={labels.browseSection} />
+      </aside>
+      <div class="wiki-page">
+        <div class:list={['wiki-page-grid', hasToc && 'has-toc']}>
+          <main id="main-content" class="wiki-main"><slot /></main>
+          {hasToc && <aside class="wiki-toc-column"><WikiTableOfContents {headings} label={labels.onThisPage} /></aside>}
+        </div>
+        <footer class="wiki-footer">
+          <div>
+            <p class="md-title-medium">{footer.text}</p>
+            <p class="md-body-medium">{footer.copyright ?? `© ${new Date().getFullYear()} ${config.name}`}</p>
+          </div>
+          {config.repository && (
+            <a href={config.repository.url} target="_blank" rel="noreferrer noopener" class="wiki-tonal-button md-state-layer">
+              <Icon name="code" size={19} /> {config.repository.label}
+            </a>
+          )}
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      const drawer = document.querySelector<HTMLDialogElement>('[data-wiki-drawer]');
+      document.querySelector('[data-wiki-menu-open]')?.addEventListener('click', () => drawer?.showModal());
+      document.querySelector('[data-wiki-menu-close]')?.addEventListener('click', () => drawer?.close());
+      drawer?.addEventListener('click', (event) => { if (event.target === drawer) drawer.close(); });
+
+      const syncEmbeddedTheme = (theme: 'light' | 'dark') => {
+        document.querySelectorAll<HTMLIFrameElement>('.md-embed > iframe').forEach((frame) => {
+          try { frame.contentDocument?.documentElement.setAttribute('data-theme', theme); } catch {}
+        });
+      };
+      const setTheme = (theme: 'light' | 'dark') => {
+        document.documentElement.dataset.theme = theme;
+        syncEmbeddedTheme(theme);
+        document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach((button) => {
+          const light = button.dataset.lightLabel ?? 'Switch to light theme';
+          const dark = button.dataset.darkLabel ?? 'Switch to dark theme';
+          button.setAttribute('aria-label', theme === 'dark' ? light : dark);
+          const icon = button.querySelector('.material-symbols-rounded');
+          if (icon) icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+        });
+      };
+      const initial = document.documentElement.dataset.theme === 'dark'
+        || (!document.documentElement.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      setTheme(initial);
+      document.querySelectorAll<HTMLIFrameElement>('.md-embed > iframe').forEach((frame) => {
+        frame.addEventListener('load', () => syncEmbeddedTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'));
+      });
+      document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach((button) => button.addEventListener('click', () => {
+        const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('m3-theme', theme);
+        setTheme(theme);
+      }));
+
+      const sidebar = document.querySelector<HTMLElement>('.wiki-sidebar');
+      const sidebarScrollKey = `m3-wiki-sidebar-scroll:${document.documentElement.lang}`;
+      const saveSidebarScroll = () => {
+        if (!sidebar) return;
+        try { sessionStorage.setItem(sidebarScrollKey, String(sidebar.scrollTop)); } catch {}
+      };
+      if (sidebar) {
+        let savedScroll = 0;
+        try { savedScroll = Number(sessionStorage.getItem(sidebarScrollKey)); } catch {}
+        if (Number.isFinite(savedScroll) && savedScroll > 0) {
+          requestAnimationFrame(() => { sidebar.scrollTop = savedScroll; });
+        }
+        sidebar.addEventListener('scroll', saveSidebarScroll, { passive: true });
+        sidebar.querySelectorAll<HTMLAnchorElement>('a[href]').forEach((link) => {
+          link.addEventListener('click', saveSidebarScroll);
+        });
+        window.addEventListener('pagehide', saveSidebarScroll);
+      }
+
+      document.addEventListener('keydown', (event) => {
+        const target = event.target as HTMLElement;
+        if (event.key !== '/' || target.matches('input, textarea, select') || target.isContentEditable) return;
+        const input = document.querySelector<HTMLInputElement>('[data-wiki-quick-search]');
+        if (input && getComputedStyle(input.closest('form')!).display !== 'none') {
+          event.preventDefault();
+          input.focus();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,67 +1,75 @@
-# SWJTU-Wiki 贡献指南
+# SWJTU Wiki — Material 3 replacement
 
-首先，感谢你愿意为 SWJTU-Wiki 贡献自己的一份力量！
+This project is a complete Material 3 replacement for `wiki.swjtu.top`, migrated from the public `swjtuhub/swjtu-wiki` source. It uses the reusable Material Wiki theme, snapshotted under `vendor/` for self-contained builds and deployment, and keeps site authors in two places:
 
-本指南旨在引导你更规范地向 SWJTU-Wiki 提交贡献，请务必认真阅读。
+- `src/config/site.yaml` controls branding, languages, navigation, labels, features, repository links, and legacy redirects.
+- `src/content/**/*.md` contains homepage and wiki content.
 
-## 提交 Issue
+There are no project-specific Astro page components; site pages come from the vendored wiki theme.
 
-### 报告问题、故障与漏洞
-
-SWJTU-Wiki 目前处于开发初期，如果你在使用过程中发现问题，欢迎提交 Issue。
-
-### 建议功能
-
-欢迎在 Issue 中提议要加入哪些新模块/功能。请仔细描述你的需求，尽量避免高度概括，可能的话可以提出你认为可行的解决方案。
-
-## Pull Request
-
-SWJTU-Wiki 使用 [VuePress](https://vuepress.vuejs.org/) 构建，使用 `yarn` 管理项目。
-
-下面的命令能在已安装 [Node.js](https://nodejs.org/en/) 的情况下帮你快速配置开发环境。
+## Local development
 
 ```bash
-# 安装依赖
-yarn install
-# 本地开发
-yarn dev
+npm install
+npm run dev
 ```
 
-之后 VuePress 会在 http://localhost:8080 启动一个热重载的开发服务器。
+## Add a page
 
-### Commit 规范
+Create a Markdown file under `src/content/docs`. The route and section come from frontmatter:
 
-请确保每一个 commit 都能清晰地描述其功能，一个 commit 尽量只有一个功能。
-
-SWJTU-Wiki 的 commit message 格式遵循 [gitmoji](https://gitmoji.dev/) 规范。
-
-### 参与开发
-
-若要修改项目构建代码，请确保你的代码风格和项目已有的代码保持一致。
-
-若不熟悉前端开发，可只贡献相应的 Markdown 文件，由维护者负责其他内容。
-
-## 工程结构
-
-本项目资源存放在根目录 `docs` 文件夹中，以下为具体结构：
-
-```
-docs
-├── .vuepress
-│   ├── public
-│   │   └── img (存放图片)
-│   └── config.ts (VuePress配置)
-├── @pages (特殊页面)
-├── ... (分类文章)
-├── ... (分类文章)
-├── _content (目录)
-└── index.md (主页)
+```yaml
+---
+title: Library hours
+description: Opening hours and access information for campus libraries.
+locale: en
+slug: campus-services/library-hours
+translationKey: library-hours
+section: campus-services
+categories: [Campus services]
+tags: [services, campus]
+order: 10
+updatedDate: 2026-09-01
+---
 ```
 
-## Git 分支
+Store documents under `src/content/docs/{locale}/`, using `migrated/` inside each locale directory for imported legacy material. The loader scans these folders recursively; routes still come from frontmatter `locale` and `slug`, not the source filename. Use the same `translationKey` for equivalent pages in other languages. The language menu will keep readers on the translated page when one exists and return them to the selected-language homepage otherwise.
 
-`master` 分支为 SWJTU-Wiki 的开发分支，在网站稳定运行后请不要直接修改 `master` 分支，而是创建一个目标分支为 `swjtu-wiki:master` 的 Pull Request 来提交修改。
+Essential and frequently used campus-life information must be maintained in `zh-CN`, `zh-TW`, `en`, and `ja`. Keep dates, contacts, source links, eligibility and unresolved verification limits aligned. Use links within the reader's language and preserve original Chinese account names or menu labels when needed to find a service. Run `npm run audit:services` after building to check the covered service pages for translation coverage, matching sources/contact links and generated routes; manually review translated meaning as well. Add newly covered service topics to that audit's key list.
 
-`gh_pages` 分支为 GitHub Pages 运行仓库，请勿直接修改此分支。当 `master` 分支有新的 `push` 时，会通过 Actions 自动构建网站并提交 `gh_pages` 分支。
+## Markdown formatting checks
 
-如果你不是 SWJTU-Wiki 团队的成员，可在 fork 本仓库后，向本仓库的 `master` 分支发起 Pull Request，注意遵循先前提到的 commit message 规范创建 commit 。我们将在 code review 通过后合并到主分支。
+Every build checks all four languages for unrendered emphasis, links and callout markers. You can also run `npm run audit:markdown` without building. The checks include mixed CJK/Latin text, inline code, code blocks, tables, nested blockquotes, external links, and both supported callout formats.
+
+Keep quotation marks and sentence-ending punctuation outside emphasis when adjoining Chinese or Japanese text: use `“**校内配送**”`, `「**学内配送**」`, and `**重要提醒**。参见通知`. Put literal Markdown examples in backticks or escape their delimiters.
+
+For a GitHub-style callout, an optional title belongs on the marker line (`> [!TIP] 提醒`); text on the next quoted line is body content. VuePress-style `::: tip` / `:::` blocks remain supported.
+
+## Migrate the complete upstream site
+
+Clone or download `https://github.com/swjtuhub/swjtu-wiki`, then run:
+
+```bash
+npm run content:migrate -- --source ../swjtu-wiki/docs
+cp -a ../swjtu-wiki/docs/.vuepress/public/. public/
+npm run build
+npm run audit:source -- --source ../swjtu-wiki/docs
+npm run audit:content -- --source ../swjtu-wiki/docs
+```
+
+The migration accounts for every upstream Markdown source. Content articles become wiki documents; VuePress-generated home, catalogue, archive, category, and tag sources map to their functional Material routes. `scripts/migration-manifest.json` records every source-to-route decision without local machine paths. Categories and tags remain separate; VuePress callouts and card containers render as native Material components; original permalinks become static redirects, edit paths point back to their source files, and all public assets are preserved.
+
+For the current upstream snapshot this is 44 Markdown sources: 30 migrated articles and 14 managed Material pages, with zero unsupported pages.
+
+## Production replacement checklist
+
+1. Review dates, phone numbers, external links, and automatically migrated HTML tables.
+2. Confirm every old path listed in `scripts/migration-manifest.json` reaches its new page.
+3. Run `npm run build`, then `npm run audit:build` to verify every generated internal link.
+4. Push the reviewed commit to `develop`; the GitHub Pages workflow builds and publishes the site.
+
+## GitHub Pages deployment
+
+The checked-in theme snapshots make this project independently buildable with `npm ci` and `npm run build`. When working beside the original theme projects, run `npm run sync:themes` after theme changes, then rebuild and validate before publishing. Content authors continue editing only YAML and Markdown.
+
+The canonical origin is configured in `src/config/site.yaml`. The workflow in `.github/workflows/deploy-pages.yml` deploys from `develop`. Run `npm run audit:current`, `npm run audit:build`, and `npm run audit:routes` before publishing.

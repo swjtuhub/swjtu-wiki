@@ -1,0 +1,32 @@
+---
+import '../styles/theme.css';
+import LocaleRedirect from '../components/LocaleRedirect.astro';
+import { DEFAULT_LOCALE_ROUTES } from '../i18n/index';
+
+const routes = DEFAULT_LOCALE_ROUTES;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,follow" />
+    <title>M3 Journal — Choose language</title>
+  </head>
+  <body>
+    <LocaleRedirect {routes} defaultLocale="en" />
+    <main class="md-content-grid grid min-h-screen place-content-center py-16">
+      <div class="max-w-xl rounded-xl bg-surface-container p-8 text-on-surface shadow-2 md:p-12">
+        <p class="md-label-large text-primary">M3 Journal</p>
+        <h1 class="md-headline-large mt-4">Choose your language</h1>
+        <nav class="mt-7 grid gap-2" aria-label="Available languages">
+          <a class="md-state-layer md-title-medium rounded-full bg-secondary-container px-5 py-3 no-underline" href={routes.en}>English</a>
+          <a class="md-state-layer md-title-medium rounded-full bg-secondary-container px-5 py-3 no-underline" href={routes['zh-CN']} lang="zh-CN">简体中文</a>
+          <a class="md-state-layer md-title-medium rounded-full bg-secondary-container px-5 py-3 no-underline" href={routes['zh-TW']} lang="zh-TW">繁體中文</a>
+          <a class="md-state-layer md-title-medium rounded-full bg-secondary-container px-5 py-3 no-underline" href={routes.ja} lang="ja">日本語</a>
+        </nav>
+      </div>
+    </main>
+  </body>
+</html>

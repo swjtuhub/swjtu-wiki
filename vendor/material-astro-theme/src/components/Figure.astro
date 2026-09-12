@@ -1,0 +1,27 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  credit?: string;
+  creditHref?: string;
+  ratio?: 'wide' | 'standard' | 'square' | 'portrait';
+  eager?: boolean;
+  class?: string;
+}
+
+const { src, alt, caption, credit, creditHref, ratio = 'wide', eager = false, class: className = '' } = Astro.props;
+const ratios = {
+  wide: 'aspect-[16/9]',
+  standard: 'aspect-[4/3]',
+  square: 'aspect-square',
+  portrait: 'aspect-[3/4]',
+};
+---
+
+<figure class:list={['m-0', className]}>
+  <div class:list={['overflow-hidden rounded-xl bg-surface-container-high', ratios[ratio]]}>
+    <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} class="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.025]" />
+  </div>
+  {(caption || credit) && <figcaption class="md-body-medium mt-3 flex flex-wrap justify-between gap-2 text-on-surface-variant"><span>{caption}</span>{credit && (creditHref ? <a href={creditHref} target="_blank" rel="noreferrer noopener" class="underline underline-offset-4">{credit}</a> : <span>{credit}</span>)}</figcaption>}
+</figure>

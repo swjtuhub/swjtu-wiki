@@ -1,0 +1,81 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BlogLayout from '@m3-astro/theme/layouts/BlogLayout';
+import StoryCard from '@m3-astro/theme/components/StoryCard';
+import { enabledItems, getSiteConfig } from '@m3-astro/theme/blog/config';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+
+export async function getStaticPaths() {
+  const config = await getSiteConfig();
+  return enabledItems(config.locales)
+    .map(({ code }) => ({ params: { locale: code }, props: { locale: code } }));
+}
+const { locale } = Astro.props;
+const config = await getSiteConfig();
+const localeConfig = config.locales.find(({ code }) => code === locale);
+if (!localeConfig) throw new Error(`Missing locale configuration for ${locale}`);
+const labels = { ...config.labels, ...localeConfig.labels };
+const pageId = locale === config.defaultLocale ? 'stories' : `stories-${locale.toLowerCase()}`;
+const page = await getEntry('pages', pageId);
+if (!page) throw new Error(`Missing localized stories Markdown for ${locale}`);
+const stories = (await getCollection('stories'))
+  .filter((story) => (config.blog.showDrafts || !story.data.draft) && story.data.locale === locale)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+const categories = [...new Set(stories.map((story) => story.data.category))].sort();
+---
+
+<BlogLayout title={page.data.title} description={page.data.description} lang={locale}>
+  <header class="md-content-grid md-page-header">
+    {page.data.eyebrow && <Chip selected><Icon name="auto_stories" size={18} />{page.data.eyebrow}</Chip>}
+    <h1 class="md-display-medium mt-6 max-w-5xl text-balance">{page.data.headline ?? page.data.title}</h1>
+    {page.data.intro && <p class="md-body-large mt-5 max-w-2xl text-on-surface-variant">{page.data.intro}</p>}
+    <div class="mt-7 flex flex-wrap gap-3" role="group" aria-label={page.data.intro} data-story-filters>
+      <button type="button" class="md-state-layer md-label-large min-h-10 rounded-sm border border-transparent bg-secondary-container px-4 text-on-secondary-container" aria-pressed="true" data-filter="all">{labels.filterAll}</button>
+      {categories.map((category) => <button type="button" class="md-state-layer md-label-large min-h-10 rounded-sm border border-outline px-4 text-on-surface-variant" aria-pressed="false" data-filter={category}>{category}</button>)}
+    </div>
+    <p class="md-body-medium mt-4 text-on-surface-variant" aria-live="polite" data-result-count data-count-suffix={labels.storiesShown}>{stories.length} {labels.storiesShown}</p>
+  </header>
+  <section class="md-content-grid md-page-body">
+    {stories.length > 0 ? <div class="grid gap-6 lg:grid-cols-2" data-story-grid>{stories.map((story, index) => <div data-story-card data-category={story.data.category} class={index === 0 ? 'lg:col-span-2' : ''}><StoryCard id={story.id} href={`/${locale}/stories/${story.id}/`} {...story.data} actionLabel={labels.readStory} size={index === 0 ? 'wide' : 'standard'} /></div>)}</div> : <div class="rounded-xl bg-surface-container-low p-8"><h2 class="md-title-large">{labels.emptyTitle}</h2><p class="md-body-medium mt-3 text-on-surface-variant">{labels.emptyDescription}</p></div>}
+  </section>
+</BlogLayout>
+
+<script>
+  const filterRoot = document.querySelector<HTMLElement>('[data-story-filters]');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-story-card]')];
+  const resultCount = document.querySelector<HTMLElement>('[data-result-count]');
+  const buttons = [...(filterRoot?.querySelectorAll<HTMLButtonElement>('[data-filter]') ?? [])];
+
+  const activateFilter = (button: HTMLButtonElement, updateLocation = false) => {
+    let visible = 0;
+    cards.forEach((card) => {
+      const show = button.dataset.filter === 'all' || card.dataset.category === button.dataset.filter;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+    buttons.forEach((item) => {
+      const selected = item === button;
+      item.setAttribute('aria-pressed', String(selected));
+      item.classList.toggle('bg-secondary-container', selected);
+      item.classList.toggle('text-on-secondary-container', selected);
+      item.classList.toggle('border-transparent', selected);
+      item.classList.toggle('border-outline', !selected);
+    });
+    if (resultCount) resultCount.textContent = `${visible} ${resultCount.dataset.countSuffix ?? ''}`;
+    if (updateLocation) {
+      const url = new URL(window.location.href);
+      button.dataset.filter === 'all'
+        ? url.searchParams.delete('topic')
+        : url.searchParams.set('topic', button.dataset.filter ?? '');
+      history.replaceState({}, '', url);
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => activateFilter(button, true));
+  });
+  const initialTopic = new URLSearchParams(window.location.search).get('topic');
+  const initialButton = buttons.find((button) => button.dataset.filter === initialTopic);
+  if (buttons.length > 0) activateFilter(initialButton ?? buttons[0]);
+</script>

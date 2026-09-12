@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  href: string;
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  meta?: string;
+  image?: string;
+  imageAlt?: string;
+  orientation?: 'vertical' | 'horizontal';
+  external?: boolean;
+  class?: string;
+}
+
+const { href, title, description, eyebrow, meta, image, imageAlt = '', orientation = 'vertical', external = false, class: className = '' } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={['group grid overflow-hidden rounded-xl bg-surface-container-low text-on-surface no-underline shadow-1 transition-[transform,border-radius,box-shadow] duration-300 hover:-translate-y-1 hover:rounded-lg hover:shadow-2', orientation === 'horizontal' && 'md:grid-cols-[.9fr_1.1fr]', className]}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noreferrer noopener' : undefined}
+>
+  {image ? (
+    <div class="overflow-hidden bg-surface-container-high"><img src={image} alt={imageAlt} loading="lazy" class:list={['h-full w-full object-cover transition-transform duration-500 group-hover:scale-105', orientation === 'vertical' ? 'aspect-[4/3]' : 'min-h-64']} /></div>
+  ) : (
+    <div class="grid min-h-40 place-items-center bg-primary-container text-on-primary-container [&_.material-symbols-rounded]:text-6xl"><slot /></div>
+  )}
+  <div class="flex flex-col p-6 md:p-7">
+    {eyebrow && <p class="md-label-large text-primary">{eyebrow}</p>}
+    <h3 class="md-title-large mt-3 text-balance">{title}</h3>
+    {description && <p class="md-body-medium mt-3 text-on-surface-variant">{description}</p>}
+    <div class="md-label-large mt-6 flex items-center justify-between gap-3 text-primary"><span>{meta ?? 'Read more'}</span><Icon name={external ? 'open_in_new' : 'arrow_forward'} size={19} /></div>
+  </div>
+</a>

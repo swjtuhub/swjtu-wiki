@@ -1,0 +1,38 @@
+---
+import '@m3-astro/theme/styles.css';
+import LocaleRedirect from '@m3-astro/theme/components/LocaleRedirect';
+import { enabledItems, getSiteConfig } from '@m3-astro/theme/blog/config';
+
+const config = await getSiteConfig();
+const locales = enabledItems(config.locales);
+const routes = Object.fromEntries(locales.map(({ code, href }) => [code, href]));
+---
+
+<!doctype html>
+<html lang={config.defaultLocale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,follow" />
+    <title>{config.name} — Choose language</title>
+  </head>
+  <body>
+    <LocaleRedirect {routes} defaultLocale={config.defaultLocale} />
+    <main class="md-content-grid grid min-h-screen place-content-center py-16">
+      <div class="max-w-xl rounded-xl bg-surface-container p-8 text-on-surface shadow-2 md:p-12">
+        <p class="md-label-large text-primary">{config.name}</p>
+        <h1 class="md-headline-large mt-4">Choose your language</h1>
+        <p class="md-body-large mt-4 text-on-surface-variant">
+          We normally open the language saved on this device or preferred by your browser. You can also choose one below.
+        </p>
+        <nav class="mt-7 grid gap-2" aria-label="Available languages">
+          {locales.map((locale) => (
+            <a href={locale.href} lang={locale.code} hreflang={locale.code} class="md-state-layer md-title-medium rounded-full bg-secondary-container px-5 py-3 text-on-secondary-container no-underline">
+              {locale.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+---
+import DemoLayout from '../../../demo/DemoLayout.astro';
+import ArticleHeader from '../../../components/ArticleHeader.astro';
+import ContentCard from '../../../components/ContentCard.astro';
+import Figure from '../../../components/Figure.astro';
+import Gallery from '../../../components/Gallery.astro';
+
+const gallery = [
+  { src: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1200&q=85', alt: 'Traditional Japanese architecture surrounded by greenery', caption: 'A layered threshold in Kyoto.' },
+  { src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85', alt: 'Modern interior with warm wood and plants', caption: 'Workspaces shaped by light.' },
+  { src: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=85', alt: 'Mountain lake under a soft sky', caption: 'Distance creates quiet.' },
+  { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=85', alt: 'Sunlight filtering through a green forest', caption: 'A natural tonal palette.' },
+  { src: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=85', alt: 'Colorful residential facade with geometric windows', caption: 'Repeated shape, varied color.' },
+];
+---
+
+<DemoLayout title="Photos and galleries demo — M3 Journal" description="Responsive figures, image credits, mixed galleries, and photo-led content cards in the M3 Astro theme.">
+  <article class="md-content-grid md-page-body">
+    <ArticleHeader eyebrow="Visual story demo" title="A frame should support the photograph." description="Material shape can give an image context and rhythm without competing with the subject inside it." author="Aiko Chen" date="July 10, 2026" readTime="Gallery" />
+    <Figure src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1800&q=88" alt="A Japanese temple seen through trees" caption="A wide editorial figure with a concise caption." credit="Photo on Unsplash" creditHref="https://unsplash.com/" eager />
+    <div class="mx-auto my-16 max-w-3xl text-center"><p class="md-headline-medium text-balance">Use one strong image to establish place, then let the gallery change pace.</p><p class="md-body-large mt-5 text-on-surface-variant">Mixed spans create rhythm; consistent captions and corner roles keep the set coherent.</p></div>
+    <Gallery items={gallery} label="Architecture, interiors, and landscape study" />
+    <section class="mt-24"><h2 class="md-headline-large">Image-led stories</h2><div class="mt-8 grid gap-5 md:grid-cols-2"><ContentCard href="/demos/text/" eyebrow="Essay" title="The quiet prototype" description="A long-form companion piece about finding the emotional center before polishing the interface." image={gallery[3].src} imageAlt={gallery[3].alt} meta="6 min read" /><ContentCard href="/demos/data/" eyebrow="Reference" title="Color as structured evidence" description="A table and card study for comparing roles, not just collecting swatches." image={gallery[4].src} imageAlt={gallery[4].alt} meta="Open reference" /></div></section>
+  </article>
+</DemoLayout>

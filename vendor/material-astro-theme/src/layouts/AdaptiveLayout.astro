@@ -1,0 +1,112 @@
+---
+import '../styles/theme.css';
+import TopAppBar from '../components/TopAppBar.astro';
+import NavigationRail from '../components/NavigationRail.astro';
+import BottomNavigation from '../components/BottomNavigation.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { getLayoutMessages, type LocaleDefinition, type LayoutMessageSet } from '../i18n/index';
+
+export interface NavItem { label: string; href: string; icon: string; }
+export interface Props {
+  title: string;
+  description: string;
+  brand?: string;
+  homeHref?: string;
+  navItems?: NavItem[];
+  topLinks?: Array<{ label: string; href: string }>;
+  currentPath?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  lang?: string;
+  dir?: 'ltr' | 'rtl' | 'auto';
+  locales?: LocaleDefinition[];
+  currentLocale?: string;
+  messages?: Partial<LayoutMessageSet>;
+  palette?: 'violet' | 'ocean' | 'forest' | 'sunset';
+  shape?: 'compact' | 'soft' | 'expressive';
+  density?: 'compact' | 'comfortable' | 'spacious';
+  defaultColorMode?: 'system' | 'light' | 'dark';
+  showThemeToggle?: boolean;
+}
+
+const {
+  title,
+  description,
+  brand = 'M3 Astro',
+  homeHref = '/',
+  navItems = [],
+  topLinks = [],
+  currentPath = Astro.url.pathname,
+  ogImage,
+  ogType = 'website',
+  lang = 'en',
+  dir = 'ltr',
+  locales = [],
+  currentLocale = lang,
+  messages = {},
+  palette = 'violet',
+  shape = 'expressive',
+  density = 'comfortable',
+  defaultColorMode = 'system',
+  showThemeToggle = true,
+} = Astro.props;
+const ui: LayoutMessageSet = {
+  ...getLayoutMessages(currentLocale),
+  ...messages,
+};
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+---
+
+<!doctype html>
+<html {lang} {dir} data-palette={palette} data-shape={shape} data-density={density}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#65558f" />
+    <link rel="canonical" href={canonical} />
+    {locales.map((locale) => locale.href && (
+      <link rel="alternate" hreflang={locale.code} href={new URL(locale.href, Astro.site ?? Astro.url.origin)} />
+    ))}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Mono:wght@400;500;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.url.origin)} />}
+    <title>{title}</title>
+    <script is:inline define:vars={{ defaultColorMode }}>
+      (() => {
+        const saved = localStorage.getItem('m3-theme');
+        const preferred = saved || defaultColorMode;
+        if (preferred === 'light' || preferred === 'dark') document.documentElement.dataset.theme = preferred;
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="fixed left-4 top-3 z-50 -translate-y-24 rounded-full bg-primary px-5 py-3 text-on-primary transition-transform focus:translate-y-0">{ui.skipToContent}</a>
+    <TopAppBar
+      brand={brand}
+      {homeHref}
+      {showThemeToggle}
+      links={topLinks}
+      currentPath={currentPath}
+      homeLabel={ui.home}
+      navigationLabel={ui.primaryNavigation}
+      switchToLightLabel={ui.switchToLightTheme}
+      switchToDarkLabel={ui.switchToDarkTheme}
+    >
+      <Fragment slot="actions">
+        {locales.length > 1 && <LanguageSwitcher {locales} {currentLocale} label={ui.language} compact />}
+        <slot name="app-bar-actions" />
+      </Fragment>
+    </TopAppBar>
+    {navItems.length > 0 && <NavigationRail items={navItems} currentPath={currentPath} label={ui.sectionNavigation} />}
+    <main id="main-content" class:list={['md-adaptive-main min-h-[calc(100vh-4.5rem)]', navItems.length > 0 && 'md-adaptive-main--with-navigation']}>
+      <slot />
+    </main>
+    {navItems.length > 0 && <BottomNavigation items={navItems} currentPath={currentPath} label={ui.mobileNavigation} />}
+  </body>
+</html>

@@ -1,0 +1,135 @@
+---
+import Icon from './Icon.astro';
+import type { LocaleDefinition } from '../i18n/index';
+
+export interface Props {
+  locales: LocaleDefinition[];
+  currentLocale: string;
+  label?: string;
+  compact?: boolean;
+  class?: string;
+}
+
+const {
+  locales,
+  currentLocale,
+  label = 'Language',
+  compact = false,
+  class: className = '',
+} = Astro.props;
+const current = locales.find(({ code }) => code.toLowerCase() === currentLocale.toLowerCase()) ?? locales[0];
+---
+
+<details class:list={['md-language-menu', className]} data-language-menu>
+  <summary class="md-state-layer" aria-label={`${label}: ${current?.label ?? currentLocale}`}>
+    <Icon name="language" size={21} />
+    <span class:list={['md-label-large current-language', compact && 'compact-label']}>{current?.label ?? currentLocale}</span>
+    <Icon name="expand_more" size={19} class="menu-chevron" />
+  </summary>
+  <div class="language-popover">
+    <p class="md-label-medium language-heading">{label}</p>
+    <ul role="list">
+      {locales.map((locale) => {
+        const selected = locale.code.toLowerCase() === currentLocale.toLowerCase();
+        return (
+          <li>
+            <a
+              href={locale.href ?? '#'}
+              lang={locale.code}
+              hreflang={locale.code}
+              class="md-state-layer language-option"
+              aria-current={selected ? 'page' : undefined}
+              data-locale-link={locale.code}
+            >
+              <span>
+                <strong>{locale.label}</strong>
+                <small>{locale.code}</small>
+              </span>
+              {selected && <Icon name="check" size={20} />}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</details>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('[data-language-menu]').forEach((menu) => {
+    if (menu.dataset.ready === 'true') return;
+    menu.dataset.ready = 'true';
+    menu.querySelectorAll<HTMLAnchorElement>('[data-locale-link]').forEach((link) => {
+      link.addEventListener('click', () => localStorage.setItem('m3-locale', link.dataset.localeLink ?? ''));
+    });
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        menu.open = false;
+        menu.querySelector<HTMLElement>('summary')?.focus();
+      }
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
+    });
+  });
+</script>
+
+<style>
+  .md-language-menu {
+    position: relative;
+    z-index: 50;
+  }
+
+  summary {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: .5rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0 .75rem;
+    color: var(--md-sys-color-on-surface-variant);
+    cursor: pointer;
+    list-style: none;
+    transition: background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard), border-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+  }
+
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { border-color: var(--md-sys-color-outline-variant); background: var(--md-sys-color-surface-container-high); }
+  details[open] summary { border-color: var(--md-sys-color-primary); background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+  .menu-chevron { transition: transform var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard); }
+  details[open] .menu-chevron { transform: rotate(180deg); }
+  .compact-label { max-width: 7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .language-popover {
+    position: absolute;
+    top: calc(100% + .6rem);
+    right: 0;
+    width: min(19rem, calc(100vw - 2rem));
+    overflow: hidden;
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: var(--md-sys-shape-corner-large);
+    background: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
+    box-shadow: var(--md-sys-elevation-level3);
+    transform-origin: top right;
+    animation: menu-in var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+  }
+
+  .language-heading { margin: 0; padding: 1rem 1rem .5rem; color: var(--md-sys-color-on-surface-variant); }
+  ul { margin: 0; padding: .4rem; list-style: none; }
+  li + li { margin-top: .2rem; }
+  .language-option { display: flex; min-height: 3.5rem; align-items: center; justify-content: space-between; gap: 1rem; border-radius: var(--md-sys-shape-corner-medium); padding: .6rem .75rem; color: var(--md-sys-color-on-surface); text-decoration: none; }
+  .language-option:hover { background: var(--md-sys-color-surface-container-highest); }
+  .language-option[aria-current="page"] { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+  .language-option strong { display: block; font: var(--md-sys-typescale-title-medium-weight) 1rem/1.5rem var(--md-ref-typeface-plain); letter-spacing: .009375rem; }
+  .language-option small { display: block; margin-top: .1rem; color: var(--md-sys-color-on-surface-variant); font: 500 .72rem/1.3 var(--md-ref-typeface-mono); }
+
+  @keyframes menu-in {
+    from { opacity: 0; transform: translateY(-.35rem) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @media (max-width: 34rem) {
+    .current-language { display: none; }
+  }
+</style>

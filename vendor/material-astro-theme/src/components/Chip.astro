@@ -1,0 +1,12 @@
+---
+export interface Props {
+  href?: string;
+  selected?: boolean;
+  class?: string;
+  button?: boolean;
+}
+const { href, selected = false, class: className = '', button = false } = Astro.props;
+const classes = ['md-state-layer md-label-large inline-flex min-h-9 items-center gap-2 rounded-sm px-4 no-underline transition-colors', selected ? 'bg-secondary-container text-on-secondary-container border border-transparent' : 'border border-outline text-on-surface-variant', className];
+---
+
+{href ? <a href={href} class:list={classes}><slot /></a> : button ? <button type="button" class:list={classes} aria-pressed={selected}><slot /></button> : <span class:list={classes}><slot /></span>}

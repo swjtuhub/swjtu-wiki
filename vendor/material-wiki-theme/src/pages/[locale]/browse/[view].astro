@@ -1,0 +1,156 @@
+---
+import Icon from '@m3-astro/theme/components/Icon';
+import WikiDocCard from '../../../components/WikiDocCard.astro';
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import {
+  docHref,
+  enabled,
+  formatUpdated,
+  getWikiConfig,
+  localeConfig,
+  publishedDocs,
+  wikiLabels,
+} from '../../../lib/wiki';
+
+const views = ['archives', 'categories', 'tags'] as const;
+type BrowseView = (typeof views)[number];
+
+export async function getStaticPaths() {
+  const browseViews = ['archives', 'categories', 'tags'];
+  const config = await getWikiConfig();
+  return enabled(config.locales).flatMap((locale) =>
+    browseViews.map((view) => ({ params: { locale: locale.code, view } })),
+  );
+}
+
+const { locale, view: viewParam } = Astro.params;
+if (!locale || !views.includes(viewParam as BrowseView)) return Astro.redirect('/404/');
+const view = viewParam as BrowseView;
+const config = await getWikiConfig();
+const local = localeConfig(config, locale);
+if (!local) return Astro.redirect('/404/');
+const labels = wikiLabels(config, locale);
+const docs = (await publishedDocs(config))
+  .filter((doc) => doc.data.locale === locale)
+  .sort((a, b) =>
+    (b.data.updatedDate?.getTime() ?? 0) - (a.data.updatedDate?.getTime() ?? 0) ||
+    a.data.title.localeCompare(b.data.title, locale),
+  );
+const viewLabels: Record<BrowseView, string> = {
+  archives: labels.archive,
+  categories: labels.categories,
+  tags: labels.tags,
+};
+const localePaths = Object.fromEntries(
+  enabled(config.locales).map((item) => [item.code, `/${item.code}/browse/${view}/`]),
+);
+
+const archiveGroups = Object.entries(
+  Object.groupBy(docs, (doc) => doc.data.updatedDate?.getUTCFullYear().toString() ?? labels.allPages),
+).sort(([a], [b]) => b.localeCompare(a, locale));
+
+function sectionFallback(section: string) {
+  const navigation = local.navigation.length > 0 ? local.navigation : config.navigation;
+  return navigation.find((item) => item.id === section)?.label ?? section;
+}
+
+function groupByTerm(kind: 'categories' | 'tags') {
+  const grouped = new Map<string, typeof docs>();
+  for (const doc of docs) {
+    const explicit = doc.data[kind] ?? [];
+    const terms = explicit.length > 0
+      ? explicit
+      : kind === 'categories'
+        ? [sectionFallback(doc.data.section)]
+        : [];
+    for (const term of terms) grouped.set(term, [...(grouped.get(term) ?? []), doc]);
+  }
+  return [...grouped.entries()].sort(([a], [b]) => a.localeCompare(b, locale));
+}
+
+const termGroups = view === 'categories' || view === 'tags' ? groupByTerm(view) : [];
+---
+
+<WikiLayout
+  title={`${viewLabels[view]} — ${config.name}`}
+  description={labels.browseDescription}
+  {locale}
+  {localePaths}
+>
+  <header class="wiki-page-header">
+    <p class="wiki-eyebrow">{config.name}</p>
+    <h1 class="wiki-page-title">{viewLabels[view]}</h1>
+    <p class="wiki-page-description">{labels.browseDescription}</p>
+  </header>
+
+  <nav class="wiki-browse-tabs" aria-label={labels.browseDescription}>
+    {views.map((item) => (
+      <a
+        href={`/${locale}/browse/${item}/`}
+        aria-current={item === view ? 'page' : undefined}
+        class="md-state-layer"
+      >
+        <Icon name={item === 'archives' ? 'calendar_month' : item === 'categories' ? 'category' : 'sell'} size={19} />
+        {viewLabels[item]}
+      </a>
+    ))}
+  </nav>
+
+  {view === 'archives' && (
+    <div class="wiki-browse-groups">
+      {archiveGroups.map(([year, yearDocs]) => (
+        <section class="wiki-browse-group" aria-labelledby={`archive-${year}`}>
+          <div class="wiki-browse-group__heading">
+            <h2 id={`archive-${year}`}>{year}</h2>
+            <span>{yearDocs?.length ?? 0} {labels.pageCount}</span>
+          </div>
+          <div class="wiki-doc-grid">
+            {yearDocs?.map((doc) => (
+              <WikiDocCard
+                title={doc.data.title}
+                description={doc.data.description}
+                href={docHref(doc)}
+                icon={doc.data.icon}
+                tags={doc.data.tags}
+                meta={doc.data.updatedDate ? formatUpdated(doc.data.updatedDate, locale) : undefined}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  )}
+
+  {(view === 'categories' || view === 'tags') && (
+    <>
+      <div class="wiki-term-cloud" aria-label={viewLabels[view]}>
+        {termGroups.map(([term, termDocs], index) => (
+          <a href={`#term-${index + 1}`} class="md-state-layer">
+            {term}<span>{termDocs.length}</span>
+          </a>
+        ))}
+      </div>
+      <div class="wiki-browse-groups">
+        {termGroups.map(([term, termDocs], index) => (
+          <section class="wiki-browse-group" aria-labelledby={`term-${index + 1}`}>
+            <div class="wiki-browse-group__heading">
+              <h2 id={`term-${index + 1}`}>{term}</h2>
+              <span>{termDocs.length} {labels.pageCount}</span>
+            </div>
+            <div class="wiki-doc-grid">
+              {termDocs.map((doc) => (
+                <WikiDocCard
+                  title={doc.data.title}
+                  description={doc.data.description}
+                  href={docHref(doc)}
+                  icon={doc.data.icon}
+                  tags={doc.data.tags}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </>
+  )}
+</WikiLayout>

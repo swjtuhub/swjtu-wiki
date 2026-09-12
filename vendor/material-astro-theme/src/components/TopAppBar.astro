@@ -1,0 +1,98 @@
+---
+import Icon from './Icon.astro';
+import IconButton from './IconButton.astro';
+
+export interface Props {
+  brand?: string;
+  homeHref?: string;
+  currentPath?: string;
+  links?: Array<{ label: string; href: string }>;
+  showThemeToggle?: boolean;
+  homeLabel?: string;
+  navigationLabel?: string;
+  switchToLightLabel?: string;
+  switchToDarkLabel?: string;
+}
+
+const {
+  brand = 'M3 Astro',
+  homeHref = '/',
+  currentPath = Astro.url.pathname,
+  links = [],
+  showThemeToggle = true,
+  homeLabel = `${brand} home`,
+  navigationLabel = 'Primary',
+  switchToLightLabel = 'Switch to light theme',
+  switchToDarkLabel = 'Switch to dark theme',
+} = Astro.props;
+const path = currentPath.split(/[?#]/)[0];
+const matches = (href: string) => {
+  const target = href.split(/[?#]/)[0];
+  return target.startsWith('/') && (path === target || path.startsWith(target.endsWith('/') ? target : `${target}/`));
+};
+const currentHref = links.filter(({ href }) => matches(href)).sort((a, b) => b.href.length - a.href.length)[0]?.href;
+---
+
+<header class="md-top-app-bar sticky top-0 z-40 border-b border-outline-variant/70 bg-surface/90 backdrop-blur-xl">
+  <div class="md-content-grid md-top-app-bar__inner flex min-h-18 items-center gap-3">
+    <a href={homeHref} class="md-top-app-bar__brand group flex items-center gap-3 rounded-full no-underline" aria-label={homeLabel}>
+      <span class="grid size-11 place-items-center rounded-[1rem_1rem_.45rem_1rem] bg-primary text-on-primary transition-[border-radius,transform] duration-300 group-hover:rotate-3 group-hover:rounded-[.5rem_1rem_1rem_1rem]">
+        <Icon name="interests" filled />
+      </span>
+      <span class="md-top-app-bar__brand-text md-title-large hidden sm:inline">{brand}</span>
+    </a>
+    <nav class="md-top-app-bar__links ml-auto hidden items-center gap-1 md:flex" aria-label={navigationLabel}>
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class:list={['md-state-layer md-label-large rounded-full px-5 py-3 no-underline', currentHref === link.href ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant']}
+          aria-current={currentHref === link.href ? 'page' : undefined}
+        >{link.label}</a>
+      ))}
+    </nav>
+    <div class="md-top-app-bar__actions ml-auto flex items-center gap-1 md:ml-2">
+      <slot name="actions" />
+      {showThemeToggle && (
+        <IconButton
+          icon="dark_mode"
+          label={switchToDarkLabel}
+          dataThemeToggle
+          dataLightLabel={switchToLightLabel}
+          dataDarkLabel={switchToDarkLabel}
+        />
+      )}
+    </div>
+  </div>
+</header>
+
+<script>
+  const getPreferredTheme = () => {
+    const saved = localStorage.getItem('m3-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    const configured = document.documentElement.dataset.theme;
+    if (configured === 'light' || configured === 'dark') return configured;
+    return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const applyTheme = (theme: string) => {
+    document.documentElement.dataset.theme = theme;
+    document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach((button) => {
+      const lightLabel = button.dataset.lightLabel ?? 'Switch to light theme';
+      const darkLabel = button.dataset.darkLabel ?? 'Switch to dark theme';
+      button.setAttribute('aria-label', theme === 'dark' ? lightLabel : darkLabel);
+      const icon = button.querySelector('.material-symbols-rounded');
+      if (icon) icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+    });
+  };
+
+  applyTheme(getPreferredTheme());
+  document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach((button) => {
+    if (button.dataset.ready === 'true') return;
+    button.dataset.ready = 'true';
+    button.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('m3-theme', next);
+      applyTheme(next);
+    });
+  });
+</script>

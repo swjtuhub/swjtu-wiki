@@ -1,0 +1,33 @@
+---
+import { getEntry, render } from 'astro:content';
+import BlogLayout from '@m3-astro/theme/layouts/BlogLayout';
+import { enabledItems, getSiteConfig } from '@m3-astro/theme/blog/config';
+import Button from '@m3-astro/theme/components/Button';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+
+export async function getStaticPaths() {
+  const config = await getSiteConfig();
+  return enabledItems(config.locales)
+    .map(({ code }) => ({ params: { locale: code }, props: { locale: code } }));
+}
+const { locale } = Astro.props;
+const config = await getSiteConfig();
+const pageId = locale === config.defaultLocale ? 'about' : `about-${locale.toLowerCase()}`;
+const page = await getEntry('pages', pageId);
+if (!page) throw new Error(`Missing localized about Markdown for ${locale}`);
+const { Content } = await render(page);
+---
+
+<BlogLayout title={page.data.title} description={page.data.description} lang={locale}>
+  <header class="md-content-grid md-page-header grid items-center gap-10 lg:grid-cols-[1fr_.7fr]">
+    <div>
+      {page.data.eyebrow && <Chip selected><Icon name="person" size={18} />{page.data.eyebrow}</Chip>}
+      <h1 class="md-display-medium mt-6 max-w-4xl text-balance">{page.data.headline ?? page.data.title}</h1>
+      {page.data.intro && <p class="md-body-large mt-5 max-w-2xl text-on-surface-variant">{page.data.intro}</p>}
+      {page.data.primaryAction && <div class="mt-7"><Button href={page.data.primaryAction.href} size="lg"><Icon slot="icon" name="auto_stories" />{page.data.primaryAction.label}</Button></div>}
+    </div>
+    <div class="grid grid-cols-2 gap-4" aria-hidden="true"><div class="h-56 rounded-xl bg-primary-container"></div><div class="mt-12 h-56 rounded-xl bg-tertiary-container"></div></div>
+  </header>
+  <section class="bg-surface-container-low md-section"><div class="md-content-grid"><div class="md-prose"><Content /></div></div></section>
+</BlogLayout>

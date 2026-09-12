@@ -1,0 +1,217 @@
+---
+import type { DefaultLocale } from '../i18n/index';
+import { DEFAULT_LOCALE_ROUTES } from '../i18n/index';
+import AdaptiveLayout from '../layouts/AdaptiveLayout.astro';
+import Button from '../components/Button.astro';
+import Chip from '../components/Chip.astro';
+import ContentCard from '../components/ContentCard.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+export interface Props {
+  locale: DefaultLocale;
+}
+
+const { locale } = Astro.props;
+const routes = DEFAULT_LOCALE_ROUTES;
+const locales = [
+  { code: 'en', label: 'English', href: routes.en },
+  { code: 'zh-CN', label: '简体中文', href: routes['zh-CN'] },
+  { code: 'zh-TW', label: '繁體中文', href: routes['zh-TW'] },
+  { code: 'ja', label: '日本語', href: routes.ja },
+];
+
+const copy = {
+  en: {
+    title: 'M3 Journal — stories with shape and rhythm',
+    description: 'An editorial Material 3 Expressive showcase for Astro, with multilingual typography and reusable content patterns.',
+    nav: ['Journal', 'Demos', 'About'],
+    top: ['Latest', 'Patterns', 'The theme'],
+    edition: 'The expressive edition',
+    hero: 'Stories with shape, rhythm, and room to breathe.',
+    intro: 'A multilingual editorial demo built with Astro, semantic Material roles, generous typography, and components that let content lead.',
+    primary: 'Read the feature',
+    secondary: 'Explore patterns',
+    featureTag: 'Design fieldnote',
+    featureTitle: 'The soft geometry of everyday attention',
+    featureDescription: 'What rounded rooms, shifting light, and a well-timed pause can teach us about designing digital places.',
+    featureMeta: '8 min read',
+    latestEyebrow: 'From the journal',
+    latestTitle: 'Recent notes for careful makers.',
+    latestDescription: 'Essays, visual stories, and practical references arranged with a calm editorial rhythm.',
+    cards: [
+      ['Typography', 'Words that travel well', 'A type system for English, Japanese, and Chinese that keeps hierarchy without forcing every script into the same rhythm.', '6 min'],
+      ['Photography', 'Color, scale, and the useful crop', 'How image ratios and expressive containers can support a story instead of decorating around it.', 'Gallery'],
+      ['Practice', 'A table can still feel human', 'Dense information becomes easier to scan when roles, spacing, and emphasis agree.', '5 min'],
+    ],
+    browse: 'Browse the theme',
+    browseTitle: 'Every editorial pattern, in context.',
+    browseDescription: 'Open focused demo pages for long-form text, photography, structured data, and interactive content.',
+    demoLabels: ['Text & links', 'Photos & galleries', 'Tables & cards', 'Tabs & folded tabs'],
+    newsletter: 'A slower feed for a more thoughtful web.',
+    newsletterBody: 'One considered note about design systems and editorial craft, delivered every other Friday.',
+    newsletterAction: 'Join the dispatch',
+  },
+  'zh-CN': {
+    title: 'M3 Journal — 富有形状与节奏的故事',
+    description: '面向 Astro 的 Material 3 Expressive 编辑设计示例，支持多语言排版与可复用内容模式。',
+    nav: ['期刊', '示例', '关于'],
+    top: ['最新文章', '内容模式', '主题'],
+    edition: '表达力特刊',
+    hero: '让故事拥有形状、节奏与呼吸感。',
+    intro: '一个多语言编辑设计示例：使用 Astro、语义化 Material 角色、舒展的排版，以及始终让内容成为主角的组件。',
+    primary: '阅读专题',
+    secondary: '浏览内容模式',
+    featureTag: '设计札记',
+    featureTitle: '日常注意力的柔和几何',
+    featureDescription: '圆润空间、变化的光线和恰到好处的停顿，能教会我们如何设计数字场所。',
+    featureMeta: '阅读 8 分钟',
+    latestEyebrow: '来自期刊',
+    latestTitle: '写给认真创作者的近期札记。',
+    latestDescription: '以平静的编辑节奏组织文章、视觉故事与实用参考。',
+    cards: [
+      ['字体排版', '让文字自在旅行', '为英文、日文与中文建立清晰层级，同时尊重每种文字自己的阅读节奏。', '阅读 6 分钟'],
+      ['摄影', '色彩、尺度与有用的裁切', '图像比例与表达性容器如何服务故事，而不是成为故事周围的装饰。', '图集'],
+      ['实践', '表格也可以有人情味', '当角色、间距与强调方式一致时，密集信息也会更容易浏览。', '阅读 5 分钟'],
+    ],
+    browse: '浏览主题',
+    browseTitle: '在真实语境中查看每种编辑模式。',
+    browseDescription: '打开聚焦的示例页面，查看长文、摄影、结构化数据与交互内容。',
+    demoLabels: ['文本与链接', '照片与画廊', '表格与内容卡片', '内容标签与折叠标签'],
+    newsletter: '为更有思考的网络准备一份慢一点的信息流。',
+    newsletterBody: '每两周一篇关于设计系统与编辑工艺的认真札记。',
+    newsletterAction: '订阅通讯',
+  },
+  'zh-TW': {
+    title: 'M3 Journal — 有形狀與節奏的故事',
+    description: '為 Astro 打造的 Material 3 Expressive 編輯設計示例，支援多語排版與可重用內容模式。',
+    nav: ['期刊', '示例', '關於'],
+    top: ['最新文章', '內容模式', '主題'],
+    edition: '表現力特刊',
+    hero: '讓故事擁有形狀、節奏與呼吸感。',
+    intro: '一個多語編輯設計示例：使用 Astro、語意化 Material 角色、舒展的排版，以及始終讓內容成為主角的元件。',
+    primary: '閱讀專題',
+    secondary: '瀏覽內容模式',
+    featureTag: '設計札記',
+    featureTitle: '日常注意力的柔和幾何',
+    featureDescription: '圓潤空間、變化的光線與恰到好處的停頓，能教會我們如何設計數位場所。',
+    featureMeta: '閱讀 8 分鐘',
+    latestEyebrow: '來自期刊',
+    latestTitle: '寫給細心創作者的近期札記。',
+    latestDescription: '以平靜的編輯節奏整理文章、視覺故事與實用參考。',
+    cards: [
+      ['字體排版', '讓文字自在旅行', '為英文、日文與中文建立清楚層級，同時尊重每種文字自己的閱讀節奏。', '閱讀 6 分鐘'],
+      ['攝影', '色彩、尺度與有用的裁切', '圖像比例與表現性容器如何服務故事，而不是成為故事周圍的裝飾。', '圖集'],
+      ['實作', '表格也可以有人情味', '當角色、間距與強調方式一致時，密集資訊也會更容易瀏覽。', '閱讀 5 分鐘'],
+    ],
+    browse: '瀏覽主題',
+    browseTitle: '在真實情境中查看每種編輯模式。',
+    browseDescription: '開啟聚焦的示例頁面，查看長文、攝影、結構化資料與互動內容。',
+    demoLabels: ['文字與連結', '照片與藝廊', '表格與內容卡片', '內容頁籤與折疊頁籤'],
+    newsletter: '為更有思考的網路準備一份慢一點的資訊流。',
+    newsletterBody: '每兩週一篇關於設計系統與編輯工藝的細心札記。',
+    newsletterAction: '訂閱通訊',
+  },
+  ja: {
+    title: 'M3 Journal — かたちとリズムのある物語',
+    description: 'Astro のための Material 3 Expressive エディトリアルデモ。多言語組版と再利用可能なコンテンツパターンを備えます。',
+    nav: ['ジャーナル', 'デモ', '概要'],
+    top: ['新着', 'パターン', 'テーマ'],
+    edition: 'エクスプレッシブ特集',
+    hero: '物語に、かたちとリズムと余白を。',
+    intro: 'Astro、意味のある Material ロール、ゆったりしたタイポグラフィ、そして内容を主役にするコンポーネントでつくる多言語エディトリアルデモです。',
+    primary: '特集を読む',
+    secondary: 'パターンを見る',
+    featureTag: 'デザインノート',
+    featureTitle: '日常の注意を包む、やわらかな幾何学',
+    featureDescription: '丸みのある空間、移ろう光、ちょうどよい間。そこからデジタルな場所のつくり方を考えます。',
+    featureMeta: '8分で読めます',
+    latestEyebrow: 'ジャーナルより',
+    latestTitle: '丁寧につくる人のための新しいノート。',
+    latestDescription: 'エッセイ、ビジュアルストーリー、実用的な資料を穏やかな編集リズムでまとめました。',
+    cards: [
+      ['タイポグラフィ', 'ことばが自然に旅するために', '英語、日本語、中国語。それぞれの読みのリズムを守りながら、共通の階層をつくる方法。', '6分'],
+      ['写真', '色、スケール、意味のあるトリミング', '画像比率と表現的なコンテナが、装飾ではなく物語を支えるために。', 'ギャラリー'],
+      ['実践', '表にも人らしさを', 'ロール、余白、強調が揃うと、密度の高い情報も読みやすくなります。', '5分'],
+    ],
+    browse: 'テーマを見る',
+    browseTitle: '編集パターンを、実際の文脈で。',
+    browseDescription: '長文、写真、構造化データ、インタラクティブコンテンツのデモページを用意しました。',
+    demoLabels: ['テキストとリンク', '写真とギャラリー', '表とコンテンツカード', 'タブと折りたたみタブ'],
+    newsletter: 'より思慮深いウェブのための、ゆっくりしたフィード。',
+    newsletterBody: 'デザインシステムと編集の技術について、隔週でひとつのノートをお届けします。',
+    newsletterAction: '購読する',
+  },
+} as const;
+
+const c = copy[locale];
+const navItems = [
+  { label: c.nav[0], href: routes[locale], icon: 'home' },
+  { label: c.nav[1], href: '/demos/', icon: 'view_cozy' },
+  { label: c.nav[2], href: '#about', icon: 'info' },
+];
+const topLinks = [
+  { label: c.top[0], href: '#latest' },
+  { label: c.top[1], href: '/demos/' },
+  { label: c.top[2], href: '#about' },
+];
+const cardImages = [
+  'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1200&q=85',
+  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85',
+  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=85',
+];
+const demoLinks = ['/demos/text/', '/demos/photos/', '/demos/data/', '/demos/interactive/'];
+const demoIcons = ['article', 'photo_library', 'table_chart', 'tab'];
+---
+
+<AdaptiveLayout
+  title={c.title}
+  description={c.description}
+  brand="M3 Journal"
+  homeHref={routes[locale]}
+  {navItems}
+  {topLinks}
+  {locales}
+  currentLocale={locale}
+  lang={locale}
+>
+  <header class="md-content-grid md-page-header grid items-end gap-8 md:grid-cols-[1fr_auto]">
+    <div><Chip selected><Icon name="auto_awesome" size={18} />{c.edition}</Chip><h1 class="md-display-large mt-6 max-w-5xl text-balance">{c.hero}</h1></div>
+    <p class="md-body-large max-w-xl text-on-surface-variant">{c.intro}</p>
+  </header>
+
+  <section class="md-content-grid md-page-body">
+    <a href="/demos/text/" class="group grid overflow-hidden rounded-xl bg-primary-container text-on-primary-container no-underline shadow-2 lg:grid-cols-[1.15fr_.85fr]">
+      <div class="min-h-[22rem] overflow-hidden"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=88" alt="A quiet landscape framed by warm natural light" fetchpriority="high" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
+      <div class="flex flex-col justify-end p-7 md:p-10"><p class="md-label-large">{c.featureTag}</p><h2 class="md-headline-large mt-4 text-balance">{c.featureTitle}</h2><p class="md-body-large mt-4 opacity-80">{c.featureDescription}</p><span class="md-label-large mt-7 inline-flex items-center gap-2">{c.primary}<Icon name="arrow_forward" size={20} /></span></div>
+    </a>
+  </section>
+
+  <section id="latest" class="bg-surface-container-low md-section">
+    <div class="md-content-grid">
+      <SectionHeader eyebrow={c.latestEyebrow} title={c.latestTitle} description={c.latestDescription} />
+      <div class="mt-10 grid gap-5 lg:grid-cols-3">
+        {c.cards.map((card, index) => <ContentCard href={demoLinks[index]} eyebrow={card[0]} title={card[1]} description={card[2]} meta={card[3]} image={cardImages[index]} imageAlt="" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="md-content-grid md-section">
+    <SectionHeader eyebrow={c.browse} title={c.browseTitle} description={c.browseDescription} />
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      {c.demoLabels.map((label, index) => (
+        <a href={demoLinks[index]} class="md-state-layer group flex min-h-40 flex-col justify-between rounded-xl bg-surface-container-high p-6 no-underline transition-[transform,border-radius] duration-300 hover:-translate-y-1 hover:rounded-lg">
+          <Icon name={demoIcons[index]} size={34} filled class="text-primary" />
+          <span class="md-title-large flex items-end justify-between gap-3">{label}<Icon name="arrow_outward" size={21} /></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="about" class="md-content-grid md-page-body">
+    <div class="grid overflow-hidden rounded-xl bg-secondary-container text-on-secondary-container md:grid-cols-[1fr_auto]">
+      <div class="p-8 md:p-14"><Icon name="mark_email_unread" size={42} filled /><h2 class="md-headline-medium mt-7 max-w-2xl">{c.newsletter}</h2><p class="md-body-large mt-4 max-w-xl opacity-80">{c.newsletterBody}</p></div>
+      <div class="flex items-end bg-surface-container-high p-8 text-on-surface md:p-12"><Button href="mailto:hello@example.com" size="lg"><Icon slot="icon" name="mail" />{c.newsletterAction}</Button></div>
+    </div>
+  </section>
+</AdaptiveLayout>

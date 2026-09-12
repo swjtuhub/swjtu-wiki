@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '@m3-astro/theme/layouts/BlogLayout';
+import { enabledItems, formatStoryDate, getSiteConfig } from '@m3-astro/theme/blog/config';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+
+export async function getStaticPaths() {
+  const config = await getSiteConfig();
+  return enabledItems(config.locales).map(({ code }) => ({
+    params: { locale: code },
+    props: { locale: code },
+  }));
+}
+
+const { locale } = Astro.props;
+const config = await getSiteConfig();
+const localeConfig = config.locales.find(({ code }) => code === locale);
+if (!localeConfig) throw new Error(`Missing locale configuration for ${locale}`);
+const labels = { ...config.labels, ...localeConfig.labels };
+const stories = (await getCollection('stories'))
+  .filter((story) => (config.blog.showDrafts || !story.data.draft) && story.data.locale === locale)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BlogLayout title={`${labels.searchTitle} — ${config.name}`} description={labels.searchDescription} lang={locale}>
+  <header class="md-content-grid md-page-header">
+    <Chip selected><Icon name="search" size={18} />{labels.searchTitle}</Chip>
+    <h1 class="md-display-medium mt-6 max-w-5xl text-balance">{labels.searchTitle}</h1>
+    <p class="md-body-large mt-5 max-w-2xl text-on-surface-variant">{labels.searchDescription}</p>
+    <form class="mt-7 max-w-3xl" role="search" data-search-form>
+      <label for="story-search" class="md-label-large mb-2 block">{labels.searchLabel}</label>
+      <div class="relative">
+        <Icon name="search" size={22} class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant" />
+        <input id="story-search" type="search" name="q" placeholder={labels.searchPlaceholder} autocomplete="off" class="min-h-14 w-full rounded-full pl-12 pr-5" data-search-input />
+      </div>
+    </form>
+    <p class="md-body-medium mt-4 text-on-surface-variant" aria-live="polite" data-search-count data-count-suffix={labels.searchResults}>{stories.length} {labels.searchResults}</p>
+  </header>
+
+  <section class="md-content-grid md-page-body">
+    <div class="grid gap-4" data-search-results>
+      {stories.map((story) => (
+        <article data-search-item data-search-text={[story.data.title, story.data.description, story.data.category, ...story.data.tags].join(' ').toLocaleLowerCase(locale)}>
+          <a href={`/${locale}/stories/${story.id}/`} class="md-state-layer group grid gap-4 rounded-xl bg-surface-container-low p-6 no-underline md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+            <div>
+              <div class="md-label-medium flex flex-wrap gap-2 text-on-surface-variant">
+                <span>{story.data.category}</span>
+                <span aria-hidden="true">·</span>
+                <time datetime={story.data.publishDate.toISOString()}>{formatStoryDate(story.data.publishDate, locale, config.blog.dateStyle, config.timezone)}</time>
+                <span aria-hidden="true">·</span>
+                <span>{story.data.readTime}</span>
+              </div>
+              <h2 class="md-headline-medium mt-3 group-hover:underline">{story.data.title}</h2>
+              <p class="md-body-medium mt-2 max-w-3xl text-on-surface-variant">{story.data.description}</p>
+            </div>
+            <Icon name="arrow_forward" size={24} />
+          </a>
+        </article>
+      ))}
+    </div>
+    <div class="rounded-xl bg-surface-container-low p-8" hidden data-search-empty>
+      <Icon name="search_off" size={38} />
+      <h2 class="md-title-large mt-4">{labels.emptyTitle}</h2>
+      <p class="md-body-medium mt-2 text-on-surface-variant">{labels.searchEmpty}</p>
+    </div>
+  </section>
+</BlogLayout>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('[data-search-input]');
+  const form = document.querySelector<HTMLFormElement>('[data-search-form]');
+  const items = [...document.querySelectorAll<HTMLElement>('[data-search-item]')];
+  const count = document.querySelector<HTMLElement>('[data-search-count]');
+  const empty = document.querySelector<HTMLElement>('[data-search-empty]');
+
+  const updateResults = () => {
+    const query = (input?.value ?? '').trim().toLocaleLowerCase();
+    let visible = 0;
+    items.forEach((item) => {
+      const match = !query || (item.dataset.searchText ?? '').includes(query);
+      item.hidden = !match;
+      if (match) visible += 1;
+    });
+    if (count) count.textContent = `${visible} ${count.dataset.countSuffix ?? ''}`;
+    if (empty) empty.hidden = visible > 0;
+    const url = new URL(window.location.href);
+    query ? url.searchParams.set('q', input?.value.trim() ?? '') : url.searchParams.delete('q');
+    history.replaceState({}, '', url);
+  };
+
+  if (input) {
+    input.value = new URLSearchParams(window.location.search).get('q') ?? '';
+    input.addEventListener('input', updateResults);
+    updateResults();
+  }
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    updateResults();
+  });
+</script>

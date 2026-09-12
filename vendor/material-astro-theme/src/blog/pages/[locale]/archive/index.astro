@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '@m3-astro/theme/layouts/BlogLayout';
+import { enabledItems, formatStoryDate, getSiteConfig } from '@m3-astro/theme/blog/config';
+import Chip from '@m3-astro/theme/components/Chip';
+import Icon from '@m3-astro/theme/components/Icon';
+
+export async function getStaticPaths() {
+  const config = await getSiteConfig();
+  return enabledItems(config.locales).map(({ code }) => ({
+    params: { locale: code },
+    props: { locale: code },
+  }));
+}
+
+const { locale } = Astro.props;
+const config = await getSiteConfig();
+const localeConfig = config.locales.find(({ code }) => code === locale);
+if (!localeConfig) throw new Error(`Missing locale configuration for ${locale}`);
+const labels = { ...config.labels, ...localeConfig.labels };
+const stories = (await getCollection('stories'))
+  .filter((story) => (config.blog.showDrafts || !story.data.draft) && story.data.locale === locale)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+const groups = new Map<number, typeof stories>();
+stories.forEach((story) => {
+  const year = story.data.publishDate.getUTCFullYear();
+  groups.set(year, [...(groups.get(year) ?? []), story]);
+});
+---
+
+<BlogLayout title={`${labels.archiveTitle} — ${config.name}`} description={labels.archiveDescription} lang={locale}>
+  <header class="md-content-grid md-page-header">
+    <Chip selected><Icon name="inventory_2" size={18} />{labels.archiveTitle}</Chip>
+    <h1 class="md-display-medium mt-6 max-w-5xl text-balance">{labels.archiveTitle}</h1>
+    <p class="md-body-large mt-5 max-w-2xl text-on-surface-variant">{labels.archiveDescription}</p>
+  </header>
+
+  <div class="md-content-grid md-page-body grid gap-12">
+    {[...groups.entries()].map(([year, entries]) => (
+      <section aria-labelledby={`archive-${year}`} class="grid gap-6 lg:grid-cols-[8rem_minmax(0,1fr)]">
+        <h2 id={`archive-${year}`} class="md-headline-large text-primary">{year}</h2>
+        <ol class="grid gap-3">
+          {entries.map((story) => (
+            <li>
+              <a href={`/${locale}/stories/${story.id}/`} class="md-state-layer group grid min-h-24 gap-3 rounded-lg bg-surface-container-low p-5 no-underline sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+                <div>
+                  <div class="md-label-medium flex flex-wrap gap-2 text-on-surface-variant">
+                    <time datetime={story.data.publishDate.toISOString()}>{formatStoryDate(story.data.publishDate, locale, config.blog.dateStyle, config.timezone)}</time>
+                    <span aria-hidden="true">·</span>
+                    <span>{story.data.category}</span>
+                    <span aria-hidden="true">·</span>
+                    <span>{story.data.readTime}</span>
+                  </div>
+                  <h3 class="md-title-large mt-2 group-hover:underline">{story.data.title}</h3>
+                  <p class="md-body-medium mt-2 max-w-3xl text-on-surface-variant">{story.data.description}</p>
+                </div>
+                <Icon name="arrow_forward" size={22} />
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+  </div>
+</BlogLayout>

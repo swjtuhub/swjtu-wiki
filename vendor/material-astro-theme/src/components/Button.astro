@@ -1,0 +1,49 @@
+---
+export interface Props {
+  href?: string;
+  variant?: 'filled' | 'tonal' | 'outlined' | 'text';
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = 'filled',
+  size = 'md',
+  type = 'button',
+  disabled = false,
+  class: className = '',
+  ariaLabel,
+} = Astro.props;
+
+const variants = {
+  filled: 'bg-primary text-on-primary shadow-none hover:shadow-1',
+  tonal: 'bg-secondary-container text-on-secondary-container',
+  outlined: 'border border-outline bg-transparent text-primary',
+  text: 'bg-transparent text-primary',
+};
+const sizes = {
+  sm: 'min-h-10 px-5',
+  md: 'min-h-12 px-6',
+  lg: 'min-h-16 px-8 text-base',
+};
+const classes = [
+  'md-state-layer md-label-large inline-flex items-center justify-center gap-2 rounded-full no-underline transition-[transform,box-shadow,border-radius] duration-300 ease-[cubic-bezier(.2,0,0,1.2)] active:scale-[.97]',
+  variants[variant], sizes[size], disabled && 'pointer-events-none opacity-40', className,
+];
+---
+
+{href ? (
+  <a href={href} class:list={classes} aria-label={ariaLabel} aria-disabled={disabled || undefined}>
+    <slot name="icon" />
+    <slot />
+  </a>
+) : (
+  <button type={type} class:list={classes} disabled={disabled} aria-label={ariaLabel}>
+    <slot name="icon" />
+    <slot />
+  </button>
+)}

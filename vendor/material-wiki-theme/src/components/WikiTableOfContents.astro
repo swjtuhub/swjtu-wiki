@@ -1,0 +1,36 @@
+---
+export interface Heading { depth: number; slug: string; text: string; }
+export interface Props { headings: Heading[]; label: string; }
+const { headings, label } = Astro.props;
+const visible = headings.filter(({ depth }) => depth === 2 || depth === 3);
+---
+
+{visible.length > 0 && (
+  <nav class="wiki-toc" aria-label={label} data-wiki-toc>
+    <p class="md-label-large">{label}</p>
+    <ol>
+      {visible.map((heading) => (
+        <li data-depth={heading.depth}>
+          <a href={`#${heading.slug}`} class="md-state-layer" data-toc-link={heading.slug}>{heading.text}</a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+  if (links.length > 0 && 'IntersectionObserver' in window) {
+    const byId = new Map(links.map((link) => [link.dataset.tocLink, link]));
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      links.forEach((link) => link.removeAttribute('aria-current'));
+      byId.get(visible.target.id)?.setAttribute('aria-current', 'location');
+    }, { rootMargin: '-15% 0px -70% 0px' });
+    byId.forEach((_, id) => {
+      const heading = document.getElementById(id ?? '');
+      if (heading) observer.observe(heading);
+    });
+  }
+</script>

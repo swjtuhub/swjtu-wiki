@@ -1,0 +1,72 @@
+---
+import AdaptiveLayout from '@m3-astro/theme/layouts/AdaptiveLayout';
+import Icon from '@m3-astro/theme/components/Icon';
+import { localizePath } from '@m3-astro/theme/i18n';
+import { enabledItems, getSiteConfig } from '../blog/config';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  lang?: string;
+  localePaths?: Partial<Record<string, string>>;
+}
+
+const { title, description, ogImage, ogType = 'website', lang, localePaths = {} } = Astro.props;
+const config = await getSiteConfig();
+const currentLocale = lang ?? config.defaultLocale;
+const localeConfig = config.locales.find(({ code }) => code.toLowerCase() === currentLocale.toLowerCase());
+const navigation = localeConfig?.navigation ?? config.navigation;
+const footer = localeConfig?.footer ?? config.footer;
+const navItems = enabledItems(navigation.rail);
+const topLinks = enabledItems(navigation.top);
+const availableLocales = enabledItems(config.locales);
+const localeCodes = availableLocales.map(({ code }) => code);
+const currentLocation = `${Astro.url.pathname}${Astro.url.search}`;
+const locales = availableLocales.map((locale) => ({
+  ...locale,
+  href: localePaths[locale.code]
+    ?? localizePath(currentLocation, locale.code, config.defaultLocale, localeCodes, true),
+}));
+---
+
+<AdaptiveLayout
+  {title}
+  {description}
+  {ogImage}
+  {ogType}
+  brand={config.shortName ?? config.name}
+  homeHref={localeConfig?.href ?? `/${currentLocale}/`}
+  {navItems}
+  {topLinks}
+  {locales}
+  {currentLocale}
+  lang={currentLocale}
+  currentPath={Astro.url.pathname}
+  palette={config.appearance.palette}
+  shape={config.appearance.shape}
+  density={config.appearance.density}
+  defaultColorMode={config.appearance.defaultColorMode}
+  showThemeToggle={config.appearance.showColorModeToggle}
+>
+  <slot />
+  <footer class="border-t border-outline-variant bg-surface-container-low">
+    <div class="md-content-grid flex flex-col gap-7 py-10 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="md-title-medium">{footer.text}</p>
+        <p class="md-body-medium mt-1 text-on-surface-variant">{footer.copyright ?? `© ${new Date().getFullYear()} ${config.name}`}</p>
+      </div>
+      {config.socials.length > 0 && (
+        <nav class="flex flex-wrap gap-2" aria-label="Social and subscription links">
+          {config.socials.map((item) => (
+            <a href={item.href} class="md-state-layer md-label-large inline-flex min-h-11 items-center gap-2 rounded-full px-4 no-underline" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer noopener' : undefined}>
+              <Icon name={item.icon} size={19} />
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )}
+    </div>
+  </footer>
+</AdaptiveLayout>

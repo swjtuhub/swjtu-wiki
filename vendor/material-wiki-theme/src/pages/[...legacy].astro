@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import { docHref, getWikiConfig, publishedDocs } from '../lib/wiki';
+
+export async function getStaticPaths() {
+  const config = await getWikiConfig();
+  const docs = await publishedDocs(config);
+  const redirects = new Map(config.redirects.map(({ from, to }) => [from.replace(/^\/+|\/+$/g, ''), to]));
+  for (const doc of docs) {
+    for (const legacy of doc.data.legacyPaths) redirects.set(legacy.replace(/^\/+|\/+$/g, ''), docHref(doc));
+  }
+  return [...redirects].filter(([legacy]) => legacy).map(([legacy, to]) => ({ params: { legacy }, props: { to } }));
+}
+
+const { to } = Astro.props;
+const config = await getWikiConfig();
+const target = new URL(to, config.url);
+---
+
+<!doctype html>
+<html lang={config.defaultLocale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,follow" />
+    <meta http-equiv="refresh" content={`0; url=${to}`} />
+    <link rel="canonical" href={target} />
+    <title>{config.name}</title>
+  </head>
+  <body><p><a href={to}>Continue to {to}</a></p></body>
+</html>

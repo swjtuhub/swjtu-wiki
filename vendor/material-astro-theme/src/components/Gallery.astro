@@ -1,0 +1,33 @@
+---
+export interface GalleryItem {
+  src: string;
+  alt: string;
+  caption?: string;
+  href?: string;
+}
+export interface Props {
+  items: GalleryItem[];
+  columns?: 2 | 3;
+  label?: string;
+  class?: string;
+}
+
+const { items, columns = 3, label = 'Photo gallery', class: className = '' } = Astro.props;
+---
+
+<ul class:list={['m-0 grid list-none gap-4 p-0', columns === 2 ? 'md:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3', className]} aria-label={label}>
+  {items.map((item, index) => (
+    <li class:list={['group', columns === 3 && index % 5 === 0 && 'sm:col-span-2']}>
+      <figure class="m-0 h-full">
+        {item.href ? (
+          <a href={item.href} class="block h-full overflow-hidden rounded-xl bg-surface-container-high">
+            <img src={item.src} alt={item.alt} loading="lazy" class="aspect-[4/3] h-full min-h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          </a>
+        ) : (
+          <div class="h-full overflow-hidden rounded-xl bg-surface-container-high"><img src={item.src} alt={item.alt} loading="lazy" class="aspect-[4/3] h-full min-h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>
+        )}
+        {item.caption && <figcaption class="md-body-medium mt-2 text-on-surface-variant">{item.caption}</figcaption>}
+      </figure>
+    </li>
+  ))}
+</ul>

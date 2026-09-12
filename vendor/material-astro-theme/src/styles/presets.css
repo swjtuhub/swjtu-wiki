@@ -1,0 +1,188 @@
+:root {
+  --md-layout-content-max: 90rem;
+  --md-layout-section-space: 5rem;
+  --md-layout-card-gap: 1rem;
+  --md-layout-page-header-space: clamp(3.5rem, 6vw, 5rem);
+  --md-layout-page-body-space: 5rem;
+  --md-layout-article-header-space: clamp(3rem, 5vw, 4.25rem);
+  --md-layout-article-header-gap: 2.5rem;
+  --md-layout-article-body-gap: 2.5rem;
+  --md-layout-article-body-end-space: 4rem;
+  --md-prose-flow-space: 1.125rem;
+  --md-prose-section-space: 3rem;
+  --md-prose-subsection-space: 2.125rem;
+  --md-prose-minor-heading-space: 1.75rem;
+  --md-prose-line-height: 1.7;
+  --md-prose-line-height-cjk: 1.75;
+  --md-table-cell-block-space: .7rem;
+  --md-table-cell-inline-space: .875rem;
+}
+
+:root[data-palette="ocean"] {
+  --md-sys-color-primary: #006a6a;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #9cf1f0;
+  --md-sys-color-on-primary-container: #002020;
+  --md-sys-color-secondary: #4a6363;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #cce8e7;
+  --md-sys-color-on-secondary-container: #051f1f;
+  --md-sys-color-tertiary: #4b607c;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #d3e4ff;
+  --md-sys-color-on-tertiary-container: #041c35;
+}
+
+:root[data-theme="dark"][data-palette="ocean"] {
+  --md-sys-color-primary: #80d5d4;
+  --md-sys-color-on-primary: #003737;
+  --md-sys-color-primary-container: #004f4f;
+  --md-sys-color-on-primary-container: #9cf1f0;
+  --md-sys-color-secondary: #b0cccb;
+  --md-sys-color-on-secondary: #1b3534;
+  --md-sys-color-secondary-container: #324b4b;
+  --md-sys-color-on-secondary-container: #cce8e7;
+  --md-sys-color-tertiary: #b3c8e8;
+  --md-sys-color-on-tertiary: #1c314b;
+  --md-sys-color-tertiary-container: #334863;
+  --md-sys-color-on-tertiary-container: #d3e4ff;
+}
+
+:root[data-palette="forest"] {
+  --md-sys-color-primary: #386a20;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #b8f397;
+  --md-sys-color-on-primary-container: #062100;
+  --md-sys-color-secondary: #55624c;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #d9e7cb;
+  --md-sys-color-on-secondary-container: #131f0d;
+  --md-sys-color-tertiary: #386666;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #bbebeb;
+  --md-sys-color-on-tertiary-container: #002020;
+}
+
+:root[data-theme="dark"][data-palette="forest"] {
+  --md-sys-color-primary: #9cd67d;
+  --md-sys-color-on-primary: #123800;
+  --md-sys-color-primary-container: #205107;
+  --md-sys-color-on-primary-container: #b8f397;
+  --md-sys-color-secondary: #bdcbb0;
+  --md-sys-color-on-secondary: #283420;
+  --md-sys-color-secondary-container: #3e4a35;
+  --md-sys-color-on-secondary-container: #d9e7cb;
+  --md-sys-color-tertiary: #a0cfcf;
+  --md-sys-color-on-tertiary: #003737;
+  --md-sys-color-tertiary-container: #1f4e4e;
+  --md-sys-color-on-tertiary-container: #bbebeb;
+}
+
+:root[data-palette="sunset"] {
+  --md-sys-color-primary: #904d00;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #ffdcc2;
+  --md-sys-color-on-primary-container: #2f1500;
+  --md-sys-color-secondary: #755846;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #ffdcc7;
+  --md-sys-color-on-secondary-container: #2b170b;
+  --md-sys-color-tertiary: #5f6135;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #e5e6ae;
+  --md-sys-color-on-tertiary-container: #1b1d00;
+}
+
+:root[data-theme="dark"][data-palette="sunset"] {
+  --md-sys-color-primary: #ffb77a;
+  --md-sys-color-on-primary: #4d2600;
+  --md-sys-color-primary-container: #6d3900;
+  --md-sys-color-on-primary-container: #ffdcc2;
+  --md-sys-color-secondary: #e4bfa9;
+  --md-sys-color-on-secondary: #422b1d;
+  --md-sys-color-secondary-container: #5b4130;
+  --md-sys-color-on-secondary-container: #ffdcc7;
+  --md-sys-color-tertiary: #c9ca94;
+  --md-sys-color-on-tertiary: #30320b;
+  --md-sys-color-tertiary-container: #47491f;
+  --md-sys-color-on-tertiary-container: #e5e6ae;
+}
+
+:root[data-shape="compact"] {
+  --md-sys-shape-corner-extra-small: .25rem;
+  --md-sys-shape-corner-small: .5rem;
+  --md-sys-shape-corner-medium: .75rem;
+  --md-sys-shape-corner-large: 1rem;
+  --md-sys-shape-corner-extra-large: 1.5rem;
+}
+
+:root[data-shape="soft"] {
+  --md-sys-shape-corner-extra-small: .5rem;
+  --md-sys-shape-corner-small: .75rem;
+  --md-sys-shape-corner-medium: 1rem;
+  --md-sys-shape-corner-large: 1.25rem;
+  --md-sys-shape-corner-extra-large: 1.75rem;
+}
+
+:root[data-shape="expressive"] {
+  --md-sys-shape-corner-extra-small: .5rem;
+  --md-sys-shape-corner-small: .75rem;
+  --md-sys-shape-corner-medium: 1rem;
+  --md-sys-shape-corner-large: 1.5rem;
+  --md-sys-shape-corner-extra-large: 2rem;
+}
+
+:root[data-density="compact"] {
+  --md-layout-content-max: 80rem;
+  --md-layout-section-space: 3.75rem;
+  --md-layout-card-gap: .875rem;
+  --md-layout-page-header-space: clamp(3rem, 5vw, 4rem);
+  --md-layout-page-body-space: 4rem;
+  --md-layout-article-header-space: 3rem;
+  --md-layout-article-header-gap: 2rem;
+  --md-layout-article-body-gap: 2rem;
+  --md-layout-article-body-end-space: 3.5rem;
+  --md-prose-flow-space: 1rem;
+  --md-prose-section-space: 2.5rem;
+  --md-prose-subsection-space: 1.875rem;
+  --md-prose-minor-heading-space: 1.5rem;
+  --md-prose-line-height: 1.65;
+  --md-prose-line-height-cjk: 1.72;
+  --md-table-cell-block-space: .6rem;
+  --md-table-cell-inline-space: .75rem;
+}
+
+:root[data-density="comfortable"] {
+  --md-layout-content-max: 90rem;
+  --md-layout-section-space: 5rem;
+  --md-layout-card-gap: 1rem;
+}
+
+:root[data-density="spacious"] {
+  --md-layout-content-max: 98rem;
+  --md-layout-section-space: 7rem;
+  --md-layout-card-gap: 1.5rem;
+  --md-layout-page-header-space: clamp(4.5rem, 8vw, 6.5rem);
+  --md-layout-page-body-space: 6.5rem;
+  --md-layout-article-header-space: clamp(4rem, 6vw, 5.5rem);
+  --md-layout-article-header-gap: 3.5rem;
+  --md-layout-article-body-gap: 3.5rem;
+  --md-layout-article-body-end-space: 5.5rem;
+  --md-prose-flow-space: 1.35rem;
+  --md-prose-section-space: 3.75rem;
+  --md-prose-subsection-space: 2.5rem;
+  --md-prose-minor-heading-space: 2rem;
+  --md-prose-line-height: 1.78;
+  --md-prose-line-height-cjk: 1.85;
+  --md-table-cell-block-space: .85rem;
+  --md-table-cell-inline-space: 1.125rem;
+}
+
+.md-section {
+  padding-block: var(--md-layout-section-space);
+}
+
+.md-card-grid {
+  display: grid;
+  gap: var(--md-layout-card-gap);
+}

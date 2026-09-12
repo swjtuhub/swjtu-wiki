@@ -52,7 +52,7 @@ The 2026 undergraduate intake of the School of Smart City and Transportation and
 
 WeChat account access: “西南交通大学学生工作部” for undergraduates; “西南交通大学研工部” for postgraduates. [Original welcome notice](https://ygb.swjtu.edu.cn/info/2331/6901.htm)
 
-[Getting to campus](/en/docs/freshman/transportation/) · [Residences](/en/docs/freshman/dormitories/) · [Organization transfer](/en/docs/freshman/organization-transfer/) · [Parcels](/en/docs/campus-services/postal-and-delivery/)
+[Getting to campus](/en/docs/freshman/transportation/) · [Residences](/en/docs/freshman/dormitories/) · [Party and Youth League affiliation transfers](/en/docs/freshman/organization-transfer/) · [Parcels](/en/docs/campus-services/postal-and-delivery/)
 
 ## Useful services after arrival
 

@@ -1,5 +1,5 @@
 ---
-title: "後勤サービス"
+title: "キャンパス生活サービス"
 description: "成都の犀浦・九里キャンパスにおける食堂、修理、生活、施設サービス情報。"
 locale: ja
 slug: campus-services/logistics-services
@@ -22,15 +22,15 @@ source: https://hbb.swjtu.edu.cn/hqfw.htm
 
 ## サービス窓口
 
-- [後勤サービス一覧](https://hbb.swjtu.edu.cn/hqfw.htm)
-- [後勤の連絡先一覧](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=40)
+- [後勤保障部のサービス一覧](https://hbb.swjtu.edu.cn/hqfw.htm)
+- [後勤保障部の連絡先一覧](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=40)
 - [食事提供サービス](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=42)
 - [生活サービス](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=45)
 - [学生寮の電気料金チャージガイド](https://mp.weixin.qq.com/s/rP4bsiSwyUsOIUtj6e3AIA)（[公式サイト掲載](https://hbb.swjtu.edu.cn/sjmt/wxgzh.htm)）
 
-後勤サービス窓口：[028-66361616](tel:02866361616)。受付時間は月～金曜日 8:30–18:30、土・日曜日 8:30–17:30 で、その他の時間帯は音声案内を利用できます。
+キャンパス生活サービス窓口：[028-66361616](tel:02866361616)。受付時間は月～金曜日 8:30–18:30、土・日曜日 8:30–17:30 で、その他の時間帯は音声案内を利用できます。
 
-## 食事提供サービス
+## 学生食堂・飲食サービス
 
 通常の提供時間は朝食 7:00–10:00、昼食 11:00–13:00、夕食 17:00–19:00 です。各食堂の実際の営業状況は現地掲示で確認してください。
 
@@ -105,4 +105,4 @@ source: https://hbb.swjtu.edu.cn/hqfw.htm
 
 ## よく使うサービス
 
-[宅配サービス](/ja/docs/campus-services/postal-and-delivery/) · [スクールバス時刻表](/ja/docs/campus-life/shuttle-bus/) · [医療サービス](/ja/docs/campus-services/medical-care/) · [学内ネットワーク](/ja/docs/campus-services/network/) · [一卡通](/ja/docs/campus-services/campus-card/) · [図書館](/ja/docs/campus-services/library/) · [スポーツ施設](/ja/docs/campus-life/sports-venues/)
+[宅配サービス](/ja/docs/campus-services/postal-and-delivery/) · [シャトルバス時刻表](/ja/docs/campus-life/shuttle-bus/) · [医療サービス](/ja/docs/campus-services/medical-care/) · [学内ネットワーク](/ja/docs/campus-services/network/) · [キャンパスカード](/ja/docs/campus-services/campus-card/) · [図書館](/ja/docs/campus-services/library/) · [スポーツ施設](/ja/docs/campus-life/sports-venues/)

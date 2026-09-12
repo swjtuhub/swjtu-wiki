@@ -15,7 +15,7 @@ source: https://inc.swjtu.edu.cn/wlfw/xywzh.htm
 
 ## 必要なアカウントを確認する
 
-| 目的 | 入口・説明 |
+| 目的 | アクセス先・説明 |
 | --- | --- |
 | 大学のアプリにログイン | [交大 ID 統一認証](https://cas.swjtu.edu.cn/authserver/)。学部生・大学院生は学籍番号の発行後に認証アカウントが自動作成されます |
 | 学内インターネットの利用開始 | [ネットワークアカウント案内](https://inc.swjtu.edu.cn/wlfw/xywzh.htm)に従い、仮登録・本人確認・支払いを行います |

@@ -1,6 +1,6 @@
 ---
 title: "Academic services and certificates"
-description: "Undergraduate academic services and postgraduate certificates and training documents."
+description: "Undergraduate academic services, postgraduate certificates and degree-programme documents."
 locale: en
 slug: evaluation/academic-services
 translationKey: academic-services-guide
@@ -38,11 +38,11 @@ The [proof-of-enrolment page](https://jiaowu.swjtu.edu.cn/vatuu/WebSite?setActio
 
 Academic Affairs Section contact: [028-66366252](tel:02866366252). For electronic certificates, open the “可信电子证明申请” link on the service page.
 
-## Postgraduate certificates and training documents
+## Postgraduate certificates and degree-programme documents
 
 The Graduate School provides a [trusted electronic certificate guide for proof of enrolment and Chinese/English transcripts](https://gsnews.swjtu.edu.cn/info/1957/24034.htm). The page was published on 2023-04-06, while its current attachment filename says **updated 2024-11-22**. Obtain the attachment from the page instead of relying on older screenshots.
 
-The [Graduate School training downloads](https://gsnews.swjtu.edu.cn/xzzx/pygz.htm) include the postgraduate information-system guide and master's/doctoral training documents. Some list dates are older than the update dates shown in titles or attachments; check both.
+The [Graduate School programme downloads](https://gsnews.swjtu.edu.cn/xzzx/pygz.htm) include the postgraduate information-system guide and documents for master's and doctoral degree programmes. Some list dates are older than the update dates shown in titles or attachments; check both.
 
 
 [Course selection](/en/docs/evaluation/course-grades/) · [Service directory](/en/docs/campus-services/service-directory/)

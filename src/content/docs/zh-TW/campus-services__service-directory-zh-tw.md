@@ -17,14 +17,14 @@ source: https://www.swjtu.edu.cn/jgsz/xzbm.htm
 
 | 要做的事 | 官方入口 | 指南或下一步 |
 | --- | --- | --- |
-| 找線上辦事服務 | [一網通辦](https://one.swjtu.edu.cn/) | [一卡通與企業微信](/zh-TW/docs/campus-services/campus-card/) |
-| 本科教學通知、課程、證明 | [本科生院](https://bksy.swjtu.edu.cn/) | [教務辦事與成績證明](/zh-TW/docs/evaluation/academic-services/) |
+| 找線上辦事服務 | [一網通辦](https://one.swjtu.edu.cn/) | [校園卡與 WeCom](/zh-TW/docs/campus-services/campus-card/) |
+| 大學部教學通知、課程、證明 | [本科生院](https://bksy.swjtu.edu.cn/) | [教務辦事與成績證明](/zh-TW/docs/evaluation/academic-services/) |
 | 研究生培養與學位事項 | [研究生院](https://gsnews.swjtu.edu.cn/) | [教務辦事與成績證明](/zh-TW/docs/evaluation/academic-services/) |
-| 學生工作、獎助與勤工助學 | [揚華素質網](https://xg.swjtu.edu.cn/) | [學生資助、綠色通道與臨時困難補助](/zh-TW/docs/campus-services/student-aid/) |
+| 學生工作、獎助與校內工讀 | [揚華素質網](https://xg.swjtu.edu.cn/) | [學生資助、綠色通道與臨時困難補助](/zh-TW/docs/campus-services/student-aid/) |
 | 招聘與就業 | [就業資訊網](https://jiuye.swjtu.edu.cn/) | 依原文的職缺、對象與截止日 |
 | 國際交流 | [國際合作與交流處](https://fad.swjtu.edu.cn/) | 核對當期項目條件 |
 
-可用學校[機構設定與快捷連結](https://www.swjtu.edu.cn/jgsz/xzbm.htm)核對部門和服務入口。獎助、勤工助學與交流依學期或批次公告，不可套用前一學年截止日。
+可用學校[機構設定與快捷連結](https://www.swjtu.edu.cn/jgsz/xzbm.htm)核對部門和服務入口。獎助、校內工讀與交流依學期或批次公告，不可套用前一學年截止日。
 
 ## 帳號、生活與求助
 

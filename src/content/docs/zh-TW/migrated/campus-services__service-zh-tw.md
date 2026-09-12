@@ -1,5 +1,5 @@
 ---
-title: "後勤服務"
+title: "校園生活服務"
 description: "成都犀浦、九里校區的餐飲、維修、生活與場館服務資訊。"
 locale: zh-TW
 slug: campus-services/logistics-services
@@ -22,13 +22,13 @@ source: https://hbb.swjtu.edu.cn/hqfw.htm
 
 ## 服務入口
 
-- [後勤服務目錄](https://hbb.swjtu.edu.cn/hqfw.htm)
-- [後勤服務電話](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=40)
+- [後勤保障部服務目錄](https://hbb.swjtu.edu.cn/hqfw.htm)
+- [校園生活服務電話](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=40)
 - [餐飲供應服務](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=42)
 - [生活服務](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=45)
 - [宿舍電費儲值指南](https://mp.weixin.qq.com/s/rP4bsiSwyUsOIUtj6e3AIA)（[官網收錄](https://hbb.swjtu.edu.cn/sjmt/wxgzh.htm)）
 
-後勤服務電話：[028-66361616](tel:02866361616)。服務時間為週一至週五 8:30–18:30、週六和週日 8:30–17:30，其餘時間提供語音服務。
+校園生活服務電話：[028-66361616](tel:02866361616)。服務時間為週一至週五 8:30–18:30、週六和週日 8:30–17:30，其餘時間提供語音服務。
 
 ## 餐飲供應服務
 

@@ -1,6 +1,6 @@
 ---
 title: 导示系统
-description: SWJTU Wiki 资料页：导示系统。请结合页面更新时间与官方来源核对信息。
+description: 西南交通大学视觉识别系统的导示标识规范。
 locale: zh-CN
 slug: visual-identity/signage
 translationKey: legacy-vis-h

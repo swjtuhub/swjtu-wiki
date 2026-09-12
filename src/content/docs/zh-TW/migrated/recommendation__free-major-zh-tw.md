@@ -1,6 +1,6 @@
 ---
-title: 2027屆學院推免細則
-description: "2027 屆各學院推免課程、實施細則與加分通知原文。"
+title: 2027 屆各學院推薦免試細則
+description: "2027 屆各學院計入推薦免試排名的課程、實施細則與加分通知。"
 locale: zh-TW
 slug: recommendation/major-data
 translationKey: legacy-free-major
@@ -8,9 +8,9 @@ section: recommendation
 order: 22
 icon: workspace_premium
 categories:
-  - 推免
+  - 推薦免試研究生
 tags:
-  - 推免
+  - 推薦免試研究生
 updatedDate: 2026-09-08
 contributors:
   - SWJTUHub
@@ -30,4 +30,4 @@ source: https://civil.swjtu.edu.cn/info/1055/73282.htm
 | 地球科學與工程學院 | [7 月 2 日公布的細則與課程](https://gsee.swjtu.edu.cn/info/1023/33353.htm) |
 | 材料科學與工程學院 | [加分補充規定](https://clxy.swjtu.edu.cn/info/1111/31426.htm) |
 
-[競賽目錄](/zh-TW/docs/recommendation/competition-list/)
+[推薦免試 A 類學科競賽目錄](/zh-TW/docs/recommendation/competition-list/)

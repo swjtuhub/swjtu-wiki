@@ -1,6 +1,6 @@
 ---
 title: "キャンパスカードと WeCom"
-description: "一卡通の用途、窓口、チャージと学校の企業微信サービス。"
+description: "キャンパスカードの用途、窓口、チャージと大学公式 WeCom サービス。"
 locale: ja
 slug: campus-services/campus-card
 translationKey: campus-card
@@ -13,11 +13,11 @@ updatedDate: 2026-09-12
 source: https://inc.swjtu.edu.cn/wlfw/xyykt.htm
 ---
 
-キャンパスカード（一卡通）は学内での支払いと身分確認に使います。通信事業者が販売する携帯電話プランとは別のサービスです。ネット接続は[学内ネットワーク案内](/ja/docs/campus-services/network/)を参照してください。[一卡通公式案内](https://inc.swjtu.edu.cn/wlfw/xyykt.htm)
+キャンパスカード（一卡通）は学内での支払いと身分確認に使います。通信事業者が販売する携帯電話プランとは別のサービスです。ネット接続は[学内ネットワーク案内](/ja/docs/campus-services/network/)を参照してください。[キャンパスカード公式案内](https://inc.swjtu.edu.cn/wlfw/xyykt.htm)
 
 ## サービス窓口
 
-| キャンパス | 信網処の一卡通窓口 |
+| キャンパス | 信網処のキャンパスカード窓口 |
 | --- | --- |
 | 犀浦 | 図書館 1 階 B 区 |
 | 九里 | 信網処 1 階窓口 |
@@ -27,13 +27,13 @@ source: https://inc.swjtu.edu.cn/wlfw/xyykt.htm
 
 ## チャージと照会
 
-[学校の企業微信（WeCom）案内](https://inc.swjtu.edu.cn/xxhfw/qywx.htm)にある QR コードからモバイルポータルへ入り、一卡通サービスを探せます。初回連携には統一認証と携帯電話の確認が必要で、対象は本学の教職員・学生です。
+[大学公式 WeCom（企業微信）の案内](https://inc.swjtu.edu.cn/xxhfw/qywx.htm)にある QR コードからモバイルポータルへ入り、キャンパスカードのサービスを探せます。初回連携には統一認証と携帯電話の確認が必要で、対象は本学の教職員・学生です。
 
-[一卡通案内](https://inc.swjtu.edu.cn/wlfw/xyykt.htm)には Alipay・翼支付も掲載され、この二つの方法でチャージした後は食堂の POS 端末にカードをかざして入金額を受け取るよう案内されています。現在もアプリに本学の入口があるか確認してください。未反映やカードの問題は注文情報を保存して窓口に相談してください。
+[キャンパスカード案内](https://inc.swjtu.edu.cn/wlfw/xyykt.htm)には Alipay・翼支付も掲載され、この二つの方法でチャージした後は学生食堂の POS 端末にカードをかざして入金額を受け取るよう案内されています。現在もアプリで本学のサービスを利用できるか確認してください。未反映やカードの問題は注文情報を保存して窓口に相談してください。
 
 ## WeCom で使えるサービス
 
-信網処は一卡通、ネット料金チャージ、メール、修理申請、キャンパス情報などを掲載しています。連携・認証の問い合わせ先は[公式案内](https://inc.swjtu.edu.cn/xxhfw/qywx.htm)の [028-66366567](tel:02866366567)、[028-66366978](tel:02866366978) です。
+信網処はキャンパスカード、ネット料金チャージ、メール、修理申請、キャンパス情報などを掲載しています。連携・認証の問い合わせ先は[公式案内](https://inc.swjtu.edu.cn/xxhfw/qywx.htm)の [028-66366567](tel:02866366567)、[028-66366978](tel:02866366978) です。
 
 
-[寮と電気料金](/ja/docs/freshman/dormitories/) · [後勤サービス](/ja/docs/campus-services/logistics-services/)
+[寮と電気料金](/ja/docs/freshman/dormitories/) · [キャンパス生活サービス](/ja/docs/campus-services/logistics-services/)

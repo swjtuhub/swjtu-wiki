@@ -1,6 +1,6 @@
 ---
 title: "履修登録"
-description: "履修登録通知に掲載されたシステム入口、操作案内と連絡先。"
+description: "履修登録通知に掲載されたシステムのアクセス先、操作案内と連絡先。"
 locale: ja
 slug: evaluation/course-grades
 translationKey: legacy-course-grade
@@ -22,9 +22,9 @@ source: https://bksy.swjtu.edu.cn/info/1151/94201.htm
 
 [2026–2027 学年度第 1 学期の履修登録通知](https://bksy.swjtu.edu.cn/info/1151/94201.htm)
 
-## 履修登録の入口
+## 履修登録システム
 
-| 方法 | 入口 |
+| 方法 | アクセス先 |
 | --- | --- |
 | Web | [揚華学堂](https://yhxt.swjtu.edu.cn/) → 教务服务 → 网上选课 |
 | WeChat | 「西南交通大学」ミニプログラム → 本科生选课。大学が案内する利用可能時間内に操作 |

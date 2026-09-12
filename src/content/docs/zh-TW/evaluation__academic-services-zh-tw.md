@@ -1,6 +1,6 @@
 ---
 title: "教務辦事與成績證明"
-description: "本科教務、研究生成績證明與培養資料的官方查找入口。"
+description: "大學部教務、研究生成績證明與學位課程資料的官方查找入口。"
 locale: zh-TW
 slug: evaluation/academic-services
 translationKey: academic-services-guide
@@ -13,7 +13,7 @@ updatedDate: 2026-09-12
 source: https://jiaowu.swjtu.edu.cn/vatuu/WebSite?setAction=index
 ---
 
-## 本科生：依事項找指南
+## 大學部學生：依事項找指南
 
 [教學服務線上辦事平台](https://jiaowu.swjtu.edu.cn/vatuu/WebSite?setAction=index)「學生」欄列有以下事項。先開啟對應指南核對對象、資料與申請時間，再進入申請系統。
 
@@ -27,7 +27,7 @@ source: https://jiaowu.swjtu.edu.cn/vatuu/WebSite?setAction=index
 
 畢業生／校友另有獨立欄目，不應預設與在校生同一流程。業務入口存在也不表示全年開放，選課與考試仍須核對[本科生院當期通知](https://bksy.swjtu.edu.cn/)及學院要求。
 
-### 本科生在讀證明
+### 大學部在學證明
 
 [學籍（在讀）證明辦理頁](https://jiaowu.swjtu.edu.cn/vatuu/WebSite?setAction=detail&tspId=8E3746FC429F906F&tspSortId=61E92EF67418DC54)列出的紙本流程為：先在線選擇列印份數並完成付款，申請成功後登入自助列印機，選擇該申請列印；**一個申請只能列印一次**。
 
@@ -38,7 +38,7 @@ source: https://jiaowu.swjtu.edu.cn/vatuu/WebSite?setAction=index
 
 教務科諮詢：[028-66366252](tel:02866366252)。電子證明請從頁面的「可信電子證明申請」入口查看辦理說明。
 
-## 研究生：成績證明與培養資料
+## 研究生：成績證明與學位課程資料
 
 研究生院提供[在讀證明、中英文成績單的可信電子證明指南](https://gsnews.swjtu.edu.cn/info/1957/24034.htm)。頁面發布於 2023-04-06，目前附件名稱標註 **2024-11-22 更新**，應從該頁取得附件，不使用更早流程截圖。
 

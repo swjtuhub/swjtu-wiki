@@ -113,4 +113,6 @@ Related announcements from official university and school accounts:
 
 [Find the WeChat announcements](https://weixin.sogou.com/weixin?type=2&query=西南交通大学%20东部%20校车), or search WeChat using the accounts, dates and titles above.
 
+## Other shuttle notices
+
 The [Logistics Department shuttle notices](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm) list service changes and suspensions. New-student reception transport in the [arrival guide](/en/docs/freshman/transportation/) is tied to specific dates and is separate from this regular inter-campus service.

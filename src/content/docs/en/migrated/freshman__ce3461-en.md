@@ -1,6 +1,6 @@
 ---
 title: "Getting to campus"
-description: "Sourced welcome transport and Eastern campus access information."
+description: "New-student arrival transport and access to Eastern Campus."
 locale: en
 slug: freshman/transportation
 translationKey: legacy-ce3461

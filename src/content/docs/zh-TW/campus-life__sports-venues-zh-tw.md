@@ -32,4 +32,4 @@ source: https://hbb.swjtu.edu.cn/info/1018/82162.htm
 
 請在[後勤保障部通知公告](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm)查看恢復開放通知。臨時管制後的開放時段與預約條件依最新公告。
 
-[後勤服務](/zh-TW/docs/campus-services/logistics-services/) · [校區地圖](/zh-TW/docs/freshman/campus-map/)
+[校園生活服務](/zh-TW/docs/campus-services/logistics-services/) · [校區地圖](/zh-TW/docs/freshman/campus-map/)

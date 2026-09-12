@@ -1,6 +1,6 @@
 ---
-title: "2027 recommendation notices"
-description: "University and school recommendation notice links."
+title: "2027 postgraduate admission by recommendation notices"
+description: "University and school notices on admitting undergraduates to postgraduate programmes by recommendation without the national entrance examination."
 locale: en
 slug: recommendation/statistics
 translationKey: legacy-free-analysis
@@ -8,9 +8,9 @@ section: recommendation
 order: 21
 icon: workspace_premium
 categories:
-  - Recommendation
+  - Postgraduate admission by recommendation
 tags:
-  - Recommendation
+  - Postgraduate admission by recommendation
 updatedDate: 2026-09-08
 contributors:
   - SWJTUHub
@@ -23,6 +23,6 @@ source: https://bksy.swjtu.edu.cn/
 
 - [Undergraduate School notices](https://bksy.swjtu.edu.cn/)
 
-- [School recommendation rules for the 2027 graduating cohort](/en/docs/recommendation/major-data/)
+- [School rules for 2027 postgraduate admission by recommendation](/en/docs/recommendation/major-data/)
 
-- [2027 recommendation competition list](/en/docs/recommendation/competition-list/)
+- [2027 Category A academic competition list](/en/docs/recommendation/competition-list/)

@@ -1,6 +1,6 @@
 ---
 title: "図書館と新入生利用説明"
-description: "2026 年入学生の図書館利用説明、資料と学外アクセスの入口。"
+description: "2026 年入学生の図書館利用説明、資料と学外からのアクセス方法。"
 locale: ja
 slug: campus-services/library
 translationKey: library-guide

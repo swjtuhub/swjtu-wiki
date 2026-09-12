@@ -1,6 +1,6 @@
 ---
 title: "教務手続きと成績証明"
-description: "学部の教務手続き、大学院の在学・成績証明と養成課程資料。"
+description: "学部の教務手続き、大学院の在学・成績証明と学位課程資料。"
 locale: ja
 slug: evaluation/academic-services
 translationKey: academic-services-guide
@@ -25,7 +25,7 @@ source: https://jiaowu.swjtu.edu.cn/vatuu/WebSite?setAction=index
 | 証明カードの紛失 | 学生证补办、火车票优惠卡补办 |
 | 履修要件・時間割・試験 | 信息查询内の培养方案、课程大纲、本学期课程安排、期末考试安排 |
 
-卒業生・校友には別の欄があり、在学生と同じ手続きとは限りません。入口が掲載されていても通年受付とは限らないため、[本科生院の当期通知](https://bksy.swjtu.edu.cn/)と所属学院の条件も確認してください。
+卒業生・校友には別の欄があり、在学生と同じ手続きとは限りません。手続きページが掲載されていても通年受付とは限らないため、[本科生院の当期通知](https://bksy.swjtu.edu.cn/)と所属学院の条件も確認してください。
 
 ### 学部生の在学証明
 
@@ -38,11 +38,11 @@ source: https://jiaowu.swjtu.edu.cn/vatuu/WebSite?setAction=index
 
 教務科問い合わせ：[028-66366252](tel:02866366252)。電子証明はサービスページの「可信电子证明申请」から手順を確認してください。
 
-## 大学院生：証明と課程資料
+## 大学院生：証明と学位課程資料
 
 研究生院は[在学証明・中国語／英語成績証明の電子証明申請案内](https://gsnews.swjtu.edu.cn/info/1957/24034.htm)を公開しています。ページ公開日は 2023-04-06、現在の添付ファイル名には **2024-11-22 更新**とあります。過去の画面画像ではなく同ページから添付を取得してください。
 
-[研究生院の「下载中心 → 培养工作」](https://gsnews.swjtu.edu.cn/xzzx/pygz.htm)には大学院管理システムの案内や修士・博士の課程資料もあります。一覧の日付が古くても、件名や添付に新しい更新日がある場合は両方を確認してください。
+[研究生院の「下载中心 → 培养工作」](https://gsnews.swjtu.edu.cn/xzzx/pygz.htm)には大学院管理システムの案内や修士・博士の学位課程資料もあります。一覧の日付が古くても、件名や添付に新しい更新日がある場合は両方を確認してください。
 
 
 [履修登録](/ja/docs/evaluation/course-grades/) · [手続き一覧](/ja/docs/campus-services/service-directory/)

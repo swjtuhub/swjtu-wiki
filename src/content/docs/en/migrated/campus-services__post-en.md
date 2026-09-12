@@ -1,6 +1,6 @@
 ---
 title: Postal and parcel services
-description: "Sourced collection locations, Xipu delivery addresses and contacts."
+description: "Parcel collection locations, Xipu delivery addresses and carrier contacts."
 locale: en
 slug: campus-services/postal-and-delivery
 translationKey: legacy-post

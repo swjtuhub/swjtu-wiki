@@ -29,7 +29,7 @@ source: https://ygb.swjtu.edu.cn/info/2331/6901.htm
 | --- | --- |
 | 現場報到 | 9 月 11–12 日 |
 | 開學典禮 | 9 月 13 日 08:00 |
-| 本科生軍訓 | 9 月 13–26 日 |
+| 大學部學生軍訓 | 9 月 13–26 日 |
 
 [迎新通知原文](https://ygb.swjtu.edu.cn/info/2331/6901.htm) · [軍訓時間](https://ygb.swjtu.edu.cn/info/2331/6811.htm) · [開學典禮通知](https://ygb.swjtu.edu.cn/info/2331/7021.htm)
 
@@ -44,22 +44,22 @@ source: https://ygb.swjtu.edu.cn/info/2331/6901.htm
 
 迎新期間，犀浦從西門進入，九里從南門或西門進入；兩校區設免費校內接駁車。 [迎新通知原文](https://ygb.swjtu.edu.cn/info/2331/6901.htm)
 
-智慧城市與交通學院、利茲學院 2026 級本科新生在東部（國際）校區報到。 [成都發布校區介紹](https://m.thepaper.cn/newsDetail_forward_33586724)
+智慧城市與交通學院、利茲學院 2026 級大學部新生在東部（國際）校區報到。 [成都發布校區介紹](https://m.thepaper.cn/newsDetail_forward_33586724)
 
 ## 迎新入口
 
 [迎新網](https://freshman.swjtu.edu.cn/)
 
-微信公眾號入口：本科生為「西南交通大学学生工作部」，研究生為「西南交通大学研工部」。 [迎新通知原文](https://ygb.swjtu.edu.cn/info/2331/6901.htm)
+微信公眾號入口：大學部學生為「西南交通大学学生工作部」，研究生為「西南交通大学研工部」。 [迎新通知原文](https://ygb.swjtu.edu.cn/info/2331/6901.htm)
 
-[到校交通](/zh-TW/docs/freshman/transportation/) · [宿舍](/zh-TW/docs/freshman/dormitories/) · [組織關係轉接](/zh-TW/docs/freshman/organization-transfer/) · [快遞](/zh-TW/docs/campus-services/postal-and-delivery/)
+[到校交通](/zh-TW/docs/freshman/transportation/) · [宿舍](/zh-TW/docs/freshman/dormitories/) · [黨團組織關係轉接](/zh-TW/docs/freshman/organization-transfer/) · [快遞](/zh-TW/docs/campus-services/postal-and-delivery/)
 
 ## 入學後的常用服務
 
 | 要做的事 | 指南 |
 | --- | --- |
 | 登入交大 ID、連線或在校外存取資源 | [校園網路](/zh-TW/docs/campus-services/network/) |
-| 使用一卡通、綁定企業微信 | [一卡通與企業微信](/zh-TW/docs/campus-services/campus-card/) |
+| 使用校園卡、綁定 WeCom | [校園卡與 WeCom](/zh-TW/docs/campus-services/campus-card/) |
 | 參加學院安排的入館教育 | [圖書館指南](/zh-TW/docs/campus-services/library/) |
 | 安排運動 | [9 月場館調整](/zh-TW/docs/campus-life/sports-venues/) |
 | 了解學校歷史 | [校史博物館](/zh-TW/docs/campus-life/history-museum/) |

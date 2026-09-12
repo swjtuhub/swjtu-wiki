@@ -1,6 +1,6 @@
 ---
 title: 公文系统
-description: SWJTU Wiki 资料页：公文系统。请结合页面更新时间与官方来源核对信息。
+description: 西南交通大学视觉识别系统的公文版式规范。
 locale: zh-CN
 slug: visual-identity/official-documents
 translationKey: legacy-vis-d

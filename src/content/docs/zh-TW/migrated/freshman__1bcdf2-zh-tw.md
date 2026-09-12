@@ -1,6 +1,6 @@
 ---
-title: "2026級組織關係轉接"
-description: "學校迎新安排與各學院組織關係轉接通知。"
+title: "2026 級黨團組織關係轉接"
+description: "學校迎新安排與各學院黨、團組織關係轉接通知。"
 locale: zh-TW
 slug: freshman/organization-transfer
 translationKey: legacy-1bcdf2

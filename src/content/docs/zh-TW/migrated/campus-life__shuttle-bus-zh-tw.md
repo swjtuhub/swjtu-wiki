@@ -113,4 +113,6 @@ source: https://hbb.swjtu.edu.cn/tzgg/tzgg.htm
 
 [微信文章搜尋](https://weixin.sogou.com/weixin?type=2&query=西南交通大学%20东部%20校车)，亦可在微信中按帳號、日期與標題查找。
 
+## 其他交通車通知
+
 [後勤保障部交通車、校車通知](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm)可查運行調整與停駛通知。[新生到校交通](/zh-TW/docs/freshman/transportation/)中的迎新接站與校內擺渡為特定日期安排，應與日常跨校區校車分開查閱。

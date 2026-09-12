@@ -1,6 +1,6 @@
 ---
 title: 郵便・宅配便
-description: "出典を確認した受取場所、犀浦の配送先と連絡先。"
+description: "宅配便の受取場所、犀浦キャンパスの配送先住所と連絡先。"
 locale: ja
 slug: campus-services/postal-and-delivery
 translationKey: legacy-post

@@ -1,6 +1,6 @@
 ---
 title: "スポーツ施設の開放案内"
-description: "2026 年 9 月の迎新、工事、軍事訓練に伴う九里・犀浦の利用制限。"
+description: "2026 年 9 月の新入生受け入れ、工事、軍事訓練に伴う九里・犀浦の利用制限。"
 locale: ja
 slug: campus-life/sports-venues
 translationKey: sports-venues
@@ -32,4 +32,4 @@ source: https://hbb.swjtu.edu.cn/info/1018/82162.htm
 
 [後勤保障部通知一覧](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm)で再開案内を確認してください。臨時制限後の開放時間・予約条件は最新通知に従ってください。
 
-[後勤サービス](/ja/docs/campus-services/logistics-services/) · [キャンパスマップ](/ja/docs/freshman/campus-map/)
+[キャンパス生活サービス](/ja/docs/campus-services/logistics-services/) · [キャンパスマップ](/ja/docs/freshman/campus-map/)

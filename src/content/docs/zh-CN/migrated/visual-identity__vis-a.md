@@ -1,6 +1,6 @@
 ---
 title: 基础系统
-description: SWJTU Wiki 资料页：基础系统。请结合页面更新时间与官方来源核对信息。
+description: 西南交通大学视觉识别系统的基础标志规范。
 locale: zh-CN
 slug: visual-identity/foundation
 translationKey: legacy-vis-a

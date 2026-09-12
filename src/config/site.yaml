@@ -155,8 +155,8 @@ site:
           enabled: true
           external: true
         - id: recommendation
-          label: 推免
-          description: 推免政策、資料與競賽。
+          label: 推薦免試研究生
+          description: 推薦免試政策、資料與學科競賽。
           href: /zh-TW/sections/recommendation/
           icon: workspace_premium
           enabled: true
@@ -177,7 +177,7 @@ site:
           collapsed: true
         - id: campus-services
           label: 校園黃頁
-          description: 後勤、快遞、財務與服務。
+          description: 校園生活、快遞、財務與服務。
           href: /zh-TW/sections/campus-services/
           icon: contact_phone
           enabled: true
@@ -307,8 +307,8 @@ site:
           enabled: true
           external: true
         - id: recommendation
-          label: 大学院推薦
-          description: 推薦制度、データ、競技会。
+          label: 大学院推薦入学
+          description: 全国大学院入学統一試験が免除される推薦入学の規則・資料・対象となる学術コンテスト。
           href: /ja/sections/recommendation/
           icon: workspace_premium
           enabled: true
@@ -450,8 +450,8 @@ site:
       enabled: true
       external: true
     - id: recommendation
-      label: Recommendation
-      description: Policy, data, and competitions.
+      label: Postgraduate admission by recommendation
+      description: Admission by recommendation without the national postgraduate entrance examination, rules, and academic competitions.
       href: /en/sections/recommendation/
       icon: workspace_premium
       enabled: true

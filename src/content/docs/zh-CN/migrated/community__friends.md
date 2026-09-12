@@ -1,6 +1,6 @@
 ---
 title: 友情链接
-description: SWJTU Wiki 资料页：友情链接。请结合页面更新时间与官方来源核对信息。
+description: 高校 Wiki、学生社区与相关资源链接。
 locale: zh-CN
 slug: community/links
 translationKey: legacy-friends

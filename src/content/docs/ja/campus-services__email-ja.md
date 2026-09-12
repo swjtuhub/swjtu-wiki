@@ -15,7 +15,7 @@ source: https://inc.swjtu.edu.cn/wlfw/jdyx.htm
 
 ## メール登録とログイン
 
-| 目的 | 入口・説明 |
+| 目的 | アクセス先・説明 |
 | --- | --- |
 | 学生メール | [学生メール](https://my.swjtu.edu.cn/)。アドレス末尾は `@my.swjtu.edu.cn` |
 | 教職員メール | [教職員メール](https://home.swjtu.edu.cn/)。末尾は `@swjtu.edu.cn` |

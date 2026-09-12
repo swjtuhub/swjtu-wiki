@@ -1,6 +1,6 @@
 ---
-title: 2027 年度推薦対象の競技会
-description: "大学が公表した 2027 年推免 A 類競技大会の名称と区分。"
+title: 2027 年大学院推薦入学 A 類学術コンテスト一覧
+description: "大学が公表した、2027 年大学院推薦入学の対象となる A 類学術コンテストの名称と区分。"
 locale: ja
 slug: recommendation/competition-list
 translationKey: legacy-free-contest
@@ -8,9 +8,9 @@ section: recommendation
 order: 23
 icon: workspace_premium
 categories:
-  - 大学院推薦
+  - 大学院推薦入学
 tags:
-  - 大学院推薦
+  - 大学院推薦入学
 updatedDate: 2026-09-08
 contributors:
   - SWJTUHub
@@ -21,11 +21,11 @@ legacyPaths:
 source: https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web
 ---
 
-2027 年度の A 類競技会は **58 項目**です。[大学の通知](https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web) · [公式 PDF](https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260626/1782461237629064508.pdf)
+2027 年大学院推薦入学の A 類学術コンテストは **58 項目**です。[大学の通知](https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web) · [公式 PDF](https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260626/1782461237629064508.pdf)
 
-## 競技会一覧
+## 学術コンテスト一覧
 
-検索や証明書との照合のため、名称は公式の中国語表記です。列は番号・競技会名・レベルで、「国家级」は全国、「省级」は省レベルを示します。
+検索や証明書との照合のため、名称は公式の中国語表記です。列は番号・コンテスト名・レベルで、「国家级」は全国、「省级」は省レベルを示します。
 
 | **序号** |                                            **竞赛名称**                                            |   **级别**   |
 | :------: | :------------------------------------------------------------------------------------------------: | :----------: |
@@ -88,4 +88,4 @@ source: https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setActi
 |    57    |                                      四川省大学生测绘技能竞赛                                      |     省级     |
 |    58    |                                    四川省大学生未来飞行器挑战赛                                    |     省级     |
 
-[学院の通知](/ja/docs/recommendation/major-data/)
+[各学院の大学院推薦入学案内](/ja/docs/recommendation/major-data/)

@@ -1,6 +1,6 @@
 ---
 title: 西南交通大学校歌
-description: SWJTU Wiki 资料页：西南交通大学校歌。请结合页面更新时间与官方来源核对信息。
+description: 西南交通大学校歌歌词、曲谱与音频。
 locale: zh-CN
 slug: freshman/university-anthem
 translationKey: legacy-2de403

@@ -48,19 +48,19 @@ source: https://ygb.swjtu.edu.cn/info/2331/6901.htm
 
 ## 新入生向けサイト
 
-[迎新サイト](https://freshman.swjtu.edu.cn/)
+[新入生向けサイト](https://freshman.swjtu.edu.cn/)
 
-WeChat の入口：学部生は「西南交通大学学生工作部」、大学院生は「西南交通大学研工部」です。 [新入生受付の通知原文](https://ygb.swjtu.edu.cn/info/2331/6901.htm)
+WeChat では、学部生は「西南交通大学学生工作部」、大学院生は「西南交通大学研工部」の公式アカウントから案内を確認できます。 [新入生受付の通知原文](https://ygb.swjtu.edu.cn/info/2331/6901.htm)
 
-[交通](/ja/docs/freshman/transportation/) · [学生寮](/ja/docs/freshman/dormitories/) · [組織関係の移管](/ja/docs/freshman/organization-transfer/) · [宅配便](/ja/docs/campus-services/postal-and-delivery/)
+[交通](/ja/docs/freshman/transportation/) · [学生寮](/ja/docs/freshman/dormitories/) · [党・団組織関係の移管](/ja/docs/freshman/organization-transfer/) · [宅配便](/ja/docs/campus-services/postal-and-delivery/)
 
 ## 入学後によく使うサービス
 
 | 用件 | ガイド |
 | --- | --- |
 | 交大 ID・ネット接続・学外アクセス | [学内ネットワーク](/ja/docs/campus-services/network/) |
-| 一卡通・学校 WeCom の連携 | [一卡通と WeCom](/ja/docs/campus-services/campus-card/) |
-| 学院が手配する図書館利用説明 | [図書館案内](/ja/docs/campus-services/library/) |
+| キャンパスカード・大学公式 WeCom の連携 | [キャンパスカードと WeCom](/ja/docs/campus-services/campus-card/) |
+| 所属学院が手配する図書館利用説明 | [図書館案内](/ja/docs/campus-services/library/) |
 | 運動の予定 | [9 月の施設変更](/ja/docs/campus-life/sports-venues/) |
 | 大学の歴史を知る | [大学史博物館](/ja/docs/campus-life/history-museum/) |
 | メール登録・正規ソフト | [メール](/ja/docs/campus-services/email/) · [ソフト](/ja/docs/campus-services/software/) |
@@ -70,4 +70,4 @@ WeChat の入口：学部生は「西南交通大学学生工作部」、大学�
 | 証明・保衛処・心理相談 | [手続き一覧](/ja/docs/campus-services/service-directory/) |
 | 東部キャンパス間バスの告知 | [バス通知](/ja/docs/campus-life/shuttle-bus/) |
 
-受付・迎新送迎・日程は **2026 年入学生**向けです。受付時間は 2026-07-17 公開の[迎新通知](https://ygb.swjtu.edu.cn/info/2331/6901.htm)に基づき、通常の入構や他学年には適用されません。手続き順序と集合予定は所属学院の通知も確認してください。
+受付・新入生送迎・日程は **2026 年入学生**向けです。受付時間は 2026-07-17 公開の[新入生案内](https://ygb.swjtu.edu.cn/info/2331/6901.htm)に基づき、通常の入構や他学年には適用されません。手続き順序と集合予定は所属学院の通知も確認してください。

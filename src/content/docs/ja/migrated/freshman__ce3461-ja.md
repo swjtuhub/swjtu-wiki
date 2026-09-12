@@ -1,6 +1,6 @@
 ---
 title: "キャンパスへの交通"
-description: "大学の通知に記載された新入生受付時の交通と東部キャンパスへのアクセス。"
+description: "新入生受付期間の交通と東部キャンパスへのアクセス。"
 locale: ja
 slug: freshman/transportation
 translationKey: legacy-ce3461

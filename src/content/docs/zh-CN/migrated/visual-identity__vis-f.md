@@ -1,6 +1,6 @@
 ---
 title: 公关用品系统
-description: SWJTU Wiki 资料页：公关用品系统。请结合页面更新时间与官方来源核对信息。
+description: 西南交通大学视觉识别系统的公关用品规范。
 locale: zh-CN
 slug: visual-identity/public-relations-materials
 translationKey: legacy-vis-f

@@ -1,6 +1,6 @@
 ---
-title: 2027 recommendation competition list
-description: "Names and levels in the university’s 2027 Category A competition list."
+title: 2027 Category A academic competitions for postgraduate admission by recommendation
+description: "Names and levels in the university’s 2027 Category A academic competition list for postgraduate admission by recommendation."
 locale: en
 slug: recommendation/competition-list
 translationKey: legacy-free-contest
@@ -8,9 +8,9 @@ section: recommendation
 order: 23
 icon: workspace_premium
 categories:
-  - Recommendation
+  - Postgraduate admission by recommendation
 tags:
-  - Recommendation
+  - Postgraduate admission by recommendation
 updatedDate: 2026-09-08
 contributors:
   - SWJTUHub
@@ -21,9 +21,9 @@ legacyPaths:
 source: https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web
 ---
 
-The 2027 Category A competition list contains **58 entries**. [University notice](https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web) · [Official PDF](https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260626/1782461237629064508.pdf)
+The 2027 Category A academic competition list for postgraduate admission by recommendation contains **58 entries**. [University notice](https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web) · [Official PDF](https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260626/1782461237629064508.pdf)
 
-## Competition list
+## Academic competition list
 
 Official Chinese names are retained for searching and matching certificates. Columns are number, competition and level; 国家级 means national, and 省级 means provincial.
 
@@ -88,4 +88,4 @@ Official Chinese names are retained for searching and matching certificates. Col
 |    57    |                                      四川省大学生测绘技能竞赛                                      |     省级     |
 |    58    |                                    四川省大学生未来飞行器挑战赛                                    |     省级     |
 
-[School notices](/en/docs/recommendation/major-data/)
+[School recommended-admission notices](/en/docs/recommendation/major-data/)

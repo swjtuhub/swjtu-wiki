@@ -1,6 +1,6 @@
 ---
 title: "Campus security and assistance"
-description: "Xipu and Jiuli security numbers and public-security service directories."
+description: "Xipu and Jiuli emergency numbers and Security Office service guides."
 locale: en
 slug: campus-services/safety
 translationKey: campus-safety-guide
@@ -30,7 +30,7 @@ State your campus, exact location, what happened and a callback number.
 | --- | --- |
 | Household registration transfers, documents and residence permits | 办事指南 → 户政业务 |
 | Vehicle permits, registration and external visitor/vehicle entry reporting | 办事指南 → 车辆业务 |
-| Political-background review documents | 办事指南 → 政审业务 |
+| Political vetting (政审) documents | 办事指南 → 政审业务 |
 | Campus safety notices | 安全警示 → 安全教育／警示案例 |
 
 Open the relevant section from the [Security Office homepage](https://bwc.swjtu.edu.cn/) and check the required documents and eligibility. The 2026 new-student household-registration notice is listed under **2026-09-03**; read it in full before deciding whether to transfer registration or preparing documents.

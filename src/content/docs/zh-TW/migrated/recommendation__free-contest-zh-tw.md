@@ -1,6 +1,6 @@
 ---
-title: 2027年推免競賽目錄
-description: "學校公布的 2027 年推免 A 類競賽名稱與級別。"
+title: 2027 年推薦免試 A 類學科競賽目錄
+description: "學校公布的 2027 年推薦免試 A 類學科競賽名稱與級別。"
 locale: zh-TW
 slug: recommendation/competition-list
 translationKey: legacy-free-contest
@@ -8,9 +8,9 @@ section: recommendation
 order: 23
 icon: workspace_premium
 categories:
-  - 推免
+  - 推薦免試研究生
 tags:
-  - 推免
+  - 推薦免試研究生
 updatedDate: 2026-09-08
 contributors:
   - SWJTUHub
@@ -21,7 +21,7 @@ legacyPaths:
 source: https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web
 ---
 
-2027 年推免 A 類學科競賽目錄共 **58 項**。[學校通知](https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web) · [完整目錄 PDF](https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260626/1782461237629064508.pdf)
+2027 年推薦免試 A 類學科競賽目錄共 **58 項**。[學校通知](https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setAction=newsDetail&viewType=web) · [完整目錄 PDF](https://jwc.swjtu.edu.cn/download/ueditor/jsp/upload/file/20260626/1782461237629064508.pdf)
 
 ## 競賽目錄
 
@@ -88,4 +88,4 @@ source: https://jwc.swjtu.edu.cn/vatuu/WebAction?newsId=4B4FD7C7197B57B2&setActi
 |    57    |                                      四川省大学生测绘技能竞赛                                      |     省级     |
 |    58    |                                    四川省大学生未来飞行器挑战赛                                    |     省级     |
 
-[學院通知](/zh-TW/docs/recommendation/major-data/)
+[各學院推薦免試通知](/zh-TW/docs/recommendation/major-data/)

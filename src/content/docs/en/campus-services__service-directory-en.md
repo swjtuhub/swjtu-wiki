@@ -19,7 +19,7 @@ source: https://www.swjtu.edu.cn/jgsz/xzbm.htm
 | --- | --- | --- |
 | Find online university services | [One-stop services](https://one.swjtu.edu.cn/) | [Campus card and WeCom](/en/docs/campus-services/campus-card/) |
 | Undergraduate notices, courses and certificates | [Undergraduate School](https://bksy.swjtu.edu.cn/) | [Academic services](/en/docs/evaluation/academic-services/) |
-| Postgraduate training and degrees | [Graduate School](https://gsnews.swjtu.edu.cn/) | [Academic services](/en/docs/evaluation/academic-services/) |
+| Postgraduate programmes and degrees | [Graduate School](https://gsnews.swjtu.edu.cn/) | [Academic services](/en/docs/evaluation/academic-services/) |
 | Student affairs, aid and work-study notices | [Student Affairs](https://xg.swjtu.edu.cn/) | [Student aid and emergency grants](/en/docs/campus-services/student-aid/) |
 | Recruitment and employment | [Careers website](https://jiuye.swjtu.edu.cn/) | Check the original job notice's role, eligibility and closing date |
 | International exchange | [International Cooperation and Exchange Office](https://fad.swjtu.edu.cn/) | Check current programme requirements |

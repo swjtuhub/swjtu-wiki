@@ -32,8 +32,6 @@ The campus hospital is the designated first-contact hospital for SWJTU student i
 - The certificate is one of the documents required to claim off-campus outpatient costs and **cannot be issued retrospectively**. Keep it safely.
 - Off-campus emergency treatment and inpatient admission do not require a prior campus-hospital referral.
 
-Community discussions show that students often ask whether a direct visit to an outside hospital can still be reimbursed. Such posts identify a common question; only the campus hospital can determine a claim.
-
 ## Off-campus and vacation care
 
 The [2026 vacation insurance notice](https://hospital.swjtu.edu.cn/info/1013/6878.htm) and reimbursement instructions state:

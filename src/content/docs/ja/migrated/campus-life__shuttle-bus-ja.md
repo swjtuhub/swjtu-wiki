@@ -10,7 +10,7 @@ icon: directions_bus
 categories:
   - キャンパス生活
 tags:
-  - スクールバス
+  - キャンパス間シャトルバス
 updatedDate: 2026-09-12
 contributors:
   - SWJTUHub
@@ -101,9 +101,9 @@ source: https://hbb.swjtu.edu.cn/tzgg/tzgg.htm
 - 引火性、爆発性、有毒、腐食性、強い臭いのある物など、危険物の持ち込みは禁止です。
 - 緊急時は安全員の苟先生（苟老师）へ連絡してください：**13512251501**。
 
-### 公式通知の検索先
+### 公式通知の確認先
 
-大学・学院の公式アカウントによる関連告知：
+大学・学院の公式アカウントによる関連案内：
 
 | 発信アカウント | 公開日 | 中国語の原題 |
 | --- | --- | --- |
@@ -113,4 +113,6 @@ source: https://hbb.swjtu.edu.cn/tzgg/tzgg.htm
 
 [WeChat の告知を検索](https://weixin.sogou.com/weixin?type=2&query=西南交通大学%20东部%20校车)。WeChat 内でも上記のアカウント・日付・原題から探せます。
 
-[後勤保障部のシャトルバス通知](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm)では運行変更・運休通知を確認できます。[新入生向け交通案内](/ja/docs/freshman/transportation/)にある迎新送迎は特定日程の運行であり、この定期キャンパス間バスとは別です。
+## その他の交通車案内
+
+[後勤保障部のシャトルバス通知](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm)では運行変更・運休通知を確認できます。[新入生向け交通案内](/ja/docs/freshman/transportation/)にある新入生送迎は特定日程の運行であり、この定期キャンパス間バスとは別です。

@@ -67,7 +67,7 @@ A one-way trip between Jiuli and Xipu campuses costs **CNY 2**. The campus card 
 
 ## Eastern (International) Campus shuttles
 
-The details below come from the official notice published on 3 September 2026.
+The details below come from the [official notice published on 3 September 2026](https://mp.weixin.qq.com/s/K3dCyVLOyxHbXOK22qM_oQ).
 
 ### Timetable
 
@@ -93,25 +93,13 @@ The details below come from the official notice published on 3 September 2026.
 - On-site tickets: if seats remain, pay by scanning with WeChat Pay or Alipay. Cash is not accepted.
 - Boarding: arrive early, show the ticket QR code for that service, and sit in the reserved seat.
 
-Get the booking QR code from an original post by one of the official university accounts listed below.
+Get the booking QR code from that official notice.
 
 ### Safety
 
 - Do not board or leave the bus en route except in a special emergency, and follow the boarding rules.
 - Flammable, explosive, toxic, corrosive, strong-smelling and other dangerous items are prohibited.
 - In an emergency, contact safety officer Teacher Gou (苟老师): **13512251501**.
-
-### Official notice entry points
-
-Related announcements from official university and school accounts:
-
-| Account | Publication date | Original Chinese title |
-| --- | --- | --- |
-| 西南交通大学 | 2026-09-03 | 你好，新学期丨东部（国际）校区跨校区校车已开通！ |
-| 西南交通大学东部国际校区 | 2026-09-03 | 关于东部（国际）校区跨校区校车开通运行的通知 |
-| 西南交通大学智慧城市与交通学院 | 2026-09-04 | 校区直通车丨东部（国际）校区跨校区校车已开通！ |
-
-[Original WeChat article](https://mp.weixin.qq.com/s/K3dCyVLOyxHbXOK22qM_oQ)
 
 ## Other shuttle notices
 

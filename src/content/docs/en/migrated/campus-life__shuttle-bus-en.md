@@ -1,6 +1,6 @@
 ---
-title: "Campus shuttle notices"
-description: "Eastern (International) Campus shuttle timetable, stops, ticket rules and service notices."
+title: "Campus shuttle timetables and notices"
+description: "Shuttle timetables, stops, fares and service notices for Jiuli, Xipu and Eastern (International) campuses."
 locale: en
 slug: campus-life/shuttle-bus
 translationKey: legacy-schoolbus
@@ -20,6 +20,50 @@ legacyPaths:
   - /en/docs/campus-life/schoolbus/
 source: https://hbb.swjtu.edu.cn/tzgg/tzgg.htm
 ---
+
+## Jiuli–Xipu campus shuttle
+
+A one-way trip between Jiuli and Xipu campuses costs **CNY 2**. The campus card and Alipay are accepted. The terminal stops are the Jiuli Campus shuttle stop near the North Gate and the Xipu Campus North Area shuttle stop.
+
+### Weekdays
+
+| Departs Jiuli | Departs Xipu North Area |
+| --- | --- |
+| 07:20 | 07:50 |
+| 08:00 | 08:20 |
+| 08:30 | 09:00 |
+| 08:50 | 09:50 |
+| 09:10 | 11:40 |
+| 11:00 | 12:30 |
+| 12:30 | 13:20 |
+| 13:20 | 15:00 |
+| 15:10 | 15:50 |
+| 16:50 | 17:40 |
+| 17:40 | 18:30 |
+| 18:50 | 21:20 |
+| 20:50 | 22:00 |
+| 21:30 | 22:50¹ |
+| 22:20 | — |
+
+### Weekends
+
+| Departs Jiuli | Departs Xipu North Area |
+| --- | --- |
+| 08:00 | 08:00 |
+| 09:10 | 09:10 |
+| 12:10 | 12:10 |
+| 14:00 | 14:00 |
+| 17:40 | 17:40 |
+
+### Stops and service details
+
+- Campus stops are the Jiuli Campus shuttle stop and, at Xipu Campus, the South Area, North Area, General Building stop near the flag platform, and the wind-tunnel laboratory stop. The shuttle does not serve other stops.
+- Times in the table are departures from the terminal. Boarding at intermediate stops is later.
+- The shuttle does not operate on national statutory holidays. Separate timetables are issued for winter and summer vacations and final-examination periods.
+- The 22:20 Jiuli-to-Xipu and 22:50 Xipu-to-Jiuli weekday buses are trial “late-night escort” services. ¹ Board the 22:50 bus at the Xipu General Building stop and leave it outside Jiuli’s Nanfeng Restaurant.
+- Enquiries: Jiuli Campus **028-87600474**; Xipu Campus **028-66362888**.
+
+[Logistics service timetable](https://hqfw.swjtu.edu.cn/xnjdhouqin/phone_article.html?id=46) · [February 2025 service update](https://m.thepaper.cn/newsDetail_forward_30242488)
 
 ## Eastern (International) Campus shuttles
 

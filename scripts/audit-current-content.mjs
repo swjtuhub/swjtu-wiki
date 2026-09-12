@@ -46,7 +46,10 @@ for (const key of keys) {
       assert(!/西北一门|校医院对面|northern commercial street|unified operator/.test(doc.body), `${doc.file}: old parcel locations`);
     }
     if (key === 'legacy-schoolbus') {
-      assert(!/7:10|9:40|12:40|15:10|81512\.htm|94441\.htm/.test(doc.body), `${doc.file}: expired shuttle schedule`);
+      assert(!/7:10|9:40|12:40|81512\.htm|94441\.htm/.test(doc.body), `${doc.file}: expired shuttle schedule`);
+      for (const fact of ['07:20', '08:50', '22:20', '22:50', '87600474', '66362888']) {
+        assert(doc.body.includes(fact), `${doc.file}: missing Jiuli-Xipu shuttle fact ${fact}`);
+      }
     }
     if (key === 'legacy-service') {
       for (const phone of ['66366453', '66362886', '86465771', '87601405', '66366438', '66367711', '87601400', '13350069244', '87600861', '66366445', '87601312', '87603166']) {

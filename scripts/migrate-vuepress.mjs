@@ -10,10 +10,10 @@ const valueAfter = (flag) => {
   return index >= 0 ? args[index + 1] : undefined;
 };
 const sourceArg = valueAfter('--source');
-const outputArg = valueAfter('--output') ?? './src/content/docs/zh-CN/migrated';
+const outputArg = valueAfter('--output') ?? './src/content/docs/zh-CN';
 
 if (!sourceArg) {
-  console.error('Usage: npm run content:migrate -- --source /path/to/vuepress/docs [--output ./src/content/docs/zh-CN/migrated]');
+  console.error('Usage: npm run content:migrate -- --source /path/to/vuepress/docs [--output ./src/content/docs/zh-CN]');
   process.exit(1);
 }
 
@@ -193,7 +193,7 @@ for (const file of (await walk(source)).sort()) {
 
   const frontmatter = {
     title,
-    description: (() => { const value = textDescription(body, title); return value.length >= 12 ? value : 'SWJTU Wiki 资料页：' + title + '。请结合页面更新时间与官方来源核对信息。'; })(),
+    description: textDescription(body, title),
     locale: 'zh-CN',
     slug,
     translationKey: `legacy-${legacyId}`,
@@ -207,12 +207,11 @@ for (const file of (await walk(source)).sort()) {
     featured: false,
     draft: false,
     legacyPaths,
-    editPath: relative,
   };
   Object.keys(frontmatter).forEach((key) => frontmatter[key] === undefined && delete frontmatter[key]);
 
-  const filename = `${slug.replaceAll('/', '__')}.md`;
-  const destination = path.join(output, filename);
+  const destination = path.join(output, `${slug}.md`);
+  await mkdir(path.dirname(destination), { recursive: true });
   const next = `---\n${stringify(frontmatter, { lineWidth: 0 }).trim()}\n---\n\n${normalizeBody(body, title)}`;
   await writeFile(destination, next, 'utf8');
   report.generated.push({ source: relative, output: path.relative(process.cwd(), destination), slug, legacyPaths });

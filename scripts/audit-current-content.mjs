@@ -17,9 +17,19 @@ const docs = fs.readdirSync(docsRoot, { recursive: true })
 const locales = ['zh-CN', 'zh-TW', 'en', 'ja'];
 const selfRepository = /https?:\/\/github\.com\/swjtuhub\/swjtu-wiki(?:[/?#]|$)/i;
 for (const doc of docs) {
+  const expectedFile = path.join(doc.data.locale, `${doc.data.slug}.md`);
+  assert.equal(path.normalize(doc.file), path.normalize(expectedFile), `${doc.file}: path must match locale and slug`);
+  assert(!doc.data.editPath, `${doc.file}: editPath is derived from the organized document path`);
   assert(!selfRepository.test(doc.data.source ?? ''), `${doc.file}: current repository cannot be its own source`);
   assert(!selfRepository.test(doc.body), `${doc.file}: remove links to the current repository from article content`);
 }
+const homeRoot = 'src/content/pages';
+const homeFiles = fs.readdirSync(homeRoot, { recursive: true }).filter(file => file.endsWith('.md'));
+assert.deepEqual(
+  homeFiles.map(file => path.normalize(file)).sort(),
+  locales.map(locale => path.normalize(path.join(locale, 'index.md'))).sort(),
+  'Homepages must use src/content/pages/<locale>/index.md',
+);
 const keys = [
   'legacy-groups', 'legacy-post', 'legacy-schoolbus', 'legacy-service', 'legacy-11231a',
   'legacy-activity', 'legacy-free-analysis', 'legacy-course-grade',

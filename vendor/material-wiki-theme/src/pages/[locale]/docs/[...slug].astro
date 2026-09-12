@@ -31,8 +31,9 @@ const ordered = sortedDocs(docs.filter((entry) => entry.data.locale === locale &
 const index = ordered.findIndex((entry) => entry.id === doc.id);
 const previous = index > 0 ? ordered[index - 1] : undefined;
 const next = index >= 0 && index < ordered.length - 1 ? ordered[index + 1] : undefined;
-const editHref = config.features.editLinks && config.repository?.editBaseUrl && doc.data.editPath
-  ? `${config.repository.editBaseUrl.replace(/\/$/, '')}/${doc.data.editPath.replace(/^\//, '')}`
+const editPath = doc.data.editPath ?? `${doc.id}.md`;
+const editHref = config.features.editLinks && config.repository?.editBaseUrl
+  ? `${config.repository.editBaseUrl.replace(/\/$/, '')}/${editPath.replace(/^\//, '')}`
   : undefined;
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',

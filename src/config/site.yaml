@@ -440,7 +440,7 @@ site:
   repository:
     label: GitHub
     url: https://github.com/swjtuhub/swjtu-wiki
-    editBaseUrl: https://github.com/swjtuhub/swjtu-wiki/edit/master/docs
+    editBaseUrl: https://github.com/swjtuhub/swjtu-wiki/edit/develop/src/content/docs
   navigation:
     - id: study-resources
       label: Study resources

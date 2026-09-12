@@ -3,111 +3,111 @@
   "generated": [
     {
       "source": "01.学习/01.推免/01.全校推免统计数据.md",
-      "output": "src/content/docs/zh-CN/migrated/recommendation__free-analysis.md",
-      "slug": "recommendation/free-analysis",
+      "output": "src/content/docs/zh-CN/recommendation/statistics.md",
+      "slug": "recommendation/statistics",
       "legacyPaths": [
         "/free_analysis/"
       ]
     },
     {
       "source": "01.学习/01.推免/02.专业推免详细数据.md",
-      "output": "src/content/docs/zh-CN/migrated/recommendation__free-major.md",
-      "slug": "recommendation/free-major",
+      "output": "src/content/docs/zh-CN/recommendation/major-data.md",
+      "slug": "recommendation/major-data",
       "legacyPaths": [
         "/free_major/"
       ]
     },
     {
       "source": "01.学习/01.推免/03.推免A类学科竞赛目录.md",
-      "output": "src/content/docs/zh-CN/migrated/recommendation__free-contest.md",
-      "slug": "recommendation/free-contest",
+      "output": "src/content/docs/zh-CN/recommendation/competition-list.md",
+      "slug": "recommendation/competition-list",
       "legacyPaths": [
         "/free_contest/"
       ]
     },
     {
       "source": "01.学习/02.转专业/11.转专业经验-01-计算机.md",
-      "output": "src/content/docs/zh-CN/migrated/major-transfer__exchange-major-exp-01.md",
-      "slug": "major-transfer/exchange-major-exp-01",
+      "output": "src/content/docs/zh-CN/major-transfer/computer-science-experience.md",
+      "slug": "major-transfer/computer-science-experience",
       "legacyPaths": [
         "/pages/exchange_major_exp_01/"
       ]
     },
     {
       "source": "01.学习/02.转专业/12.转专业经验-02-软件工程.md",
-      "output": "src/content/docs/zh-CN/migrated/major-transfer__exchange-major-exp-02.md",
-      "slug": "major-transfer/exchange-major-exp-02",
+      "output": "src/content/docs/zh-CN/major-transfer/software-engineering-experience-2023.md",
+      "slug": "major-transfer/software-engineering-experience-2023",
       "legacyPaths": [
         "/pages/exchange_major_exp_02/"
       ]
     },
     {
       "source": "01.学习/02.转专业/13.转专业经验-03-软件工程.md",
-      "output": "src/content/docs/zh-CN/migrated/major-transfer__exchange-major-exp-03.md",
-      "slug": "major-transfer/exchange-major-exp-03",
+      "output": "src/content/docs/zh-CN/major-transfer/software-engineering-experience-2025.md",
+      "slug": "major-transfer/software-engineering-experience-2025",
       "legacyPaths": [
         "/pages/exchange_major_exp_03/"
       ]
     },
     {
       "source": "01.学习/10.评价信息/01.导师评价信息.md",
-      "output": "src/content/docs/zh-CN/migrated/evaluation__supervisor.md",
-      "slug": "evaluation/supervisor",
+      "output": "src/content/docs/zh-CN/evaluation/supervisor-reviews.md",
+      "slug": "evaluation/supervisor-reviews",
       "legacyPaths": [
         "/pages/supervisor/"
       ]
     },
     {
       "source": "01.学习/10.评价信息/02.课程成绩统计信息.md",
-      "output": "src/content/docs/zh-CN/migrated/evaluation__course-grade.md",
-      "slug": "evaluation/course-grade",
+      "output": "src/content/docs/zh-CN/evaluation/course-grades.md",
+      "slug": "evaluation/course-grades",
       "legacyPaths": [
         "/pages/course_grade/"
       ]
     },
     {
       "source": "02.黄页/01.后勤服务.md",
-      "output": "src/content/docs/zh-CN/migrated/campus-services__service.md",
-      "slug": "campus-services/service",
+      "output": "src/content/docs/zh-CN/campus-services/logistics-services.md",
+      "slug": "campus-services/logistics-services",
       "legacyPaths": [
         "/pages/service/"
       ]
     },
     {
       "source": "02.黄页/02.邮政与快递服务.md",
-      "output": "src/content/docs/zh-CN/migrated/campus-services__post.md",
-      "slug": "campus-services/post",
+      "output": "src/content/docs/zh-CN/campus-services/postal-and-delivery.md",
+      "slug": "campus-services/postal-and-delivery",
       "legacyPaths": [
         "/pages/post/"
       ]
     },
     {
       "source": "02.黄页/03.财务报销信息.md",
-      "output": "src/content/docs/zh-CN/migrated/campus-services__finance.md",
-      "slug": "campus-services/finance",
+      "output": "src/content/docs/zh-CN/campus-services/reimbursements.md",
+      "slug": "campus-services/reimbursements",
       "legacyPaths": [
         "/pages/finance/"
       ]
     },
     {
       "source": "02.黄页/10.群聊导航.md",
-      "output": "src/content/docs/zh-CN/migrated/campus-services__groups.md",
-      "slug": "campus-services/groups",
+      "output": "src/content/docs/zh-CN/campus-services/group-chats.md",
+      "slug": "campus-services/group-chats",
       "legacyPaths": [
         "/pages/groups/"
       ]
     },
     {
       "source": "03.生活/10.校车时刻表.md",
-      "output": "src/content/docs/zh-CN/migrated/campus-life__schoolbus.md",
-      "slug": "campus-life/schoolbus",
+      "output": "src/content/docs/zh-CN/campus-life/shuttle-bus.md",
+      "slug": "campus-life/shuttle-bus",
       "legacyPaths": [
         "/pages/schoolbus/"
       ]
     },
     {
       "source": "11.更多/01.关于.md",
-      "output": "src/content/docs/zh-CN/migrated/community__about.md",
+      "output": "src/content/docs/zh-CN/community/about.md",
       "slug": "community/about",
       "legacyPaths": [
         "/about/"
@@ -115,128 +115,128 @@
     },
     {
       "source": "11.更多/10.活动.md",
-      "output": "src/content/docs/zh-CN/migrated/community__activity.md",
-      "slug": "community/activity",
+      "output": "src/content/docs/zh-CN/community/activities.md",
+      "slug": "community/activities",
       "legacyPaths": [
         "/pages/activity/"
       ]
     },
     {
       "source": "11.更多/99.友情链接.md",
-      "output": "src/content/docs/zh-CN/migrated/community__friends.md",
-      "slug": "community/friends",
+      "output": "src/content/docs/zh-CN/community/links.md",
+      "slug": "community/links",
       "legacyPaths": [
         "/friends/"
       ]
     },
     {
       "source": "20.专题/01.VIS/01.基础系统.md",
-      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-a.md",
-      "slug": "visual-identity/vis-a",
+      "output": "src/content/docs/zh-CN/visual-identity/foundation.md",
+      "slug": "visual-identity/foundation",
       "legacyPaths": [
         "/pages/vis_a/"
       ]
     },
     {
       "source": "20.专题/01.VIS/02.办公用品系统.md",
-      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-b.md",
-      "slug": "visual-identity/vis-b",
+      "output": "src/content/docs/zh-CN/visual-identity/office-materials.md",
+      "slug": "visual-identity/office-materials",
       "legacyPaths": [
         "/pages/vis_b/"
       ]
     },
     {
       "source": "20.专题/01.VIS/03.事务用品系统.md",
-      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-c.md",
-      "slug": "visual-identity/vis-c",
+      "output": "src/content/docs/zh-CN/visual-identity/administrative-materials.md",
+      "slug": "visual-identity/administrative-materials",
       "legacyPaths": [
         "/pages/vis_c/"
       ]
     },
     {
       "source": "20.专题/01.VIS/04.公文系统.md",
-      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-d.md",
-      "slug": "visual-identity/vis-d",
+      "output": "src/content/docs/zh-CN/visual-identity/official-documents.md",
+      "slug": "visual-identity/official-documents",
       "legacyPaths": [
         "/pages/vis_d/"
       ]
     },
     {
       "source": "20.专题/01.VIS/05.会务系统.md",
-      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-e.md",
-      "slug": "visual-identity/vis-e",
+      "output": "src/content/docs/zh-CN/visual-identity/conferences.md",
+      "slug": "visual-identity/conferences",
       "legacyPaths": [
         "/pages/vis_e/"
       ]
     },
     {
       "source": "20.专题/01.VIS/06.公关用品系统.md",
-      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-f.md",
-      "slug": "visual-identity/vis-f",
+      "output": "src/content/docs/zh-CN/visual-identity/public-relations-materials.md",
+      "slug": "visual-identity/public-relations-materials",
       "legacyPaths": [
         "/pages/vis_f/"
       ]
     },
     {
       "source": "20.专题/01.VIS/07.车辆系统.md",
-      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-g.md",
-      "slug": "visual-identity/vis-g",
+      "output": "src/content/docs/zh-CN/visual-identity/vehicles.md",
+      "slug": "visual-identity/vehicles",
       "legacyPaths": [
         "/pages/vis_g/"
       ]
     },
     {
       "source": "20.专题/01.VIS/08.导示系统.md",
-      "output": "src/content/docs/zh-CN/migrated/visual-identity__vis-h.md",
-      "slug": "visual-identity/vis-h",
+      "output": "src/content/docs/zh-CN/visual-identity/signage.md",
+      "slug": "visual-identity/signage",
       "legacyPaths": [
         "/pages/vis_h/"
       ]
     },
     {
       "source": "20.专题/02.新生入学指南/01.入学指南前言.md",
-      "output": "src/content/docs/zh-CN/migrated/freshman__d2d231.md",
-      "slug": "freshman/d2d231",
+      "output": "src/content/docs/zh-CN/freshman/introduction.md",
+      "slug": "freshman/introduction",
       "legacyPaths": [
         "/pages/d2d231/"
       ]
     },
     {
       "source": "20.专题/02.新生入学指南/06.组织关系转接.md",
-      "output": "src/content/docs/zh-CN/migrated/freshman__1bcdf2.md",
-      "slug": "freshman/1bcdf2",
+      "output": "src/content/docs/zh-CN/freshman/organization-transfer.md",
+      "slug": "freshman/organization-transfer",
       "legacyPaths": [
         "/pages/1bcdf2/"
       ]
     },
     {
       "source": "20.专题/02.新生入学指南/10.交通路线.md",
-      "output": "src/content/docs/zh-CN/migrated/freshman__ce3461.md",
-      "slug": "freshman/ce3461",
+      "output": "src/content/docs/zh-CN/freshman/transportation.md",
+      "slug": "freshman/transportation",
       "legacyPaths": [
         "/pages/ce3461/"
       ]
     },
     {
       "source": "20.专题/02.新生入学指南/11.学校地图.md",
-      "output": "src/content/docs/zh-CN/migrated/freshman__6ef921.md",
-      "slug": "freshman/6ef921",
+      "output": "src/content/docs/zh-CN/freshman/campus-map.md",
+      "slug": "freshman/campus-map",
       "legacyPaths": [
         "/pages/6ef921/"
       ]
     },
     {
       "source": "20.专题/02.新生入学指南/12.宿舍相关介绍.md",
-      "output": "src/content/docs/zh-CN/migrated/freshman__11231a.md",
-      "slug": "freshman/11231a",
+      "output": "src/content/docs/zh-CN/freshman/dormitories.md",
+      "slug": "freshman/dormitories",
       "legacyPaths": [
         "/pages/11231a/"
       ]
     },
     {
       "source": "20.专题/02.新生入学指南/40.西南交通大学校歌.md",
-      "output": "src/content/docs/zh-CN/migrated/freshman__2de403.md",
-      "slug": "freshman/2de403",
+      "output": "src/content/docs/zh-CN/freshman/university-anthem.md",
+      "slug": "freshman/university-anthem",
       "legacyPaths": [
         "/pages/2de403/"
       ]

@@ -111,8 +111,8 @@ Related announcements from official university and school accounts:
 | 西南交通大学东部国际校区 | 2026-09-03 | 关于东部（国际）校区跨校区校车开通运行的通知 |
 | 西南交通大学智慧城市与交通学院 | 2026-09-04 | 校区直通车丨东部（国际）校区跨校区校车已开通！ |
 
-[Find the WeChat announcements](https://weixin.sogou.com/weixin?type=2&query=西南交通大学%20东部%20校车), or search WeChat using the accounts, dates and titles above.
+[Original WeChat article](https://mp.weixin.qq.com/s/K3dCyVLOyxHbXOK22qM_oQ)
 
 ## Other shuttle notices
 
-The [Logistics Department shuttle notices](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm) list service changes and suspensions. New-student reception transport in the [arrival guide](/en/docs/freshman/transportation/) is tied to specific dates and is separate from this regular inter-campus service.
+The [Logistics Department shuttle notices](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm) list service changes and suspensions.

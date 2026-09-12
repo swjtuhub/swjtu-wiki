@@ -111,8 +111,8 @@ source: https://hbb.swjtu.edu.cn/tzgg/tzgg.htm
 | 西南交通大学东部国际校区 | 2026-09-03 | 关于东部（国际）校区跨校区校车开通运行的通知 |
 | 西南交通大学智慧城市与交通学院 | 2026-09-04 | 校区直通车丨东部（国际）校区跨校区校车已开通！ |
 
-[WeChat の告知を検索](https://weixin.sogou.com/weixin?type=2&query=西南交通大学%20东部%20校车)。WeChat 内でも上記のアカウント・日付・原題から探せます。
+[WeChat 公式アカウントの原文](https://mp.weixin.qq.com/s/K3dCyVLOyxHbXOK22qM_oQ)
 
 ## その他の交通車案内
 
-[後勤保障部のシャトルバス通知](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm)では運行変更・運休通知を確認できます。[新入生向け交通案内](/ja/docs/freshman/transportation/)にある新入生送迎は特定日程の運行であり、この定期キャンパス間バスとは別です。
+[後勤保障部のシャトルバス通知](https://hbb.swjtu.edu.cn/tzgg/tzgg.htm)では運行変更・運休通知を確認できます。

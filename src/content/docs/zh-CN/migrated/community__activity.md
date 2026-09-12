@@ -23,5 +23,3 @@ source: https://github.com/swjtuhub/SWJTU-Courses
 ---
 
 - [课程资料库与贡献说明](https://github.com/swjtuhub/SWJTU-Courses)
-
-- [Wiki 内容仓库](https://github.com/swjtuhub/swjtu-wiki)

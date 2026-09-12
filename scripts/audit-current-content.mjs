@@ -15,6 +15,11 @@ const docs = fs.readdirSync(docsRoot, { recursive: true })
     return {file, data: parse(match[1]), body: match[2]};
   });
 const locales = ['zh-CN', 'zh-TW', 'en', 'ja'];
+const selfRepository = /https?:\/\/github\.com\/swjtuhub\/swjtu-wiki(?:[/?#]|$)/i;
+for (const doc of docs) {
+  assert(!selfRepository.test(doc.data.source ?? ''), `${doc.file}: current repository cannot be its own source`);
+  assert(!selfRepository.test(doc.body), `${doc.file}: remove links to the current repository from article content`);
+}
 const keys = [
   'legacy-groups', 'legacy-post', 'legacy-schoolbus', 'legacy-service', 'legacy-11231a',
   'legacy-activity', 'legacy-free-analysis', 'legacy-course-grade',
@@ -26,7 +31,7 @@ for (const key of keys) {
     const matches = docs.filter(doc => doc.data.translationKey === key && doc.data.locale === locale);
     assert.equal(matches.length, 1, `${key}: expected one ${locale} translation`);
     const doc = matches[0];
-    assert(doc.data.source?.startsWith('https://'), `${doc.file}: missing source`);
+    if (key !== 'legacy-about') assert(doc.data.source?.startsWith('https://'), `${doc.file}: missing source`);
     assert(doc.data.updatedDate, `${doc.file}: missing editorial date`);
     assert(!/bidding\.swjtu\.edu\.cn/.test(doc.body), `${doc.file}: procurement is not a service location`);
     if (key === 'legacy-post') {

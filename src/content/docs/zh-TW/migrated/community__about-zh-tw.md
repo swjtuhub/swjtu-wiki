@@ -16,14 +16,9 @@ featured: false
 draft: false
 legacyPaths: []
 editPath: 11.更多/01.关于.md
-source: https://github.com/swjtuhub/swjtu-wiki
 ---
 
 SWJTU Wiki 收錄西南交通大學學習與生活的常用資訊，由社群共同維護。學校事務以對應部門通知為準。
-
-## 參與維護
-
-可在[原始內容倉庫](https://github.com/swjtuhub/swjtu-wiki)提出問題或修訂建議。涉及時間、地點與辦理要求時，請附學校通知或公眾號原文及適用日期。
 
 本版本使用 Astro、Tailwind CSS 與 Material Wiki 主題，文章以 Markdown 維護。
 

@@ -21,5 +21,3 @@ source: https://github.com/swjtuhub/SWJTU-Courses
 ---
 
 - [授業資料リポジトリと投稿案内](https://github.com/swjtuhub/SWJTU-Courses)
-
-- [Wiki コンテンツリポジトリ](https://github.com/swjtuhub/swjtu-wiki)

@@ -20,8 +20,6 @@ editPath: 02.黄页/10.群聊导航.md
 source: https://bksy.swjtu.edu.cn/info/1151/94201.htm
 ---
 
-[コミュニティのグループ一覧の出典](https://github.com/swjtuhub/swjtu-wiki)
-
 ## Tencent チャンネル
 
 | **チャンネル名** | **ID**                                  |

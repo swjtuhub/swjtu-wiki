@@ -23,8 +23,6 @@ editPath: 02.黄页/10.群聊导航.md
 source: https://bksy.swjtu.edu.cn/info/1151/94201.htm
 ---
 
-[社区群聊目录原始来源](https://github.com/swjtuhub/swjtu-wiki)
-
 ## 腾讯频道
 
 | **频道名称** | **频道号**                                  |

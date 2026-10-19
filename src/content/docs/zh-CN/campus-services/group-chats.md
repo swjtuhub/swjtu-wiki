@@ -122,6 +122,7 @@ source: https://bksy.swjtu.edu.cn/info/1151/94201.htm
 | 西南交大 Apex 交流群               | Apex 英雄                                    | [231679484](https://jq.qq.com/?_wv=1027&k=ddBUbjcF)  |
 | SWJTU 云图废物集中营               | 少女前线：云图计划                           | [923357792](https://jq.qq.com/?_wv=1027&k=vwyE3nOa)  |
 | 骡的岛我氪控制中枢                 | 明日方舟                                     | [819457533](https://jq.qq.com/?_wv=1027&k=51p20QMQ)  |
+| 宏山科学院SWJTU合作研究中心 | 明日方舟：终末地 | 855365352 |
 | 竢实扬华--西交军团                 | 坦克世界                                     | [260673593](https://jq.qq.com/?_wv=1027&k=PZKIz0iJ)  |
 | 西南交大特雷森学院                 | 赛马娘                                       | [672372712](https://jq.qq.com/?_wv=1027&k=GQ2vSOOe)  |
 | 西南胶带第六期调查团               | 怪物猎人                                     | [344137843](https://jq.qq.com/?_wv=1027&k=inhfHCzd)  |
